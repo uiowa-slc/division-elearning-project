@@ -1,0 +1,27 @@
+{
+	"name": "md/division-elearning",
+	"description": "CAB Website",
+	"require": {
+		"php": ">=5.3.2",
+		"silverstripe/cms": "3.1.5",
+		"silverstripe/framework": "3.1.5",
+		"md/division-bar" : "*",
+		"silverstripe/spamprotection" : "dev-master",
+		"silverstripe/recaptcha" : "*",
+		"silverstripe/userforms" : "*",
+		"rywa/silverstripe-foundation-forms": "dev-master",
+		"silverstripe/mathspamprotection": "dev-master"
+	},
+	"config": {
+		"process-timeout": 600	
+	},
+	"minimum-stability": "dev",
+
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/division-bar"
+        }
+
+    ]
+}
