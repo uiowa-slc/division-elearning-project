@@ -1,5 +1,5 @@
 {
-	"name": "md/division-elearning",
+	"name": "md/division-elearning-project",
 	"description": "CAB Website",
 	"require": {
 		"php": ">=5.3.2",
