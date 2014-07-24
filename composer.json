@@ -1,6 +1,6 @@
 {
 	"name": "md/division-elearning-project",
-	"description": "CAB Website",
+	"description": "Themable module for an elearning project",
 	"require": {
 		"php": ">=5.3.2",
 		"silverstripe/cms": "3.1.5",
