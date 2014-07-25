@@ -23,9 +23,9 @@
 <body>
 	<% include DivisionBar %>
     <div class="container">
-    	<% include ExampleIntroContent %>
+    	$Layout
    	</div>
-    $Layout
+    
 
     <script type="text/javascript" src="division-elearning-project/build/app.min.js"></script>
 	<% include GoogleAnalytics %>

@@ -1,4 +1,5 @@
 <div class="col-md-7">
+	<img src="http://dos.uiowa.edu/assets/Uploads/hero-image-interior-oldcap.jpg" />
 <h1>Welcome to the Course</h1>
     		<p> We'll begin in just a second. First, let's go over some basics.
 	      <h2>Header Level 2</h2>
@@ -15,7 +16,7 @@
    <li>Aliquam tincidunt mauris eu risus.</li>
 </ul>
 
-<p><a class="btn">Begin the course</a></p>
+<p><a class="btn">Begin the course <span class="glyphicon glyphicon-star"></span></a></p>
 </div>
 <div class="col-md-5">
 <h3>Course Overview:</h3>

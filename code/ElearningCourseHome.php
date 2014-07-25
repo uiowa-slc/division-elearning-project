@@ -1,5 +1,5 @@
 <?php
-class ElearningCourse extends Page {
+class ElearningCourseHome extends ElearningCoursePage {
 
 	private static $db = array(
 		"SubHeader" => "Varchar(155)"
@@ -11,7 +11,7 @@ class ElearningCourse extends Page {
 	private static $allowed_children = array("ElearningChapter");
 
 }
-class ElearningCourse_Controller extends Page_Controller {
+class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 
 	/**
 	 * An array of actions that can be accessed via a request. Each array element should be an action name, and the
