@@ -1,16 +1,32 @@
-// The latest settings can be found here:
-// https://github.com/zurb/bower-foundation/blob/master/scss/foundation/_settings.scss
+/*-------------------------------------------
+    Colors
+-------------------------------------------*/
+$link-color: #0088cc;
+$yellow: #ffce39;
 
-// Grid
-// $row-width: rem-calc(1000);
-// $column-gutter: rem-calc(30);
-// $total-columns: 12;
 
-// Default Colors
-// $primary-color: #008CBA;
-$primary-color: #246092;
-// $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
-// $success-color: #43AC6A;
-// $warning-color: #f08a24;
-// $info-color: #a0d3e8;
+/*-------------------------------------------
+    Sizes
+-------------------------------------------*/
+$base-font: 15;
+$base-font-size: 15px;
+
+/*-------------------------------------------
+    Media Queries
+-------------------------------------------*/
+$break-small: 480px;
+$break-medium: 768px;
+$break-large: 980px; /* 980px / 16px; */
+$break-xlarge: 1140px; /* 1140px / 16px; */
+
+/*-------------------------------------------
+    Bootstrap Settings
+-------------------------------------------*/
+$navbar-default-bg: #312312;
+$light-orange: #ff8c00;
+$navbar-default-color: $light-orange;
+
+$font-family-sans-serif: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+$headings-font-family: "proxima-nova-condensed",sans-serif;
+
+

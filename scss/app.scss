@@ -1,7 +1,25 @@
-@import "settings";
-@import "foundation";
+@import 'settings';
+@import 'bootstrap';
 
-.main {
-	padding-top: 32px;
-	min-height: 320px;
+@import "imports/_mixins.scss";
+@import "imports/_typography.scss";
+@import "imports/_global.scss";
+
+@import "imports/_buttons.scss";
+@import "imports/_forms.scss";
+@import "imports/_tables.scss";
+
+@import '../../../division-bar/css/_division-bar.css';
+
+/* division-bar overrides :*/
+
+.division-topbar {
+	.wrapper{
+		//max-width: none;
+		//@extend .container;
+	}
+
+	.clearfix{
+		//@extend .col-md-12;
+	}
 }
