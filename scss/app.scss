@@ -1,13 +1,20 @@
 @import 'settings';
 @import 'bootstrap';
 
-@import "imports/_mixins.scss";
-@import "imports/_typography.scss";
-@import "imports/_global.scss";
+/* Division Project imports */
 
-@import "imports/_buttons.scss";
-@import "imports/_forms.scss";
-@import "imports/_tables.scss";
+$heading-font: $headings-font-family;
+
+@import "../../../division-project/scss/imports/_mixins.scss";
+@import "../../../division-project/scss/imports/_typography.scss";
+@import "../../../division-project/scss/imports/_global.scss";
+@import "../../../division-project/scss/imports/_grid-simple.scss";
+@import "../../../division-project/scss/imports/_buttons.scss";
+@import "../../../division-project/scss/imports/_forms.scss";
+@import "../../../division-project/scss/imports/_tables.scss";
+
+@import "../../../division-project/scss/layout/_footer.scss";
+@import "../../../division-project/scss/layout/_nav.scss";
 
 @import '../../../division-bar/css/_division-bar.css';
 
@@ -15,11 +22,28 @@
 
 .division-topbar {
 	.wrapper{
-		//max-width: none;
-		//@extend .container;
+		max-width: none;
+		@extend .container;
+		padding: 0;
 	}
 
 	.clearfix{
 		//@extend .col-md-12;
+	}
+}
+
+.main-content{
+	padding-bottom: 32px;
+}
+
+.next-section-nav{
+	text-align: right;
+}
+
+.sec-content.affix{
+	position: relative;
+	@media (min-width: $screen-md-min) { 
+		width: 350px;
+		position: fixed;
 	}
 }

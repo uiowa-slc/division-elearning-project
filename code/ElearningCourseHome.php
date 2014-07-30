@@ -8,7 +8,7 @@ class ElearningCourseHome extends ElearningCoursePage {
 	private static $has_one = array(
 	);
 
-	private static $allowed_children = array("ElearningChapter");
+	private static $allowed_children = array("ElearningChapter", "ElearningCoursePage");
 
 }
 class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {

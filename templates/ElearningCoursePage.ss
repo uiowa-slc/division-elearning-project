@@ -20,13 +20,15 @@
 
 </head>
 
-<body>
+<body class="$ClassName">
 	<% include DivisionBar %>
-    <div class="container">
-    	$Layout
+    <div class="main-content container">
+    	<div class="row">
+    		$Layout
+    	</div>
    	</div>
     
-
+   	<% include Footer %>
     <script type="text/javascript" src="division-elearning-project/build/app.min.js"></script>
 	<% include GoogleAnalytics %>
 

@@ -9,17 +9,17 @@ module.exports = function(grunt) {
       dist: {
         src: [
           'bower_components/jquery/dist/jquery.js',
-          'bower_components/sass-bootstrap/dist/js/bootstrap.min.js',
+          'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
           '../division-bar/js/division-bar.js',
           'js/*.js'
         ],
-        dest: 'js/app.js'
+        dest: 'build/src/app.js'
       }
     },
 
     uglify: {
       build: {
-        src: ['js/app.js'],
+        src: ['build/src/app.js'],
         dest: 'build/app.min.js'
       }
     },
