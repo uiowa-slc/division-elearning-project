@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<!--[if IE 8]>         <html class="lt-ie9" lang="eng"> <![endif]-->
+<!--[if IE 8]><html class="lt-ie9" lang="eng"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 	<% base_tag %>
 	<meta charset="utf-8">
-
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width">
 	<title>$Title | The University of Iowa</title>
 	<% include Icons %>
-
-
 	<link rel="stylesheet" type="text/css" href="division-elearning-project/css/app.css" />
 
 	<!--[if lt IE 9]>
@@ -22,7 +19,7 @@
 
 <body class="$ClassName">
 	<% include DivisionBar %>
-    <div class="main-content container">
+    <div class="main-content container-fluid">
     	<div class="row">
     		$Layout
     	</div>
@@ -31,6 +28,5 @@
    	<% include Footer %>
     <script type="text/javascript" src="division-elearning-project/build/app.min.js"></script>
 	<% include GoogleAnalytics %>
-
 </body>
 </html>

@@ -1,5 +1,4 @@
 <div class="col-md-8">
-	<h1> Welcome to $Title online course</h1>
 	$Content
 	<hr />
 	<p>
@@ -9,12 +8,12 @@
 <div class="col-md-4">
 	<section class="sec-content hide-print" data-spy="affix">
 		<h2>
-			Chapters
+			Course Overview
 		</h2>
 		<nav class="sec-nav">
 			<ul class="first-level">
 
-				<% loop Menu(3) %>
+				<% loop Menu(2) %>
 				<li <% if $isCurrent %>class="active"<% end_if %>>
 					<a href="$Link">$Title</a>
 				</li>

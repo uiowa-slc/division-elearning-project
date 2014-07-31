@@ -5,18 +5,16 @@
 
 $heading-font: $headings-font-family;
 
-@import "../../../division-project/scss/imports/_mixins.scss";
-@import "../../../division-project/scss/imports/_typography.scss";
-@import "../../../division-project/scss/imports/_global.scss";
-@import "../../../division-project/scss/imports/_grid-simple.scss";
-@import "../../../division-project/scss/imports/_buttons.scss";
-@import "../../../division-project/scss/imports/_forms.scss";
-@import "../../../division-project/scss/imports/_tables.scss";
-
-@import "../../../division-project/scss/layout/_footer.scss";
-@import "../../../division-project/scss/layout/_nav.scss";
-
-@import '../../../division-bar/css/_division-bar.css';
+@import "../../division-project/scss/imports/_mixins.scss";
+@import "../../division-project/scss/imports/_typography.scss";
+@import "../../division-project/scss/imports/_global.scss";
+@import "../../division-project/scss/imports/_grid-simple.scss";
+@import "../../division-project/scss/imports/_buttons.scss";
+@import "../../division-project/scss/imports/_forms.scss";
+@import "../../division-project/scss/imports/_tables.scss";
+@import "../../division-project/scss/layout/_footer.scss";
+@import "../../division-project/scss/layout/_nav.scss";
+@import '../../division-bar/css/_division-bar.css';
 
 /* division-bar overrides :*/
 
@@ -34,6 +32,7 @@ $heading-font: $headings-font-family;
 
 .main-content{
 	padding-bottom: 32px;
+	min-height: 600px;
 }
 
 .next-section-nav{

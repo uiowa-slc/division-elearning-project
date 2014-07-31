@@ -1,24 +1,36 @@
 <?php
-class ElearningCoursePage extends Page {
+class ElearningCourseChapter extends ElearningCoursePage {
 
 	private static $db = array(
-		
+	);
+	
+	private $has_many = array(
+		'Images' => 'Image',
+		'Sounds' => 'File'
 	);
 
 	private static $has_one = array(
 	);
 
-	//private static $allowed_children = array("ElearningCourseChapter");
-	
 	function getCMSFields() {
 		$fields = parent::getCMSfields();
-		$fields->removeFieldFromTab("Root.Main", "BackgroundImage");
+		
+		$fields->addFieldToTab(
+			'Root.Main',
+			$uploadField = new UploadField(
+				$name = 'Images',
+				$title = 'Upload one or more images for this chapter (max 10)'
+			)		
+		);
+			
+		);
+		$uploadField->setAllowedMaxFileNumber(10);
 		
 		return $fields;
 	}
-
+	
 }
-class ElearningCoursePage_Controller extends Page_Controller {
+class ElearningCourseChapter_Controller extends ElearningCoursePage_Controller {
 
 	/**
 	 * An array of actions that can be accessed via a request. Each array element should be an action name, and the
@@ -45,3 +57,4 @@ class ElearningCoursePage_Controller extends Page_Controller {
 	}
 
 }
+

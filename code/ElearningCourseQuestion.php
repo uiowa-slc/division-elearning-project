@@ -1,24 +1,17 @@
 <?php
-class ElearningCoursePage extends Page {
+class ElearningCourseQuestion extends ElearningCoursePage {
 
 	private static $db = array(
-		
+	);
+	
+	private $has_many = array(
 	);
 
 	private static $has_one = array(
 	);
 
-	//private static $allowed_children = array("ElearningCourseChapter");
-	
-	function getCMSFields() {
-		$fields = parent::getCMSfields();
-		$fields->removeFieldFromTab("Root.Main", "BackgroundImage");
-		
-		return $fields;
-	}
-
 }
-class ElearningCoursePage_Controller extends Page_Controller {
+class ElearningCourseQuestion_Controller extends ElearningCoursePage_Controller {
 
 	/**
 	 * An array of actions that can be accessed via a request. Each array element should be an action name, and the
@@ -36,6 +29,7 @@ class ElearningCoursePage_Controller extends Page_Controller {
 	 * @var array
 	 */
 	private static $allowed_actions = array (
+		'ChapterQuestionForm'
 	);
 
 	public function init() {
@@ -44,4 +38,20 @@ class ElearningCoursePage_Controller extends Page_Controller {
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
 	}
 
+	public function ChapterQuestionForm() {
+		$fields = new FieldList();
+		$actions = new FieldList(
+			FormAction::create("doCheckAnswers")->setTitle("Check Answers")
+		);
+		$form = new Form($this, 'ChapterQuestionForm', $fields, $actions);
+		$form->loadDataFrom($this->request->postVars());
+		return $form;
+	}
+	
+	public function doCheckAnswers($data, Form $form) {
+		//check answers
+		return $this->render();
+	}
+
 }
+

@@ -2,13 +2,24 @@
 class ElearningCourseHome extends ElearningCoursePage {
 
 	private static $db = array(
-		"SubHeader" => "Varchar(155)"
+		"SubHeader" => "Varchar(155)",
+		"CourseTitle" => "Varchar(155)"
 	);
 
 	private static $has_one = array(
 	);
 
-	private static $allowed_children = array("ElearningChapter", "ElearningCoursePage");
+	private static $allowed_children = array("ElearningCoursePart", "ElearningCoursePage");
+	
+	
+	public function getCMSfields() {
+		$fields = parent::getCMSFields();
+		
+		$fields->addFieldToTab('Root.Main', new TextField('CourseTitle', 'Course Title', 'Root.Content'), 'Content');
+		
+		
+		return $fields;
+	}
 
 }
 class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {

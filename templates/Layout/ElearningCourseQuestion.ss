@@ -1,15 +1,14 @@
-<div class="col-md-8">
-	<h1> Welcome to $Title online course</h1>
+<div class="col-sm-8">
 	$Content
 	<hr />
 	<p>
 		<a class="btn">Begin the course </a>
 	</p>
 </div>
-<div class="col-md-4">
+<div class="col-sm-4">
 	<section class="sec-content hide-print" data-spy="affix">
 		<h2>
-			Chapters
+			Course Overview
 		</h2>
 		<nav class="sec-nav">
 			<ul class="first-level">
@@ -22,7 +21,6 @@
 			</ul>
 		</nav>
 		<aside>
-
 </aside>
 	</section>
 </div>

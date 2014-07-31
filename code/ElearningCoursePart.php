@@ -1,5 +1,5 @@
 <?php
-class ElearningCoursePage extends Page {
+class ElearningCoursePart extends ElearningCoursePage {
 
 	private static $db = array(
 		
@@ -8,17 +8,10 @@ class ElearningCoursePage extends Page {
 	private static $has_one = array(
 	);
 
-	//private static $allowed_children = array("ElearningCourseChapter");
-	
-	function getCMSFields() {
-		$fields = parent::getCMSfields();
-		$fields->removeFieldFromTab("Root.Main", "BackgroundImage");
-		
-		return $fields;
-	}
+	private static $allowed_children = array("ElearningCourseChapter", "ElearningCourseQuestion");
 
 }
-class ElearningCoursePage_Controller extends Page_Controller {
+class ElearningCoursePart_Controller extends ElearningCoursePage_Controller {
 
 	/**
 	 * An array of actions that can be accessed via a request. Each array element should be an action name, and the
