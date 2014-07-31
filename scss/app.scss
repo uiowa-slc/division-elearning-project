@@ -30,15 +30,34 @@ $heading-font: $headings-font-family;
 	}
 }
 
+/* Main Content Area */
+
 .main-content{
 	padding-bottom: 32px;
 	min-height: 600px;
+	background: white;
 }
 
-.next-section-nav{
-	text-align: right;
+.gradient{
+	background: white;
+	@media (min-width: $screen-md-min) { 
+		position: relative;
+		background: -moz-linear-gradient(left, #fff 60%, #f8f6f3 60%);
+		background: -webkit-gradient(linear, left top, right top, color-stop(60%, #fff), color-stop(60%, #f8f6f3));
+		background: -webkit-linear-gradient(left, #fff 60%, #f8f6f3 60%);
+		background: -o-linear-gradient(left, #fff 60%, #f8f6f3 60%);
+		background: -ms-linear-gradient(left, #fff 60%, #f8f6f3 60%);
+		background: linear-gradient(to right, #fff 60%, #f8f6f3 60%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f8f6f3',GradientType=1 );	
+	}
 }
 
+h1{
+	margin-top: 1em;
+}
+
+
+/* Primary Navigation */
 .sec-content.affix{
 	position: relative;
 	@media (min-width: $screen-md-min) { 
@@ -46,3 +65,59 @@ $heading-font: $headings-font-family;
 		position: fixed;
 	}
 }
+
+.sec-nav{
+	.glyphicon-ok{
+		color: green;
+	}
+	a{
+		
+	}
+	a.inactive{
+	color: #888;
+	}
+
+	.second-level{
+		font-size: 0.9em;
+	}
+
+}
+
+.additional-nav{
+	padding: 1.3em 0;
+}
+.additional-nav *{
+	font-size: 1em;
+}
+
+/* Per slide Navigation and Caption */
+
+.well.caption-nav{
+	margin-top: 2em;
+
+	img{
+		padding: 1em;
+	}
+}
+
+
+.slide-nav{
+	text-align: right;
+}
+
+.btn.next-sec{
+	margin-top: 1em;
+	background: rgb(24, 143, 180);
+	color: white;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.29);
+	@media (min-width: $screen-sm-min) { 
+		margin-top: 0;
+		float: right;
+	}
+}
+
+.next-section-nav{
+	text-align: right;
+}
+
+
