@@ -25,9 +25,10 @@
 	    	<div class="row">
 	    		$Layout
 	    	</div>
+
 	   	</div>
 	</div>
-   
+    
    	<% include Footer %>
     <script type="text/javascript" src="division-elearning-project/build/app.min.js"></script>
 	<% include GoogleAnalytics %>
