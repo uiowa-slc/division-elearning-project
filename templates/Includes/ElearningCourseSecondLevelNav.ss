@@ -3,7 +3,7 @@
 	<nav class="sec-nav">
 		<h2>Critical M.A.S.S.</h2>
 		<ul class="first-level">
-			<li><a href="critical-mass/">Introduction</a></li>
+			<li><a href="critical-mass/"><span class="glyphicon glyphicon-ok"></span> Introduction</a></li>
 			<li class="active"><a href="#">What is Critical M.A.S.S. ?</a>
 
 				<ul class="second-level">
