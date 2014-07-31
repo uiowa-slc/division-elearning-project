@@ -32,18 +32,65 @@ $heading-font: $headings-font-family;
 	}
 }
 
+/* Main Content Area */
+
 .main-content{
 	padding-bottom: 32px;
 }
 
-.next-section-nav{
-	text-align: right;
+h1{
+	margin-top: 1em;
 }
 
+.well{
+	margin-top: 2em;
+}
+
+/* Primary Navigation */
 .sec-content.affix{
 	position: relative;
 	@media (min-width: $screen-md-min) { 
 		width: 350px;
 		position: fixed;
 	}
+}
+
+.sec-nav{
+	a{
+		border: none;
+	}
+	a.inactive{
+	color: #888;
+	}
+
+	.second-level{
+		font-size: 1em;
+	}
+
+}
+
+.additional-nav{
+	padding: 1.3em 0;
+}
+.additional-nav *{
+	font-size: 1em;
+}
+/* Per slide Navigation */
+.slide-nav{
+	text-align: right;
+}
+
+.btn.next-sec{
+	margin-top: 1em;
+	background: rgb(24, 143, 180);
+	color: white;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.29);
+	@media (min-width: $screen-sm-min) { 
+		margin-top: 0;
+		float: right;
+	}
+}
+
+.next-section-nav{
+	text-align: right;
 }

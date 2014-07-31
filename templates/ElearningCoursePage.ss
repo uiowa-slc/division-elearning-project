@@ -26,6 +26,13 @@
     	<div class="row">
     		$Layout
     	</div>
+    	<hr />
+    	<div class="row">
+    		<div class="col-md-8">
+		    	<p>For more information, please contact <a href="#">Angie Reams</a>, or <a href="#">visit the Critical M.A.S.S. page on the Dean of Students website.</a></p>
+
+			</div>
+    	</div>
    	</div>
     
    	<% include Footer %>
