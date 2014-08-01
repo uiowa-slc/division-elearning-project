@@ -4,12 +4,32 @@ class ElearningCourseQuestion extends ElearningCoursePage {
 	private static $db = array(
 	);
 	
-	private $has_many = array(
+	private static $has_many = array(
+		"Answers" => "ElearningCourseAnswer"
 	);
 
 	private static $has_one = array(
 	);
+	
+	public function getCMSFields() {
+		$fields = parent::getCMSfields();
+		
+		//$gridFieldConfig = GridFieldConfig_RelationEditor::create();
+		/*
+		$row = "SortOrder";
+		$gridFieldConfig->addComponent($sort = new GridFieldSortableRows(stripslashes($row))); 
 
+		$sort->table = 'Page_SidebarItems'; 
+		$sort->parentField = 'PageID'; 
+		$sort->componentField = 'SidebarItemID'; 
+		*/
+		$gridField = new GridField('Answers', 'The Answers', $this->Answers(), GridFieldConfig_RelationEditor::create());
+				
+		$fields->addFieldToTab("Root.Main", $gridField); // add the grid field to a tab in the CMS
+
+		return $fields;
+	}
+		
 }
 class ElearningCourseQuestion_Controller extends ElearningCoursePage_Controller {
 
@@ -28,6 +48,7 @@ class ElearningCourseQuestion_Controller extends ElearningCoursePage_Controller 
 	 *
 	 * @var array
 	 */
+	 
 	private static $allowed_actions = array (
 		'ChapterQuestionForm'
 	);
@@ -39,17 +60,44 @@ class ElearningCourseQuestion_Controller extends ElearningCoursePage_Controller 
 	}
 
 	public function ChapterQuestionForm() {
-		$fields = new FieldList();
-		$actions = new FieldList(
-			FormAction::create("doCheckAnswers")->setTitle("Check Answers")
+		/*
+		$myQuestions = array(
+				$this->AnswerOne => $this->AnswerOne,
+                $this->AnswerTwo => $this->AnswerTwo,
+                $this->AnswerThree => $this->AnswerFour,
+                $this->AnswerFour =>$this->AnswerOne,
+                $this->AnswerFive=> $this->AnswerOne,
+                $this->AnswerSix => $this->AnswerOne
 		);
-		$form = new Form($this, 'ChapterQuestionForm', $fields, $actions);
-		$form->loadDataFrom($this->request->postVars());
-		return $form;
+		
+		foreach ($myQuestions as $question) {
+			if isset($question) {
+				unset($myQuestions[$question]);
+			}
+		}
+		*/
+		if ($this->Answers()->First()) {
+					
+			$options = $this->Answers()->map('ID', 'Answer');
+								
+			$fields = new FieldList(
+				//new TextField('ChapterQuestion'),
+				new OptionsetField("Question", "Pick The Right Answer", $options)
+			);
+			
+			$actions = new FieldList(
+				FormAction::create("doCheckAnswers")->setTitle("Check Answers")
+			);
+			
+			$form = new Form($this, 'ChapterQuestionForm', $fields, $actions);
+			//$form->loadDataFrom($this->request->postVars());
+	
+			return $form;	
+		}
 	}
 	
-	public function doCheckAnswers($data, Form $form) {
-		//check answers
+	public function doCheckAnswers($data, $form) {
+		
 		return $this->render();
 	}
 

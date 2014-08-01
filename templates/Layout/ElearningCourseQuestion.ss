@@ -1,9 +1,12 @@
 <div class="col-sm-8">
 	$Content
 	<hr />
-	<p>
-		<a class="btn">Begin the course </a>
-	</p>
+
+	<div id="chapter-question">
+		<h4>Question</h4>
+		$ChapterQuestionForm
+	</div>
+
 </div>
 <div class="col-sm-4">
 	<section class="sec-content hide-print" data-spy="affix">
@@ -20,7 +23,6 @@
 				<% end_loop %>
 			</ul>
 		</nav>
-		<aside>
 </aside>
 	</section>
 </div>

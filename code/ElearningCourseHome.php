@@ -2,8 +2,8 @@
 class ElearningCourseHome extends ElearningCoursePage {
 
 	private static $db = array(
-		"SubHeader" => "Varchar(155)",
-		"CourseTitle" => "Varchar(155)"
+		"SubHeader" => "Varchar(255)",
+		"CourseTitle" => "Varchar(255)"
 	);
 
 	private static $has_one = array(
@@ -15,8 +15,11 @@ class ElearningCourseHome extends ElearningCoursePage {
 	public function getCMSfields() {
 		$fields = parent::getCMSFields();
 		
-		$fields->addFieldToTab('Root.Main', new TextField('CourseTitle', 'Course Title', 'Root.Content'), 'Content');
-		
+		$fields->addFieldToTab(
+		'Root.Main', 
+		new TextField('CourseTitle', 'Course Title', 'Root.Content'), 
+		'Content'
+		);
 		
 		return $fields;
 	}

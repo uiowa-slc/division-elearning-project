@@ -2,30 +2,38 @@
 class ElearningCourseChapter extends ElearningCoursePage {
 
 	private static $db = array(
+		'ExplanatoryText' => 'Varchar(255)'
 	);
 	
-	private $has_many = array(
-		'Images' => 'Image',
-		'Sounds' => 'File'
+	private static $has_many = array(
 	);
 
 	private static $has_one = array(
+		'AudioClip' => 'File',
+		'Images' => 'Image'
 	);
 
-	function getCMSFields() {
+	public function getCMSFields() {
 		$fields = parent::getCMSfields();
 		
 		$fields->addFieldToTab(
 			'Root.Main',
-			$uploadField = new UploadField(
-				$name = 'Images',
-				$title = 'Upload one or more images for this chapter (max 10)'
-			)		
+			 new UploadField( 'Images', 'Upload Image for this Chapter (optional)'),
+			 'Content'
 		);
-			
-		);
-		$uploadField->setAllowedMaxFileNumber(10);
 		
+		$fields->addFieldToTab(
+			'Root.Main',
+			 new UploadField( 'AudioClip', 'Upload this chapters Audio Clip'),
+			 'Content'
+		);
+		
+		$fields->addFieldToTab(
+			'Root.Main',
+			new TextareaField( 'ExplanatoryText', 'Write Audio Transcription Here'),
+			'Content'
+		);
+				
 		return $fields;
 	}
 	
