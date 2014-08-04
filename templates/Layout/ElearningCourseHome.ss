@@ -7,6 +7,6 @@
 	</div>
 	<% include ElearningCourseCredits %>
 </div>
-<div class="col-md-4">
+<div class="col-md-4 side-content">
 	<% include ElearningCourseNav %>
 </div>

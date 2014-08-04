@@ -10,6 +10,10 @@ class ElearningCourseQuestion extends ElearningCoursePage {
 
 	private static $has_one = array(
 	);
+
+	private static $singular_name = 'Question';
+
+	private static $plural_name = 'Questions';
 	
 	public function getCMSFields() {
 		$fields = parent::getCMSfields();
@@ -24,7 +28,7 @@ class ElearningCourseQuestion extends ElearningCoursePage {
 		$sort->componentField = 'SidebarItemID'; 
 		*/
 		$gridField = new GridField('Answers', 'The Answers', $this->Answers(), GridFieldConfig_RelationEditor::create());
-				
+		$fields->renameField('Content', 'Question');
 		$fields->addFieldToTab("Root.Main", $gridField); // add the grid field to a tab in the CMS
 
 		return $fields;

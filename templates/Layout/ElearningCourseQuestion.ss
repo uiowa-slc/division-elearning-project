@@ -1,13 +1,11 @@
-<div class="col-sm-8">
-	$Content
-	<hr />
-
+<div class="col-md-8 main-content">
 	<div id="chapter-question">
-		<h4>Question</h4>
+			$Content
+			<hr />
 		$ChapterQuestionForm
 	</div>
 
 </div>
-<div class="col-sm-4">
+<div class="col-md-4 side-content">
 	<% include ElearningCourseNav %>
 </div>

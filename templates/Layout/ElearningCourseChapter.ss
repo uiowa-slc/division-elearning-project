@@ -5,7 +5,7 @@
 		<a class="btn">Begin the course </a>
 	</p>
 </div>
-<div class="col-md-4">
+<div class="col-md-4 side-content">
 	<% include ElearningCourseNav %>
 </div>
 <div class="col-md-12">

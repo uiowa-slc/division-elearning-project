@@ -10,6 +10,9 @@ class ElearningCoursePart extends ElearningCoursePage {
 
 	private static $allowed_children = array("ElearningCourseChapter", "ElearningCourseQuestion");
 
+	private static $singular_name = 'Part';
+
+	private static $plural_name = 'Parts';
 }
 class ElearningCoursePart_Controller extends ElearningCoursePage_Controller {
 

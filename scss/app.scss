@@ -8,13 +8,15 @@ $heading-font: $headings-font-family;
 @import "../../division-project/scss/imports/_mixins.scss";
 @import "../../division-project/scss/imports/_typography.scss";
 @import "../../division-project/scss/imports/_global.scss";
-@import "../../division-project/scss/imports/_grid-simple.scss";
 @import "../../division-project/scss/imports/_buttons.scss";
 @import "../../division-project/scss/imports/_forms.scss";
 @import "../../division-project/scss/imports/_tables.scss";
 @import "../../division-project/scss/layout/_footer.scss";
 @import "../../division-project/scss/layout/_nav.scss";
 @import '../../division-bar/css/_division-bar.css';
+
+
+
 
 /* division-bar overrides :*/
 
@@ -36,6 +38,7 @@ $heading-font: $headings-font-family;
 	padding-bottom: 32px;
 	min-height: 600px;
 	background: white;
+	border-right: 1px solid #ddd;
 }
 
 .gradient{
@@ -58,6 +61,11 @@ h1{
 
 
 /* Primary Navigation */
+
+.col-md-4.side-content{
+	padding-left: 0;
+}
+
 .sec-content.affix{
 	position: relative;
 	@media (min-width: $screen-md-min) { 
@@ -79,6 +87,10 @@ h1{
 
 	.second-level{
 		font-size: 0.9em;
+	}
+
+	h2{
+		padding-left: 10px;
 	}
 
 }

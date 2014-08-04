@@ -13,6 +13,10 @@ class ElearningCourseChapter extends ElearningCoursePage {
 		'Images' => 'Image'
 	);
 
+	private static $singular_name = 'Chapter';
+
+	private static $plural_name = 'Chapters';
+
 	public function getCMSFields() {
 		$fields = parent::getCMSfields();
 		
