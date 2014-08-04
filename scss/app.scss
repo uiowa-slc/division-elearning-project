@@ -36,9 +36,14 @@ $heading-font: $headings-font-family;
 
 .main-content{
 	padding-bottom: 32px;
-	min-height: 600px;
+	
 	background: white;
-	border-right: 1px solid #ddd;
+	
+
+	@media (min-width: $screen-md-min) { 
+		min-height: 800px;
+		border-right: 1px solid #ddd;
+	}
 }
 
 .gradient{

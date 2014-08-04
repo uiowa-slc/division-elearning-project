@@ -2,14 +2,14 @@
 class ElearningCourseChapter extends ElearningCoursePage {
 
 	private static $db = array(
-		'ExplanatoryText' => 'Varchar(255)'
+
 	);
 	
 	private static $has_many = array(
 	);
 
 	private static $has_one = array(
-		'AudioClip' => 'File',
+		
 		'Images' => 'Image'
 	);
 
@@ -25,16 +25,7 @@ class ElearningCourseChapter extends ElearningCoursePage {
 			 new UploadField( 'Images', 'Upload Image for this Chapter (optional)'),
 			 'Content'
 		);
-		
-		$fields->addFieldToTab(
-			'Root.Main',
-			 new UploadField( 'AudioClip', 'Upload this chapters Audio Clip'),
-			 'Content'
-		);
-		
-		$fields->addFieldToTab(
-			'Root.Main',
-			new HTMLEditorField( 'ExplanatoryText', 'Write Audio Transcription Here'));
+	
 				
 		return $fields;
 	}

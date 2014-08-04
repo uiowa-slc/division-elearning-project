@@ -2,10 +2,11 @@
 class ElearningCoursePage extends Page {
 
 	private static $db = array(
-		
+		'ExplanatoryText' => 'HTMLText'
 	);
 
 	private static $has_one = array(
+		'AudioClip' => 'File',
 	);
 
 	//private static $allowed_children = array("ElearningCourseChapter");
@@ -13,7 +14,17 @@ class ElearningCoursePage extends Page {
 	function getCMSFields() {
 		$fields = parent::getCMSfields();
 		$fields->removeFieldFromTab("Root.Main", "BackgroundImage");
-		
+
+		$fields->addFieldToTab(
+			'Root.Main',
+			 new UploadField( 'AudioClip', 'Audio Clip'),
+			 'Content'
+		);
+		$fields->addFieldToTab(
+			'Root.Main',
+			new HTMLEditorField( 'ExplanatoryText', 'Explanatory Text')
+		);
+
 		return $fields;
 	}
 

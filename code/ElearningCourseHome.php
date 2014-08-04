@@ -14,6 +14,8 @@ class ElearningCourseHome extends ElearningCoursePage {
 	
 	public function getCMSfields() {
 		$fields = parent::getCMSFields();
+
+		$fields->removeByName("Content");
 		
 		$fields->addFieldToTab(
 		'Root.Main', 

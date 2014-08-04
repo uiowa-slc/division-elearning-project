@@ -16,11 +16,7 @@
 		</ul>
 		<img src="division-elearning-project/images/dos/circles.png" />
 		<hr />
-	<div class="well caption-nav">
-		Critical MASS is a supportive program meant to connect volunteer staff and faculty members with students found responsible for violating the Code of Student Life.  This is also open to other students who may benefit from mentoring. The Critical MASS mentor will work to create a positive relationship with the student to provide additional on-campus support and work with the student to motivate positive behavior change. 
-		<hr />
-		<a href="#" class="btn">Play Audio  <span class="glyphicon glyphicon-volume-up"></span> </a> <a class="btn next-sec">Next: The Student Conduct Process at Iowa <span class="glyphicon glyphicon-chevron-right"></span></a>
-	</div>
+	<% include ElearningContentNav %>
 	<% include ElearningCourseCredits %>
 	<!--<p class="slide-nav">
 		<a class="btn">Next Section <span class="glyphicon glyphicon-chevron-right"></span></a>
