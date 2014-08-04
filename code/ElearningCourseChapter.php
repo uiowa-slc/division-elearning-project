@@ -30,9 +30,7 @@ class ElearningCourseChapter extends ElearningCoursePage {
 		
 		$fields->addFieldToTab(
 			'Root.Main',
-			new TextareaField( 'ExplanatoryText', 'Write Audio Transcription Here'),
-			'Content'
-		);
+			new HTMLEditorField( 'ExplanatoryText', 'Write Audio Transcription Here'));
 				
 		return $fields;
 	}
