@@ -47,6 +47,13 @@ class ElearningCoursePage_Controller extends Page_Controller {
 	 * @var array
 	 */
 	private static $allowed_actions = array (
+		'disableAudioInSession',
+		'enableAudioInSession'
+	);
+
+	private static $url_handlers = array (
+		'disableAudioInSession' => 'disableAudioInSession',
+		'enableAudioInSession' => 'enableAudioInSession'
 	);
 
 	public function init() {
@@ -55,11 +62,28 @@ class ElearningCoursePage_Controller extends Page_Controller {
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
 	}
 	
-	
+	public function disableAudioInSession(){
+		Session::set('Audio', 'Disabled');
+		$this->redirectBack();
+	}
+	public function enableAudioInSession(){
+		Session::set('Audio', 'Enabled');
+		$this->redirectBack();
+	}
+
+	public function IsAudioEnabled(){
+		$audioStatus = Session::get('Audio');
+		if($audioStatus == 'Disabled'){
+			return false;
+		}else{
+			return true;
+		}
+	}	
 	public function getPaginatedPages( $relation ) {
 		$list = new PaginatedList( $this->$relation(), $this->request );
 		$list->setPageLength( 1 );
 		return $list;
 	}
+
 
 }

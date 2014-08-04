@@ -1,8 +1,15 @@
-	<% if not $Answers %>
-	<div class="well caption-nav">
-		$ExplanatoryText
+<% if not $Answers %>
+	<% if $ExplanatoryText %>
+		<div class="well caption-nav">
+			$ExplanatoryText
+			<hr />
+			<audio src="division-elearning-project/media/ido.mp3" controls="controls" <% if $isAudioEnabled %>autoplay<% end_if %>></audio>
+		</div>
+	<% else %>
 		<hr />
-		<a href="#" class="btn">Play Audio  <span class="glyphicon glyphicon-volume-up"></span> </a> 
-		<a class="btn next-sec">The Student Conduct Process at Iowa <span class="glyphicon glyphicon-chevron-right"></span></a>
-	</div>
 	<% end_if %>
+
+	<% if $NextPage %><p class="slide-nav"><% with $NextPage %><a class="btn next-sec" href="$Link">$Title <span class="glyphicon glyphicon-chevron-right"></span></a><% end_with %></p><% end_if %>
+
+
+<% end_if %>

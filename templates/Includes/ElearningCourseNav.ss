@@ -52,4 +52,11 @@
 			<li><a href="#">Mandatory Reporter</a></li>
 		</ul>		
 	</nav>
+	<div class="playback-options">
+	<% if $isAudioEnabled %>
+		<a href="{$Link}disableAudioInSession" class="btn narration">Disable Auto Narration <span class="glyphicon glyphicon-volume-off"></span></a>
+	<% else %>
+		<a href="{$Link}enableAudioInSession" class="btn narration">Enable Auto Narration <span class="glyphicon glyphicon-volume-up"></span></a>
+	<% end_if %>
+	</div>
 </section>

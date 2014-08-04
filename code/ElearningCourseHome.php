@@ -52,5 +52,7 @@ class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
 	}
-
+	public function NextPage() {
+		return $this->Children()->First();		
+	}
 }

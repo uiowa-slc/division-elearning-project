@@ -57,5 +57,25 @@ class ElearningCourseChapter_Controller extends ElearningCoursePage_Controller {
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
 	}
 
+	public function NextPage() {
+		$page = Page::get()->filter( array (
+				'ParentID' => $this->ParentID,
+				'Sort:GreaterThan' => $this->Sort
+			) )->First();
+
+		if(isset($page)){
+			return $page;
+		}else{
+			$parent = $this->getParent();
+			if(isset($parent)){
+				$page = Page::get()->filter( array (
+					'ParentID' => $parent->ParentID,
+					'Sort:GreaterThan' => $this->Sort
+				) )->First();	
+				return $page;			
+			}
+		}
+	}
+
 }
 

@@ -5,6 +5,9 @@
 
 $heading-font: $headings-font-family;
 
+
+@import "../bower_components/mediaelement/build/mediaelementplayer.min.css";
+
 @import "../../division-project/scss/imports/_mixins.scss";
 @import "../../division-project/scss/imports/_typography.scss";
 @import "../../division-project/scss/imports/_global.scss";
@@ -68,7 +71,9 @@ h1{
 /* Primary Navigation */
 
 .col-md-4.side-content{
-	padding-left: 0;
+	@media (min-width: $screen-md-min) { 
+		padding-left: 0;
+	}
 }
 
 .sec-content.affix{
@@ -79,11 +84,23 @@ h1{
 	}
 }
 
+.sec-content{
+	.playback-options{
+		padding-left: 10px;
+
+		.glyphicon{
+			vertical-align: text-top;
+		}
+	}
+}
+
 .sec-nav{
 	.glyphicon-ok{
 		color: green;
 	}
 	a{
+		padding-top: 5px;
+		padding-bottom: 5px;
 		
 	}
 	a.inactive{
@@ -97,6 +114,7 @@ h1{
 	h2{
 		padding-left: 10px;
 	}
+
 
 }
 
@@ -115,11 +133,16 @@ h1{
 	img{
 		padding: 1em;
 	}
+
+	audio{
+		width: 100%;
+	}
 }
 
-
 .slide-nav{
-	text-align: right;
+	@media (min-width: $screen-sm-min) { 
+		text-align: right;
+	}
 }
 
 .btn.next-sec{
@@ -129,12 +152,11 @@ h1{
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.29);
 	@media (min-width: $screen-sm-min) { 
 		margin-top: 0;
-		float: right;
+		//float: right;
 	}
 }
 
-.next-section-nav{
-	text-align: right;
-}
+.btn.narration{
 
+}
 
