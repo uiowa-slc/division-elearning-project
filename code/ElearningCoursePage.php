@@ -90,7 +90,7 @@ class ElearningCoursePage_Controller extends Page_Controller {
 			Session::set('courseStatus', $courseStatus);
 			Session::save();
 		}
-		//Debug::show($sessionCourseData);
+		print_r($sessionCourseData);
 		parent::init();
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements

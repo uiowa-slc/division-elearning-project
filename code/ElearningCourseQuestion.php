@@ -130,18 +130,16 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 		$currentCourse = $this->Course();
 		$courseStatus = Session::get('courseStatus');
 		$nextPage = $this->getNextPage();
-
 		$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
-
 		if(isset($nextPage)){
 			//Make Next Page available if it isn't completed already.
 			if($courseStatus[$currentCourse->ID][$nextPage->ID] != 'completed'){
 				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
-				Session::set('courseStatus', $courseStatus);
-				Session::save();
 			}
 			//$this->redirect($nextPage->Link());
 		}
+		Session::set('courseStatus', $courseStatus);
+		Session::save();
 		return $this->render();
 	}
 
