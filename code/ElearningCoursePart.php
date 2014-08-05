@@ -15,13 +15,29 @@ class ElearningCoursePart extends ElearningCoursePage {
 	private static $plural_name = 'Parts';
 
 	private static $default_parent = "ElearningCourseHome";
-
+	private static $can_be_root = false;
+	
 	public function Course(){
 		$pageTemp = $this;
 		while($pageTemp->ClassName != 'ElearningCourseHome'){
 			$pageTemp = $this->getParent();
 		}
 		return $pageTemp;
+	}
+
+	
+	public function getNextPage() {
+		if($this->Children()->First()){
+			return $this->Children()->First();
+		}else{
+			$page = Page::get()->filter( array (
+				'ParentID' => $this->ParentID,
+				'Sort:GreaterThan' => $this->Sort
+			) )->First();
+		}
+		if(isset($page)){
+			return $page;
+		}
 	}
 	
 }
@@ -80,20 +96,7 @@ class ElearningCoursePart_Controller extends ElearningCoursePage_Controller {
 		$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
 
 	}
-	
-	public function getNextPage() {
-		if($this->Children()->First()){
-			return $this->Children()->First();
-		}else{
-			$page = Page::get()->filter( array (
-				'ParentID' => $this->ParentID,
-				'Sort:GreaterThan' => $this->Sort
-			) )->First();
-		}
-		if(isset($page)){
-			return $page;
-		}
-	}
+
 
 	
 

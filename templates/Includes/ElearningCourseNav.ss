@@ -1,23 +1,23 @@
 <section class="sec-content hide-print" data-spy="affix">
 	
-<% if Menu(2) %>
-	<% with Level(1) %>
-		<h3 class="section-title"><% if $LinkOrCurrent = "current" %>$MenuTitle<% else %><a href="$Link">$MenuTitle</a><% end_if %></h3>
-	<% end_with %>
-<% end_if %>
 
-<% if Menu(2) %>
+	<% with Course %>
+		<h3 class="section-title"><a href="$Link">$MenuTitle</a></h3>
+	<% end_with %>
+
+
+
 <nav class="sec-nav">
 	<ul class="first-level">
-			<% with Level(1) %>
+			<% with $Course %>
 				<% include ElearningNavLink %>
 			<% end_with %>
-			<% loop Menu(2) %>
+			<% loop $Course.Children %>
 				<% include ElearningNavLink %>
 				<%-- third level nav option 1 --%>
-					<% if $LinkOrSection = "section" && Children %>
+					<% if $LinkOrSection = "section" && $Children %>
 						<ul class="second-level">
-							<% loop Children %>
+							<% loop $Children %>
 								<% include ElearningNavLink %>
 							<% end_loop %>
 						</ul>
@@ -27,7 +27,7 @@
 			<% end_loop %>
 	</ul>
 </nav>
-<% end_if %>
+
 	<nav class="sec-nav additional-nav">
 		<h2>Additional Resources</h2>
 		<ul class="first-level">

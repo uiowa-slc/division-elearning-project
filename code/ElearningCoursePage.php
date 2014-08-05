@@ -8,7 +8,7 @@ class ElearningCoursePage extends Page {
 	private static $has_one = array(
 		'AudioClip' => 'File',
 	);
-
+	private static $can_be_root = false;
 	//private static $allowed_children = array("ElearningCourseChapter");
 	
 	function getCMSFields() {
