@@ -28,21 +28,18 @@ class ElearningCoursePage extends Page {
 		return $fields;
 	}
 
-	public function IsCompleted(){
+	public function CompletionStatus(){
 		$courseStatus = Session::get('courseStatus');
 		$currentCourse = $this->Course();
 
 		if(isset($courseStatus[$currentCourse->ID][$this->ID])){
-
-			$completedKey = $courseStatus[$currentCourse->ID][$this->ID];
-			if($completedKey == 'completed'){
-				return true;
-			}else{
-				return false;
-			}
+			return $courseStatus[$currentCourse->ID][$this->ID];
+	
+		}else{
+			return false;
 		}
-
 	}
+
 
 	/*public function Course(){
 		$pageTemp = $this;
@@ -86,8 +83,13 @@ class ElearningCoursePage_Controller extends Page_Controller {
 
 	public function init() {
 
-		$sessionCourseData = Session::get_all();
-		Debug::show($sessionCourseData);
+		$sessionCourseData = Session::get('courseStatus');
+		if(!isset($sessionCourseData[$this->Course()->ID]['started'])){
+			$courseStatus[$this->Course()->ID]['started'] = 'true';
+			Session::set('courseStatus', $courseStatus);
+			Session::save();
+		}
+		//Debug::show($sessionCourseData);
 		parent::init();
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
@@ -95,10 +97,12 @@ class ElearningCoursePage_Controller extends Page_Controller {
 
 	public function disableAudioInSession(){
 		Session::set('Audio', 'Disabled');
+		Session::save();
 		$this->redirectBack();
 	}
 	public function enableAudioInSession(){
 		Session::set('Audio', 'Enabled');
+		Session::save();
 		$this->redirectBack();
 	}
 
@@ -136,13 +140,17 @@ class ElearningCoursePage_Controller extends Page_Controller {
 
 		$nextPage = $this->getNextPage();
 
-		if(isset($currentCourse)){
-			$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
+		$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
+		$nextPage = $this->getNextPage();
+
+		if(isset($nextPage)){
+			//Make Next Page available
+			$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
+			Session::set('courseStatus', $courseStatus);
+			Session::save();
+
+			$this->redirect($nextPage->Link());
 		}
-
-		Session::set('courseStatus', $courseStatus);
-
-		$this->redirect($nextPage->Link());
 
 	}
 

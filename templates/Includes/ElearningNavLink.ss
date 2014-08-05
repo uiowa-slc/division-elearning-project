@@ -1,5 +1,5 @@
-				<li class="<% if $LinkOrCurrent = "current" %>active<% end_if %> <% if $IsCompleted %>complete<% end_if %>">
-					<% if $IsCompleted %>
+				<li class="<% if $LinkOrCurrent = "current" %>active<% end_if %> $CompletionStatus">
+					<% if $CompletionStatus %>
 					<a href="$Link">$MenuTitle</a>
 					<% else %>
 					<span>$MenuTitle</span>

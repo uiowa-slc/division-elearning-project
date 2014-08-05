@@ -62,16 +62,17 @@ class ElearningCoursePart_Controller extends ElearningCoursePage_Controller {
 			$courseStatus[$currentCourse->ID][$this->getParent()->ID] = 'completed';
 		}
 
-		if(isset($currentCourse)){
-			$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
+		$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
+
+		if(isset($nextPage)){
+			//Make the next page available
+			$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
+			Session::set('courseStatus', $courseStatus);
+			$this->redirect($nextPage->Link());
 		}
 
-		Session::set('courseStatus', $courseStatus);
-
-		$this->redirect($nextPage->Link());
-
 	}
-
+	
 	public function getNextPage() {
 		if($this->Children()->First()){
 			return $this->Children()->First();
@@ -85,5 +86,7 @@ class ElearningCoursePart_Controller extends ElearningCoursePage_Controller {
 			return $page;
 		}
 	}
+
+	
 
 }
