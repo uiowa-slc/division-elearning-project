@@ -3,7 +3,8 @@ class ElearningCourseAnswer extends DataObject {
 
 	private static $db = array(
 		"Answer" => "Varchar(255)",
-		"TimesAnswered" => "Int"
+		"TimesAnswered" => "Int",
+		"SortOrder" => "Int"
 	);
 	
 	private static $has_one = array(
@@ -26,6 +27,7 @@ class ElearningCourseAnswer extends DataObject {
 	    $fields->addFieldToTab('Root.Main', $questionField);
 	    $fields->removeByName("TimesAnswered");
 	    $fields->removeByName("QuestionID");
+	    $fields->removeByName("SortOrder");
 	    return $fields;
 	  }
 	

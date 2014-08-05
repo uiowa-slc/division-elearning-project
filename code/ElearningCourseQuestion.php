@@ -32,6 +32,8 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 		$fields->removeByName("Content");
 
 		$gridField = new GridField('Answers', 'The Answers', $this->Answers(), GridFieldConfig_RelationEditor::create());
+		$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
+		
 		$correctAnswerField = new DropdownField('CorrectAnswerID', 'Correct Answer (May require a refresh after adding answers)', $this->Answers()->map('ID', 'Answer'));
 
 		
