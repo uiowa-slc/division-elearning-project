@@ -11,15 +11,22 @@ class ElearningCourseAnswer extends DataObject {
 	);
 
 	private static $summary_fields = array(
-		"Answer", "TimesAnswered"
+		"Answer"
 	);
 	private static $singular_name = 'Answer';
 
 	private static $plural_name = 'Answers';
 
-	public function updateCMSfield() {
-		//make TimesAnswered uneditable
-	}
-	
+	  public function getCMSFields() {
+	    $fields = parent::getCMSFields();
+
+	    $questionField = new ReadonlyField('QuestionLabelField', 'Question');
+	    $questionField->setValue($this->Question()->Content);
+
+	    $fields->addFieldToTab('Root.Main', $questionField);
+	    $fields->removeByName("TimesAnswered");
+	    $fields->removeByName("QuestionID");
+	    return $fields;
+	  }
 	
 }

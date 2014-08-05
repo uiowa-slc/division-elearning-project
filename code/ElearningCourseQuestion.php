@@ -9,6 +9,7 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 	);
 
 	private static $has_one = array(
+		"CorrectAnswer" => "ElearningCourseAnswer"
 	);
 
 	private static $singular_name = 'Question';
@@ -28,9 +29,15 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 		$sort->parentField = 'PageID'; 
 		$sort->componentField = 'SidebarItemID'; 
 		*/
+		$fields->removeByName("Content");
+
 		$gridField = new GridField('Answers', 'The Answers', $this->Answers(), GridFieldConfig_RelationEditor::create());
-		$fields->renameField('Content', 'Question');
-		$fields->addFieldToTab("Root.Main", $gridField); // add the grid field to a tab in the CMS
+		$correctAnswerField = new DropdownField('CorrectAnswerID', 'Correct Answer (May require a refresh after adding answers)', $this->Answers()->map('ID', 'Answer'));
+
+		
+		$fields->addFieldToTab('Root.Main', new HTMLEditorField('Content', 'Question'), 'ExplanatoryText');
+		$fields->addFieldToTab('Root.Main', $correctAnswerField,'ExplanatoryText');
+		$fields->addFieldToTab("Root.Main", $gridField,'ExplanatoryText'); // add the grid field to a tab in the CMS
 
 		return $fields;
 	}

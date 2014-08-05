@@ -20,13 +20,9 @@ class ElearningCourseHome extends ElearningCoursePage {
 		$fields = parent::getCMSFields();
 
 		$fields->removeByName("Content");
-		
-		$fields->addFieldToTab(
-		'Root.Main', 
-		new TextField('IntroductionTitle', 'Introduction Title (e.g., "Introduction")', 'Root.Content'));
-		$fields->addFieldToTab(
-		'Root.Main', 
-		new HTMLEditorField('FooterText', 'Footer Text', 'Root.Content'));		
+
+		$fields->addFieldToTab('Root.Main', new TextField('IntroductionTitle', 'Introduction Title (e.g., "Introduction")'), 'ExplanatoryText');
+		$fields->addFieldToTab('Root.Main', new HTMLEditorField('FooterText', 'Footer Text (appears throughout entire course)'));		
 		return $fields;
 	}
 
