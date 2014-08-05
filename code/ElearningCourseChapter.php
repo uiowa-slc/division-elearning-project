@@ -13,6 +13,9 @@ class ElearningCourseChapter extends ElearningCoursePage {
 		'Images' => 'Image'
 	);
 
+	private static $default_parent = "ElearningCoursePart";
+	private static $allowed_children = array();
+	
 	private static $singular_name = 'Chapter';
 
 	private static $plural_name = 'Chapters';

@@ -14,6 +14,8 @@ class ElearningCoursePart extends ElearningCoursePage {
 
 	private static $plural_name = 'Parts';
 
+	private static $default_parent = "ElearningCourseHome";
+
 	public function Course(){
 		$pageTemp = $this;
 		while($pageTemp->ClassName != 'ElearningCourseHome'){

@@ -25,7 +25,7 @@
 }
 
 
-.sec-nav a, .sec-nav span {
+.sec-nav a, .sec-nav span.inactive {
 	border-bottom: 1px solid #ddd;
 	display: block;
 	padding: 5px 0 5px 5px;
@@ -39,7 +39,7 @@
 	}
 }
 
-.sec-nav .active > a, .sec-nav .active > span {
+.sec-nav .active > a, .sec-nav .active > span.inactive {
 	background: #000;
 	color: #fff;
 	position: relative;
@@ -58,7 +58,7 @@
 		}
 	}
 }
-.sec-nav span{
+.sec-nav span.inactive{
 	color: #9C9C9C;
 	&:hover {
 		background-color: none;
@@ -69,6 +69,7 @@
 .sec-nav{
 	.glyphicon-ok{
 		color: green;
+		padding-left: 10px;
 	}
 	.second-level{
 		font-size: 0.9em;

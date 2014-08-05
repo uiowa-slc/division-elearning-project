@@ -84,6 +84,7 @@ class ElearningCoursePage_Controller extends Page_Controller {
 	public function init() {
 
 		$sessionCourseData = Session::get('courseStatus');
+
 		if(!isset($sessionCourseData[$this->Course()->ID]['started'])){
 			$courseStatus[$this->Course()->ID]['started'] = 'true';
 			Session::set('courseStatus', $courseStatus);

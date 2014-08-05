@@ -14,6 +14,7 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 	private static $singular_name = 'Question';
 
 	private static $plural_name = 'Questions';
+
 	
 	public function getCMSFields() {
 		$fields = parent::getCMSfields();
