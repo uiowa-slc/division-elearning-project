@@ -17,6 +17,10 @@ class ElearningCourseChapter extends ElearningCoursePage {
 
 	private static $plural_name = 'Chapters';
 
+	public function Course(){
+		return $this->getParent()->Parent;
+	}
+
 	public function getCMSFields() {
 		$fields = parent::getCMSfields();
 		
@@ -57,7 +61,7 @@ class ElearningCourseChapter_Controller extends ElearningCoursePage_Controller {
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
 	}
 
-	public function NextPage() {
+	public function getNextPage() {
 		$page = Page::get()->filter( array (
 				'ParentID' => $this->ParentID,
 				'Sort:GreaterThan' => $this->Sort

@@ -28,6 +28,30 @@ class ElearningCoursePage extends Page {
 		return $fields;
 	}
 
+	public function IsCompleted(){
+		$courseStatus = Session::get('courseStatus');
+		$currentCourse = $this->Course();
+
+		if(isset($courseStatus[$currentCourse->ID][$this->ID])){
+
+			$completedKey = $courseStatus[$currentCourse->ID][$this->ID];
+			if($completedKey == 'completed'){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+	}
+
+	/*public function Course(){
+		$pageTemp = $this;
+		while($pageTemp->ClassName != 'ElearningCourseHome'){
+			$pageTemp = $this->getParent();
+		}
+		return $pageTemp;
+	}*/
+
 }
 class ElearningCoursePage_Controller extends Page_Controller {
 
@@ -48,20 +72,27 @@ class ElearningCoursePage_Controller extends Page_Controller {
 	 */
 	private static $allowed_actions = array (
 		'disableAudioInSession',
-		'enableAudioInSession'
+		'enableAudioInSession',
+		'Next',
+		'Clear',
 	);
 
 	private static $url_handlers = array (
 		'disableAudioInSession' => 'disableAudioInSession',
-		'enableAudioInSession' => 'enableAudioInSession'
+		'enableAudioInSession' => 'enableAudioInSession',
+		'Next' => 'Next',
+		'Clear' => 'Clear'
 	);
 
 	public function init() {
+
+		$sessionCourseData = Session::get_all();
+		Debug::show($sessionCourseData);
 		parent::init();
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
 	}
-	
+
 	public function disableAudioInSession(){
 		Session::set('Audio', 'Disabled');
 		$this->redirectBack();
@@ -84,6 +115,50 @@ class ElearningCoursePage_Controller extends Page_Controller {
 		$list->setPageLength( 1 );
 		return $list;
 	}
+
+	public function NextPage(){
+		$nextPage = $this->getNextPage();
+		if(isset($nextPage)){
+			$data = array(
+				'Title' => $nextPage->Title,
+				'Link' => $this->Link().'Next/'
+			);
+		
+			return $this->customise($data);
+		}
+
+	}
+
+	public function Next(){
+
+		$courseStatus = Session::get('courseStatus');
+		$currentCourse = $this->Course();
+
+		$nextPage = $this->getNextPage();
+
+		if(isset($currentCourse)){
+			$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
+		}
+
+		Session::set('courseStatus', $courseStatus);
+
+		$this->redirect($nextPage->Link());
+
+	}
+
+
+
+	public function Clear(){
+		if(Director::isDev()){
+			Session::clear_all();
+			$this->redirectBack();
+		}
+	}
+
+	public function isDev(){
+		return Director::isDev();
+	}
+
 
 
 }

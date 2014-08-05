@@ -1,5 +1,5 @@
 <?php
-class ElearningCourseQuestion extends ElearningCoursePage {
+class ElearningCourseQuestion extends ElearningCourseChapter {
 
 	private static $db = array(
 	);

@@ -19,6 +19,7 @@ $heading-font: $headings-font-family;
 @import '../../division-bar/css/_division-bar.css';
 
 
+@import "layout/_nav.scss";
 
 
 /* division-bar overrides :*/
@@ -68,95 +69,4 @@ h1{
 }
 
 
-/* Primary Navigation */
-
-.col-md-4.side-content{
-	@media (min-width: $screen-md-min) { 
-		padding-left: 0;
-	}
-}
-
-.sec-content.affix{
-	position: relative;
-	@media (min-width: $screen-md-min) { 
-		width: 350px;
-		position: fixed;
-	}
-}
-
-.sec-content{
-	.playback-options{
-		padding-left: 10px;
-
-		.glyphicon{
-			vertical-align: text-top;
-		}
-	}
-}
-
-.sec-nav{
-	.glyphicon-ok{
-		color: green;
-	}
-	a{
-		padding-top: 5px;
-		padding-bottom: 5px;
-		
-	}
-	a.inactive{
-	color: #888;
-	}
-
-	.second-level{
-		font-size: 0.9em;
-	}
-
-	h2{
-		padding-left: 10px;
-	}
-
-
-}
-
-.additional-nav{
-	padding: 1.3em 0;
-}
-.additional-nav *{
-	font-size: 1em;
-}
-
-/* Per slide Navigation and Caption */
-
-.well.caption-nav{
-	margin-top: 2em;
-
-	img{
-		padding: 1em;
-	}
-
-	audio{
-		width: 100%;
-	}
-}
-
-.slide-nav{
-	@media (min-width: $screen-sm-min) { 
-		text-align: right;
-	}
-}
-
-.btn.next-sec{
-	margin-top: 1em;
-	background: rgb(24, 143, 180);
-	color: white;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.29);
-	@media (min-width: $screen-sm-min) { 
-		margin-top: 0;
-		//float: right;
-	}
-}
-
-.btn.narration{
-
-}
 

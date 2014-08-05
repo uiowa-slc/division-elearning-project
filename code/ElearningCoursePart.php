@@ -13,6 +13,15 @@ class ElearningCoursePart extends ElearningCoursePage {
 	private static $singular_name = 'Part';
 
 	private static $plural_name = 'Parts';
+
+	public function Course(){
+		$pageTemp = $this;
+		while($pageTemp->ClassName != 'ElearningCourseHome'){
+			$pageTemp = $this->getParent();
+		}
+		return $pageTemp;
+	}
+	
 }
 class ElearningCoursePart_Controller extends ElearningCoursePage_Controller {
 
@@ -32,14 +41,38 @@ class ElearningCoursePart_Controller extends ElearningCoursePage_Controller {
 	 * @var array
 	 */
 	private static $allowed_actions = array (
+		'Next'
 	);
-
 	public function init() {
 		parent::init();
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
 	}
-	public function NextPage() {
+
+
+	public function Next(){
+
+		$courseStatus = Session::get('courseStatus');
+		$currentCourse = $this->Course();
+
+		$nextPage = $this->getNextPage();
+
+		//If the next page in sequence is a part, we can mark the current part as completed.
+		if($nextPage->ClassName == 'ElearningCourseChapter'){
+			$courseStatus[$currentCourse->ID][$this->getParent()->ID] = 'completed';
+		}
+
+		if(isset($currentCourse)){
+			$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
+		}
+
+		Session::set('courseStatus', $courseStatus);
+
+		$this->redirect($nextPage->Link());
+
+	}
+
+	public function getNextPage() {
 		if($this->Children()->First()){
 			return $this->Children()->First();
 		}else{
@@ -52,4 +85,5 @@ class ElearningCoursePart_Controller extends ElearningCoursePage_Controller {
 			return $page;
 		}
 	}
+
 }
