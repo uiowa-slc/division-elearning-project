@@ -115,6 +115,27 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 	}
 	
 	public function doCheckAnswers($data, $form) {
+		
+		//gettype($data);
+		//Debug::show($data);
+		//$answers = $this->Answers()->map('ID', 'TimesAnswered');
+		//$selection = $data['Question'];
+		//$selection returns position of answer in form so 1, 2, 3 etc.
+		//need to compare that int to array of answer objects to determine which one?
+		//
+		//$forminfo = $form;
+		
+		//print_r ($forminfo);
+		
+		//foreach ($selection as $check) {
+			//if ($check == )
+		//}
+		
+		
+		//$form->saveInto($submission);
+		//$submission->write();
+		
+		//return $this->redirectBack();
 
 		$templateData = array (
 			"QuestionStatus" => null
