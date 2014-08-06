@@ -100,11 +100,11 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 								
 			$fields = new FieldList(
 				//new TextField('ChapterQuestion'),
-				new OptionsetField('Question', 'Pick The Right Answer', $options)
+				new OptionsetField('Question', '', $options)
 			);
 			
 			$actions = new FieldList(
-				FormAction::create('doCheckAnswers')->setTitle('Check Answers')
+				FormAction::create('doCheckAnswers')->setTitle('Check Answer')
 			);
 			
 			$form = new Form($this, 'ChapterQuestionForm', $fields, $actions);

@@ -31,14 +31,14 @@
 .sec-nav a, .sec-nav span.inactive {
 	border-bottom: 1px solid #ddd;
 	display: block;
-	padding: 5px 0 5px 5px;
+	padding: 7px 0 7px 7px;
 	&:hover {
 		background-color: #000;
 		color: #fff;
 		text-decoration: none;
 	}
 	@media screen and (min-width: $break-medium) {
-		padding-left: 15px;
+		//padding-left: 20px;
 	}
 }
 
@@ -72,17 +72,21 @@
 .sec-nav{
 	.glyphicon-ok{
 		color: green;
-		padding-right: 3px;
-	}
-	.second-level{
-		font-size: 0.9em;
+		padding-right: 5px;
 	}
 
 	h2{
 		padding-left: 10px;
 	}
-}
 
+	ul.second-level{
+		font-size: 0.8em;
+
+		li a, li span.inactive {
+			padding-left: 15px;
+		}
+	}
+}
 
 /* Per slide Navigation and Caption */
 

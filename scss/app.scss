@@ -40,13 +40,19 @@ $heading-font: $headings-font-family;
 
 .main-content{
 	padding-bottom: 32px;
-	
 	background: white;
 	
-
 	@media (min-width: $screen-md-min) { 
 		min-height: 800px;
 		border-right: 1px solid #ddd;
+	}
+
+	img{
+		width: 100%;
+	}
+
+	.slide-content{
+		font-size: 135%;
 	}
 }
 
@@ -54,12 +60,12 @@ $heading-font: $headings-font-family;
 	background: white;
 	@media (min-width: $screen-md-min) { 
 		position: relative;
-		background: -moz-linear-gradient(left, #fff 60%, #f8f6f3 60%);
-		background: -webkit-gradient(linear, left top, right top, color-stop(60%, #fff), color-stop(60%, #f8f6f3));
-		background: -webkit-linear-gradient(left, #fff 60%, #f8f6f3 60%);
-		background: -o-linear-gradient(left, #fff 60%, #f8f6f3 60%);
-		background: -ms-linear-gradient(left, #fff 60%, #f8f6f3 60%);
-		background: linear-gradient(to right, #fff 60%, #f8f6f3 60%);
+		background: -moz-linear-gradient(left, #fff 50%, #f8f6f3 50%);
+		background: -webkit-gradient(linear, left top, right top, color-stop(50%, #fff), color-stop(50%, #f8f6f3));
+		background: -webkit-linear-gradient(left, #fff 50%, #f8f6f3 50%);
+		background: -o-linear-gradient(left, #fff 50%, #f8f6f3 50%);
+		background: -ms-linear-gradient(left, #fff 50%, #f8f6f3 50%);
+		background: linear-gradient(to right, #fff 50%, #f8f6f3 50%);
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f8f6f3',GradientType=1 );	
 	}
 }

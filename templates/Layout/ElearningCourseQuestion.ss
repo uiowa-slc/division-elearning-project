@@ -1,10 +1,9 @@
 <div class="col-md-8 main-content">
-	<div id="chapter-question">
-
+	<div id="chapter-question" class="slide-content">
+		<h1>$Title</h1>
 		<p>Status: $QuestionStatus</p>
 
-			$Content
-			<hr />
+		$Content
 		$ChapterQuestionForm
 	</div>
 		<% if $CompletionStatus == "completed" %>

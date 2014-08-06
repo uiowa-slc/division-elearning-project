@@ -1,5 +1,8 @@
 <div class="col-md-8 main-content">
-	$Content
+	<article class="slide-content">
+		<h1>$Title</h1>
+		$Content
+	</article>
 	<% include ElearningContentNav %>
 </div>
 <div class="col-md-4 side-content">
