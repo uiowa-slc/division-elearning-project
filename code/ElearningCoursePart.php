@@ -10,6 +10,36 @@ class ElearningCoursePart extends ElearningCoursePage {
 
 	private static $allowed_children = array("ElearningCourseChapter", "ElearningCourseQuestion");
 
+	private static $singular_name = 'Part';
+
+	private static $plural_name = 'Parts';
+
+	private static $default_parent = "ElearningCourseHome";
+	private static $can_be_root = false;
+	
+	public function Course(){
+		$pageTemp = $this;
+		while($pageTemp->ClassName != 'ElearningCourseHome'){
+			$pageTemp = $this->getParent();
+		}
+		return $pageTemp;
+	}
+
+	
+	public function getNextPage() {
+		if($this->Children()->First()){
+			return $this->Children()->First();
+		}else{
+			$page = Page::get()->filter( array (
+				'ParentID' => $this->ParentID,
+				'Sort:GreaterThan' => $this->Sort
+			) )->First();
+		}
+		if(isset($page)){
+			return $page;
+		}
+	}
+	
 }
 class ElearningCoursePart_Controller extends ElearningCoursePage_Controller {
 
@@ -29,12 +59,18 @@ class ElearningCoursePart_Controller extends ElearningCoursePage_Controller {
 	 * @var array
 	 */
 	private static $allowed_actions = array (
+		'Next'
 	);
-
 	public function init() {
 		parent::init();
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
 	}
+
+
+	
+
+
+	
 
 }

@@ -1,0 +1,120 @@
+/* Primary Navigation */
+
+.col-md-4.side-content{
+	@media (min-width: $screen-md-min) { 
+		padding-left: 0;
+	}
+}
+
+.sec-content.affix{
+	position: relative;
+	@media (min-width: $screen-md-min) { 
+		width: 350px;
+		position: fixed;
+	}
+}
+
+.sec-content{
+	.section-title{
+		margin-bottom: 10px;
+	}
+	.playback-options{
+		padding-left: 10px;
+		padding-top: 10px;
+		.glyphicon{
+			vertical-align: text-top;
+		}
+	}
+}
+
+
+.sec-nav a, .sec-nav span.inactive {
+	border-bottom: 1px solid #ddd;
+	display: block;
+	padding: 5px 0 5px 5px;
+	&:hover {
+		background-color: #000;
+		color: #fff;
+		text-decoration: none;
+	}
+	@media screen and (min-width: $break-medium) {
+		padding-left: 15px;
+	}
+}
+
+.sec-nav .active > a, .sec-nav .active > span.inactive {
+	background: #000;
+	color: #fff;
+	position: relative;
+	@media screen and (min-width: $break-medium) {
+		&:before {
+			content: '';
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: 21px 0 21px 8px;
+			border-color: transparent transparent transparent #fff;
+			position: absolute;
+			left: -1px;
+			top: 50%;
+			margin-top: -21px;
+		}
+	}
+}
+.sec-nav span.inactive{
+	color: #9C9C9C;
+	&:hover {
+		background-color: none;
+		color: #9c9c9c;
+	}
+}
+
+.sec-nav{
+	.glyphicon-ok{
+		color: green;
+		padding-right: 3px;
+	}
+	.second-level{
+		font-size: 0.9em;
+	}
+
+	h2{
+		padding-left: 10px;
+	}
+}
+
+
+/* Per slide Navigation and Caption */
+
+.well.caption-nav{
+	margin-top: 2em;
+
+	img{
+		padding: 1em;
+	}
+
+	audio{
+		width: 100%;
+	}
+}
+
+.slide-nav{
+	@media (min-width: $screen-sm-min) { 
+		text-align: right;
+	}
+}
+
+.btn.next-sec{
+	margin-top: 1em;
+	background: rgb(24, 143, 180);
+	color: white;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.29);
+	@media (min-width: $screen-sm-min) { 
+		margin-top: 0;
+		//float: right;
+	}
+}
+
+.btn.narration{
+
+}

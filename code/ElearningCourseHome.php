@@ -3,25 +3,31 @@ class ElearningCourseHome extends ElearningCoursePage {
 
 	private static $db = array(
 		"SubHeader" => "Varchar(255)",
-		"CourseTitle" => "Varchar(255)"
+		"IntroductionTitle" => "Varchar(255)",
+		"FooterText" => "HTMLText"
 	);
 
 	private static $has_one = array(
 	);
+	private static $can_be_root = true;
+	private static $allowed_children = array("ElearningCoursePart");
+	
+	private static $singular_name = 'Elearning Course';
 
-	private static $allowed_children = array("ElearningCoursePart", "ElearningCoursePage");
-	
-	
+	private static $plural_name = 'Elearning Courses';
+
 	public function getCMSfields() {
 		$fields = parent::getCMSFields();
-		
-		$fields->addFieldToTab(
-		'Root.Main', 
-		new TextField('CourseTitle', 'Course Title', 'Root.Content'), 
-		'Content'
-		);
-		
+
+		$fields->removeByName("Content");
+
+		$fields->addFieldToTab('Root.Main', new TextField('IntroductionTitle', 'Introduction Title (e.g., "Introduction")'), 'ExplanatoryText');
+		$fields->addFieldToTab('Root.Main', new HTMLEditorField('FooterText', 'Footer Text (appears throughout entire course)'));		
 		return $fields;
+	}
+
+	public function Course(){
+		return $this;
 	}
 
 }
@@ -50,5 +56,9 @@ class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
 	}
+	public function getNextPage() {
+		return $this->Children()->First();		
+	}
+
 
 }

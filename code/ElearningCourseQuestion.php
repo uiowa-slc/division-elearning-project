@@ -1,37 +1,55 @@
 <?php
-class ElearningCourseQuestion extends ElearningCoursePage {
+class ElearningCourseQuestion extends ElearningCourseChapter {
 
 	private static $db = array(
+		'CorrectAnswerSummary' => 'HTMLText'
 	);
 	
 	private static $has_many = array(
-		"Answers" => "ElearningCourseAnswer"
+		'Answers' => 'ElearningCourseAnswer'
 	);
 
 	private static $has_one = array(
+		'CorrectAnswer' => 'ElearningCourseAnswer'
 	);
+
+	private static $singular_name = 'Question';
+
+	private static $plural_name = 'Questions';
+	private static $can_be_root = false;
 	
 	public function getCMSFields() {
 		$fields = parent::getCMSfields();
 		
 		//$gridFieldConfig = GridFieldConfig_RelationEditor::create();
 		/*
-		$row = "SortOrder";
+		$row = 'SortOrder';
 		$gridFieldConfig->addComponent($sort = new GridFieldSortableRows(stripslashes($row))); 
 
 		$sort->table = 'Page_SidebarItems'; 
 		$sort->parentField = 'PageID'; 
 		$sort->componentField = 'SidebarItemID'; 
 		*/
-		$gridField = new GridField('Answers', 'The Answers', $this->Answers(), GridFieldConfig_RelationEditor::create());
-				
-		$fields->addFieldToTab("Root.Main", $gridField); // add the grid field to a tab in the CMS
+		$fields->removeByName('Content');
+
+		$gridFieldConfig = GridFieldConfig_RelationEditor::create();
+		$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
+
+		$gridField = new GridField('Answers', 'The Answers', $this->Answers(), $gridFieldConfig);
+		
+
+		$correctAnswerField = new DropdownField('CorrectAnswerID', 'Correct Answer (May require a refresh after adding answers)', $this->Answers()->map('ID', 'Answer'));
+
+		
+		$fields->addFieldToTab('Root.Main', new HTMLEditorField('Content', 'Question'), 'ExplanatoryText');
+		$fields->addFieldToTab('Root.Main', $correctAnswerField,'ExplanatoryText');
+		$fields->addFieldToTab('Root.Main', $gridField,'ExplanatoryText'); // add the grid field to a tab in the CMS
 
 		return $fields;
 	}
 		
 }
-class ElearningCourseQuestion_Controller extends ElearningCoursePage_Controller {
+class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controller {
 
 	/**
 	 * An array of actions that can be accessed via a request. Each array element should be an action name, and the
@@ -82,11 +100,11 @@ class ElearningCourseQuestion_Controller extends ElearningCoursePage_Controller 
 								
 			$fields = new FieldList(
 				//new TextField('ChapterQuestion'),
-				new OptionsetField("Question", "Pick The Right Answer", $options)
+				new OptionsetField('Question', 'Pick The Right Answer', $options)
 			);
 			
 			$actions = new FieldList(
-				FormAction::create("doCheckAnswers")->setTitle("Check Answers")
+				FormAction::create('doCheckAnswers')->setTitle('Check Answers')
 			);
 			
 			$form = new Form($this, 'ChapterQuestionForm', $fields, $actions);
@@ -97,27 +115,69 @@ class ElearningCourseQuestion_Controller extends ElearningCoursePage_Controller 
 	}
 	
 	public function doCheckAnswers($data, $form) {
-	
+		
 		//gettype($data);
 		//Debug::show($data);
-		$answers = $this->Answers()->map('ID', 'TimesAnswered');
-		$selection = $data['Question'];
+		//$answers = $this->Answers()->map('ID', 'TimesAnswered');
+		//$selection = $data['Question'];
 		//$selection returns position of answer in form so 1, 2, 3 etc.
 		//need to compare that int to array of answer objects to determine which one?
 		//
-		$forminfo = $form;
+		//$forminfo = $form;
 		
-		print_r ($forminfo);
+		//print_r ($forminfo);
 		
-		foreach ($selection as $check) {
+		//foreach ($selection as $check) {
 			//if ($check == )
-		}
+		//}
 		
 		
 		//$form->saveInto($submission);
 		//$submission->write();
 		
 		//return $this->redirectBack();
+
+		$templateData = array (
+			"QuestionStatus" => null
+		);
+
+		//Check to see if the user actually answered the question, if not, just set QuestionStatus to unanswered and send them back.
+		if(isset($data['Question'])){
+			$userAnswer = intval($data['Question']);
+		}else{
+			$templateData['QuestionStatus'] = "Unanswered";
+			return $this->customise($templateData);
+		}
+
+		$correctAnswer = $this->CorrectAnswer()->ID;
+
+		//Get the current course, course status session variable, and next page
+		$currentCourse = $this->Course();
+		$courseStatus = Session::get('courseStatus');
+		$nextPage = $this->getNextPage();
+
+		//Mark this question as completed and add a status variable for template usage.
+		$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
+		if($userAnswer == $correctAnswer){
+			$templateData["QuestionStatus"] = "Correct";
+		}else{
+			$templateData["QuestionStatus"] = "Incorrect";
+		}
+
+		//Make Next Page available if it exists and isn't completed already.
+		if(isset($nextPage)){
+
+			if(!isset($courseStatus[$currentCourse->ID][$nextPage->ID])){
+				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
+			}elseif($courseStatus[$currentCourse->ID][$nextPage->ID] != 'completed'){
+				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
+			}
+	
+		}
+		// Save the Course Status session variable.
+		Session::set('courseStatus', $courseStatus);
+		Session::save();
+		return $this->customise($templateData);
 	}
 
 }

@@ -1,27 +1,8 @@
-<div class="col-md-8">
+<div class="col-md-8 main-content ">
 	$Content
-	<hr />
-	<p>
-		<a class="btn">Begin the course </a>
-	</p>
+	<% include ElearningContentNav %>
+	<% include ElearningCourseCredits %>
 </div>
-<div class="col-md-4">
-	<section class="sec-content hide-print" data-spy="affix">
-		<h2>
-			Course Overview
-		</h2>
-		<nav class="sec-nav">
-			<ul class="first-level">
-
-				<% loop Menu(2) %>
-				<li <% if $isCurrent %>class="active"<% end_if %>>
-					<a href="$Link">$Title</a>
-				</li>
-				<% end_loop %>
-			</ul>
-		</nav>
-		<aside>
-
-</aside>
-	</section>
+<div class="col-md-4 side-content">
+	<% include ElearningCourseNav %>
 </div>

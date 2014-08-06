@@ -1,28 +1,17 @@
-<div class="col-sm-8">
-	$Content
-	<hr />
-
+<div class="col-md-8 main-content">
 	<div id="chapter-question">
-		<h4>Question</h4>
+
+		<p>Status: $QuestionStatus</p>
+
+			$Content
+			<hr />
 		$ChapterQuestionForm
 	</div>
-
+		<% if $CompletionStatus == "completed" %>
+			<% include ElearningContentNav %>
+		<% end_if %>
+	<% include ElearningCourseCredits %>
 </div>
-<div class="col-sm-4">
-	<section class="sec-content hide-print" data-spy="affix">
-		<h2>
-			Course Overview
-		</h2>
-		<nav class="sec-nav">
-			<ul class="first-level">
-
-				<% loop Menu(3) %>
-				<li <% if $isCurrent %>class="active"<% end_if %>>
-					<a href="$Link">$Title</a>
-				</li>
-				<% end_loop %>
-			</ul>
-		</nav>
-</aside>
-	</section>
+<div class="col-md-4 side-content">
+	<% include ElearningCourseNav %>
 </div>
