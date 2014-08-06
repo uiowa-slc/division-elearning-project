@@ -137,30 +137,35 @@ class ElearningCoursePage_Controller extends Page_Controller {
 
 	}
 
-	public function Next(){
+public function Next(){
 
 		$courseStatus = Session::get('courseStatus');
 		$currentCourse = $this->Course();
 
 		$nextPage = $this->getNextPage();
 		$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
+
+		//If the next page in sequence is a part, we can mark the current part as completed.
+		if(($this->ClassName == 'ElearningCoursePart') && ($nextPage->ClassName == 'ElearningCourseChapter')){
+			$courseStatus[$currentCourse->ID][$this->getParent()->ID] = 'completed';
+		}
+
 		Session::set('courseStatus', $courseStatus);
-		Session::save();
+		Session::save();		
 
 		if(isset($nextPage)){
 			//Make Next Page available if it isn't completed already.
-			if($courseStatus[$currentCourse->ID][$nextPage->ID] != 'completed'){
+			if(!isset($courseStatus[$currentCourse->ID][$nextPage->ID])){
 				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
-				Session::set('courseStatus', $courseStatus);
-				Session::save();
+			}elseif($courseStatus[$currentCourse->ID][$nextPage->ID] != 'completed'){
+				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
 			}
-
+			Session::set('courseStatus', $courseStatus);
+			Session::save();
 			$this->redirect($nextPage->Link());
 		}
 
 	}
-
-
 
 	public function Clear(){
 		if(Director::isDev()){
