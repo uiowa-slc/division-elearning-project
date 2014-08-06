@@ -80,12 +80,14 @@ class ElearningCoursePart_Controller extends ElearningCoursePage_Controller {
 		if($nextPage->ClassName == 'ElearningCourseChapter'){
 			$courseStatus[$currentCourse->ID][$this->getParent()->ID] = 'completed';
 		}
-		
+		Session::set('courseStatus', $courseStatus);
+		Session::save();		
 
 		if(isset($nextPage)){
 			//Make Next Page available if it isn't completed already.
-
-			if($courseStatus[$currentCourse->ID][$nextPage->ID] != 'completed'){
+			if(!isset($courseStatus[$currentCourse->ID][$nextPage->ID])){
+				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
+			}elseif($courseStatus[$currentCourse->ID][$nextPage->ID] != 'completed'){
 				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
 			}
 			Session::set('courseStatus', $courseStatus);

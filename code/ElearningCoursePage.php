@@ -31,13 +31,16 @@ class ElearningCoursePage extends Page {
 	public function CompletionStatus(){
 		$courseStatus = Session::get('courseStatus');
 		$currentCourse = $this->Course();
-
+		//print_r('completion status of this page: '.$courseStatus[$currentCourse->ID][$this->ID]);
 		if(isset($courseStatus[$currentCourse->ID][$this->ID])){
 			return $courseStatus[$currentCourse->ID][$this->ID];
-	
 		}else{
 			return false;
 		}
+	}
+
+	public function NextLink(){
+		return $this->Link().'Next/';
 	}
 
 
@@ -90,7 +93,7 @@ class ElearningCoursePage_Controller extends Page_Controller {
 			Session::set('courseStatus', $courseStatus);
 			Session::save();
 		}
-		print_r($sessionCourseData);
+		//print_r($sessionCourseData);
 		parent::init();
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
@@ -141,6 +144,8 @@ class ElearningCoursePage_Controller extends Page_Controller {
 
 		$nextPage = $this->getNextPage();
 		$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
+		Session::set('courseStatus', $courseStatus);
+		Session::save();
 
 		if(isset($nextPage)){
 			//Make Next Page available if it isn't completed already.

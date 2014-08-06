@@ -115,32 +115,48 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 	}
 	
 	public function doCheckAnswers($data, $form) {
-		
-		$userAnswer = intval($data['Question']);
-		$correctAnswer = $this->CorrectAnswer()->ID;
 
+		$templateData = array (
+			"QuestionStatus" => null
+		);
 
-
-		if($userAnswer == $correctAnswer){
-			echo 'You were correct';
+		//Check to see if the user actually answered the question, if not, just set QuestionStatus to unanswered and send them back.
+		if(isset($data['Question'])){
+			$userAnswer = intval($data['Question']);
 		}else{
-			echo 'you were wrong.';
+			$templateData['QuestionStatus'] = "Unanswered";
+			return $this->customise($templateData);
 		}
 
+		$correctAnswer = $this->CorrectAnswer()->ID;
+
+		//Get the current course, course status session variable, and next page
 		$currentCourse = $this->Course();
 		$courseStatus = Session::get('courseStatus');
 		$nextPage = $this->getNextPage();
+
+		//Mark this question as completed and add a status variable for template usage.
 		$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
+		if($userAnswer == $correctAnswer){
+			$templateData["QuestionStatus"] = "Correct";
+		}else{
+			$templateData["QuestionStatus"] = "Incorrect";
+		}
+
+		//Make Next Page available if it exists and isn't completed already.
 		if(isset($nextPage)){
-			//Make Next Page available if it isn't completed already.
-			if($courseStatus[$currentCourse->ID][$nextPage->ID] != 'completed'){
+
+			if(!isset($courseStatus[$currentCourse->ID][$nextPage->ID])){
+				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
+			}elseif($courseStatus[$currentCourse->ID][$nextPage->ID] != 'completed'){
 				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
 			}
-			//$this->redirect($nextPage->Link());
+	
 		}
+		// Save the Course Status session variable.
 		Session::set('courseStatus', $courseStatus);
 		Session::save();
-		return $this->render();
+		return $this->customise($templateData);
 	}
 
 }

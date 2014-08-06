@@ -1,4 +1,4 @@
-<% if not $Answers %>
+
 	<% if $ExplanatoryText %>
 		<div class="well caption-nav">
 			$ExplanatoryText
@@ -9,7 +9,4 @@
 		<hr />
 	<% end_if %>
 
-	<% if $NextPage %><p class="slide-nav"><% with $NextPage %><a class="btn next-sec" href="$Link">$Title <span class="glyphicon glyphicon-chevron-right"></span></a><% end_with %></p><% end_if %>
-
-
-<% end_if %>
+	<% if $NextPage %><p class="slide-nav"><a class="btn next-sec" href="$NextLink">$NextPage.Title <span class="glyphicon glyphicon-chevron-right"></span></a></p><% end_if %>

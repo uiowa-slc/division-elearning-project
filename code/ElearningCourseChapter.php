@@ -39,13 +39,13 @@ class ElearningCourseChapter extends ElearningCoursePage {
 		return $fields;
 	}
 	public function getNextPage() {
-
 		//Find a page on the same level as the current chapter with a higher sort order, if there is a page, return it.
 		$page = Page::get()->filter( array (
 				'ParentID' => $this->ParentID,
 				'Sort:GreaterThan' => $this->Sort
 			) )->First();
 		if(isset($page)){
+
 			return $page;
 
 		//If there's not a page on the same level with a higher sort order, look at the parent's level (part) and find the next part.
@@ -53,9 +53,9 @@ class ElearningCourseChapter extends ElearningCoursePage {
 			$parent = $this->getParent();
 			if(isset($parent)){
 				$page = Page::get()->filter( array (
-					'ParentID' => $parent->ID,
+					'ParentID' => $parent->ParentID,
 					'Sort:GreaterThanOrEqual' => $parent->Sort,
-				) )->exclude(array('ID' => $this->ID))->First();	
+				) )->exclude(array('ID' => $parent->ID))->First();	
 				return $page;			
 			}
 		}
