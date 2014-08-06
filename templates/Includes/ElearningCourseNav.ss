@@ -42,13 +42,18 @@
 	<% else %>
 		<a href="{$Link}enableAudioInSession" class="btn narration">Enable Auto Narration <span class="glyphicon glyphicon-volume-up"></span></a>
 	<% end_if %>
-
-	<% if $isDev %>
-	<div class="debug-options">
-		<a class="btn narration" href="{$Link}Clear">Clear Course Progress</a>
 	</div>
+
+	<% if $CurrentMember %>
+	<nav class="sec-nav additional-nav">
+		<h2>Administrative Tools</h2>
+			<ul class="first-level">
+				<li><a href="{$CMSEditLink}">Edit this Page</a></li>
+				<li><a href="{$Link}Clear">Reset Course Progress</a></li>
+			</ul>
+		</nav>
 	<% end_if %>
 
-	</div>
+	
 
 </section>

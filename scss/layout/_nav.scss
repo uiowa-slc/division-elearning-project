@@ -15,9 +15,12 @@
 }
 
 .sec-content{
+	.section-title{
+		margin-bottom: 10px;
+	}
 	.playback-options{
 		padding-left: 10px;
-
+		padding-top: 10px;
 		.glyphicon{
 			vertical-align: text-top;
 		}
@@ -69,7 +72,7 @@
 .sec-nav{
 	.glyphicon-ok{
 		color: green;
-		padding-left: 10px;
+		padding-right: 3px;
 	}
 	.second-level{
 		font-size: 0.9em;
