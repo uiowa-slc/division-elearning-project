@@ -2,7 +2,7 @@
 class ElearningCourseHome extends ElearningCoursePage {
 
 	private static $db = array(
-		"SubHeader" => "Varchar(255)",
+		"CourseHeader" => "HTMLText",
 		"IntroductionTitle" => "Varchar(255)",
 		"FooterText" => "HTMLText"
 	);
@@ -20,7 +20,7 @@ class ElearningCourseHome extends ElearningCoursePage {
 		$fields = parent::getCMSFields();
 
 		$fields->removeByName("Content");
-
+		$fields->addFieldToTab('Root.Main', new HTMLEditorField('CourseHeader', 'Course Header (appears on the course homepage only.','ExplanatoryText'));
 		$fields->addFieldToTab('Root.Main', new TextField('IntroductionTitle', 'Introduction Title (e.g., "Introduction")'), 'ExplanatoryText');
 		$fields->addFieldToTab('Root.Main', new HTMLEditorField('FooterText', 'Footer Text (appears throughout entire course)'));		
 		return $fields;

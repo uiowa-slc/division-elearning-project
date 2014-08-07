@@ -34,7 +34,6 @@
 	padding: 7px 0 7px 7px;
 	padding-left: 13px;
 	&:hover {
-		background-color: #000;
 		color: #fff;
 		text-decoration: none;
 	}
@@ -78,10 +77,10 @@
 }
 
 .sec-nav span.inactive{
-	color: #636363;
+	color: #858383;
 	&:hover {
 		background-color: none;
-		color: #636363;
+		color: #858383;
 	}
 }
 
