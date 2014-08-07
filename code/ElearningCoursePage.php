@@ -33,7 +33,7 @@ class ElearningCoursePage extends Page {
 		$currentCourse = $this->Course();
 		//print_r('completion status of this page: '.$courseStatus[$currentCourse->ID][$this->ID]);
 		if(isset($courseStatus[$currentCourse->ID][$this->ID])){
-			return $courseStatus[$currentCourse->ID][$this->ID];
+			return $courseStatus[$currentCourse->ID][$this->ID]['status'];
 		}else{
 			return false;
 		}
@@ -93,7 +93,7 @@ class ElearningCoursePage_Controller extends Page_Controller {
 			Session::set('courseStatus', $courseStatus);
 			Session::save();
 		}
-		//print_r($sessionCourseData);
+		print_r($sessionCourseData);
 		parent::init();
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
@@ -143,11 +143,11 @@ public function Next(){
 		$currentCourse = $this->Course();
 
 		$nextPage = $this->getNextPage();
-		$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
+		$courseStatus[$currentCourse->ID][$this->ID]['status'] = 'completed';
 
 		//If the next page in sequence is a part, we can mark the current part as completed.
 		if(($this->ClassName == 'ElearningCoursePart') && ($nextPage->ClassName == 'ElearningCourseChapter')){
-			$courseStatus[$currentCourse->ID][$this->getParent()->ID] = 'completed';
+			$courseStatus[$currentCourse->ID][$this->getParent()->ID]['status'] = 'completed';
 		}
 
 		Session::set('courseStatus', $courseStatus);
@@ -155,10 +155,10 @@ public function Next(){
 
 		if(isset($nextPage)){
 			//Make Next Page available if it isn't completed already.
-			if(!isset($courseStatus[$currentCourse->ID][$nextPage->ID])){
-				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
-			}elseif($courseStatus[$currentCourse->ID][$nextPage->ID] != 'completed'){
-				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
+			if(!isset($courseStatus[$currentCourse->ID][$nextPage->ID]['status'])){
+				$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'available';
+			}elseif($courseStatus[$currentCourse->ID][$nextPage->ID]['status'] != 'completed'){
+				$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'available';
 			}
 			Session::set('courseStatus', $courseStatus);
 			Session::save();

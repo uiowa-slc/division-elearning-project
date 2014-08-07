@@ -14,7 +14,6 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 	);
 
 	private static $singular_name = 'Question';
-
 	private static $plural_name = 'Questions';
 	private static $can_be_root = false;
 	
@@ -30,6 +29,7 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 		$sort->parentField = 'PageID'; 
 		$sort->componentField = 'SidebarItemID'; 
 		*/
+		
 		$fields->removeByName('Content');
 
 		$gridFieldConfig = GridFieldConfig_RelationEditor::create();
@@ -78,104 +78,97 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 	}
 
 	public function ChapterQuestionForm() {
-		/*
-		$myQuestions = array(
-				$this->AnswerOne => $this->AnswerOne,
-                $this->AnswerTwo => $this->AnswerTwo,
-                $this->AnswerThree => $this->AnswerFour,
-                $this->AnswerFour =>$this->AnswerOne,
-                $this->AnswerFive=> $this->AnswerOne,
-                $this->AnswerSix => $this->AnswerOne
-		);
+
+		$currentCourse = $this->Course();
+		$courseStatus = Session::get('courseStatus');
 		
-		foreach ($myQuestions as $question) {
-			if isset($question) {
-				unset($myQuestions[$question]);
-			}
+		if (isset($courseStatus[$currentCourse->ID][$this->ID]["answerPicked"])) {
+			print_r($courseStatus[$currentCourse->ID][$this->ID]["answerPicked"]);
+			$answerPicked = $courseStatus[$currentCourse->ID][$this->ID]["answerPicked"];
+		} else {
+			$answerPicked = null;
 		}
-		*/
+
+		
 		if ($this->Answers()->First()) {
 					
 			$options = $this->Answers()->map('ID', 'Answer');
 								
 			$fields = new FieldList(
 				//new TextField('ChapterQuestion'),
-				new OptionsetField('Question', 'Pick The Right Answer', $options)
+				new OptionsetField('Question', 'Pick The Right Answer', $options, $answerPicked )
 			);
 			
-			$actions = new FieldList(
-				FormAction::create('doCheckAnswers')->setTitle('Check Answers')
+			
+			$actions = new FieldList( 
+				FormAction::create('doCheckAnswers')->setTitle('Check Answers') 
 			);
 			
-			$form = new Form($this, 'ChapterQuestionForm', $fields, $actions);
+			$validator = new RequiredFields(
+				"Question"
+			);
+				
+			$form = new Form($this, 'ChapterQuestionForm', $fields, $actions, $validator);
 			//$form->loadDataFrom($this->request->postVars());
-	
+			
 			return $form;	
+			
 		}
 	}
 	
 	public function doCheckAnswers($data, $form) {
 		
-		//gettype($data);
-		//Debug::show($data);
-		//$answers = $this->Answers()->map('ID', 'TimesAnswered');
-		//$selection = $data['Question'];
-		//$selection returns position of answer in form so 1, 2, 3 etc.
-		//need to compare that int to array of answer objects to determine which one?
-		//
-		//$forminfo = $form;
-		
-		//print_r ($forminfo);
-		
-		//foreach ($selection as $check) {
-			//if ($check == )
-		//}
-		
-		
-		//$form->saveInto($submission);
-		//$submission->write();
-		
-		//return $this->redirectBack();
-
 		$templateData = array (
 			"QuestionStatus" => null
 		);
-
-		//Check to see if the user actually answered the question, if not, just set QuestionStatus to unanswered and send them back.
-		if(isset($data['Question'])){
-			$userAnswer = intval($data['Question']);
-		}else{
-			$templateData['QuestionStatus'] = "Unanswered";
-			return $this->customise($templateData);
-		}
-
+		
 		$correctAnswer = $this->CorrectAnswer()->ID;
-
+		
 		//Get the current course, course status session variable, and next page
 		$currentCourse = $this->Course();
 		$courseStatus = Session::get('courseStatus');
 		$nextPage = $this->getNextPage();
 
-		//Mark this question as completed and add a status variable for template usage.
-		$courseStatus[$currentCourse->ID][$this->ID] = 'completed';
-		if($userAnswer == $correctAnswer){
-			$templateData["QuestionStatus"] = "Correct";
-		}else{
-			$templateData["QuestionStatus"] = "Incorrect";
+		//Check to see if the user actually answered the question, if not, just set QuestionStatus to unanswered and send them back.
+		if(isset($data['Question'])){
+			$userAnswer = intval($data['Question']);
+			
+			//Mark this question as completed and add a status variable for template usage.
+			$courseStatus[$currentCourse->ID][$this->ID]['status'] = 'completed';
+			if($userAnswer == $correctAnswer){
+				$templateData["QuestionStatus"] = "Correct";
+			} else{
+				$templateData["QuestionStatus"] = "Incorrect";
+			}
+			
+			//increment timesAnswered count
+			$answerPicked = DataObject::get_by_id("ElearningCourseAnswer", $userAnswer);
+			$answerPicked->TimesAnswered++;
+			$answerPicked->write();
+			
+			$courseStatus[$currentCourse->ID][$this->ID]["answerPicked"] = $answerPicked->ID;	
+			
+		} else{
+			$templateData['QuestionStatus'] = "Unanswered";
+			return $this->customise($templateData);
 		}
+		
+		
 
 		//Make Next Page available if it exists and isn't completed already.
 		if(isset($nextPage)){
 
-			if(!isset($courseStatus[$currentCourse->ID][$nextPage->ID])){
-				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
-			}elseif($courseStatus[$currentCourse->ID][$nextPage->ID] != 'completed'){
-				$courseStatus[$currentCourse->ID][$nextPage->ID] = 'available';
+			if(!isset($courseStatus[$currentCourse->ID][$nextPage->ID]['status'])){
+				$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'available';
+			}elseif($courseStatus[$currentCourse->ID][$nextPage->ID]['status'] != 'completed'){
+				$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'available';
 			}
 	
 		}
 		// Save the Course Status session variable.
 		Session::set('courseStatus', $courseStatus);
+		//echo "<br>";
+		//print_r ($courseStatus[$currentCourse->ID][$this->ID]["answerPicked"]);
 		Session::save();
 		return $this->customise($templateData);
 	}

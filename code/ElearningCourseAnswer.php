@@ -19,7 +19,7 @@ class ElearningCourseAnswer extends DataObject {
 
 	private static $plural_name = 'Answers';
 
-	  public function getCMSFields() {
+    public function getCMSFields() {
 	    $fields = parent::getCMSFields();
 
 	    $questionField = new ReadonlyField('QuestionLabelField', 'Question');
@@ -31,5 +31,5 @@ class ElearningCourseAnswer extends DataObject {
 	    $fields->removeByName("SortOrder");
 	    return $fields;
 	  }
-	
+
 }

@@ -1,11 +1,19 @@
 <div class="col-md-8 main-content">
 	<div id="chapter-question">
-
-		<p>Status: $QuestionStatus</p>
-
 			$Content
 			<hr />
-		$ChapterQuestionForm
+		<div class="question-form-container <% if $QuestionStatus == "Correct" || $QuestionStatus == "Incorrect" %>answered<% end_if %>">
+			$ChapterQuestionForm
+		</div>
+		<% if $QuestionStatus == "correct" %>
+		<div class="bg-success">
+			<h3>Correct! Here's why: </h3>
+		</div>
+		<% else_if $QuestionStatus == "Incorrect" %>
+		<div class="bg-danger">
+			<p>That's incorrect. The answer is $CorrectAnswer{.} Here's why: </p>
+		</div>
+		<% end_if %>
 	</div>
 		<% if $CompletionStatus == "completed" %>
 			<% include ElearningContentNav %>
