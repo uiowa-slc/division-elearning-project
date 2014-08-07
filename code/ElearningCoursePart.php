@@ -27,6 +27,7 @@ class ElearningCoursePart extends ElearningCoursePage {
 
 	
 	public function getNextPage() {
+		//If part has children, then the next page is its first child.
 		if($this->Children()->First()){
 			return $this->Children()->First();
 		}else{

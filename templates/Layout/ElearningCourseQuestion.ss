@@ -1,7 +1,8 @@
-<div class="col-md-8 main-content">
+<div class="col-md-8 col-lg-9 main-content">
 	<div id="chapter-question">
-			$Content
-			<hr />
+		<h1>$Title</h1>
+		$Content
+		<hr />
 		<div class="question-form-container <% if $QuestionStatus == "Correct" || $QuestionStatus == "Incorrect" %>answered<% end_if %>">
 			$ChapterQuestionForm
 		</div>
@@ -20,6 +21,6 @@
 		<% end_if %>
 	<% include ElearningCourseCredits %>
 </div>
-<div class="col-md-4 side-content">
+<div class="col-md-4 col-lg-3 side-content">
 	<% include ElearningCourseNav %>
 </div>

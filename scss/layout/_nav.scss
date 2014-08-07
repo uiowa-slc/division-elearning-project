@@ -31,14 +31,24 @@
 .sec-nav a, .sec-nav span.inactive {
 	border-bottom: 1px solid #ddd;
 	display: block;
-	padding: 5px 0 5px 5px;
+	padding: 7px 0 7px 7px;
+	padding-left: 13px;
+
 	&:hover {
-		background-color: #000;
 		color: #fff;
 		text-decoration: none;
 	}
 	@media screen and (min-width: $break-medium) {
-		padding-left: 15px;
+		//padding-left: 20px;
+	}
+}
+
+//completed nav colors
+.sec-nav .completed > a, .sec-nav .completed > span.inactive{
+	padding-left: 10px;
+	color: darken($green, 20);
+	&:hover {
+		color: lighten($green, 20)
 	}
 }
 
@@ -61,29 +71,44 @@
 		}
 	}
 }
+
+.sec-nav .active.completed > a {
+	color: lighten($green, 20);
+}
+
 .sec-nav span.inactive{
-	color: #9C9C9C;
+	color: #858383;
 	&:hover {
 		background-color: none;
-		color: #9c9c9c;
+		color: #858383;
 	}
 }
 
 .sec-nav{
 	.glyphicon-ok{
-		color: green;
-		padding-right: 3px;
-	}
-	.second-level{
-		font-size: 0.9em;
+		color: $green;
+		padding-right: 5px;
 	}
 
 	h2{
 		padding-left: 10px;
 	}
+
+	ul.second-level{
+		font-size: 0.8em;
+
+		li a, li span.inactive {
+			padding-left: 15px;
+		}
+	}
+}
+.sec-nav .active>a:before, .sec-nav .active>span.inactive:before{
+	left: -2px;
 }
 
-
+.sec-nav .second-level .active>a:before, .sec-nav .second-level .active>span.inactive:before{
+	left: -3px;
+}
 /* Per slide Navigation and Caption */
 
 .well.caption-nav{
@@ -106,7 +131,7 @@
 
 .btn.next-sec{
 	margin-top: 1em;
-	background: rgb(24, 143, 180);
+	background: $green;
 	color: white;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.29);
 	@media (min-width: $screen-sm-min) { 

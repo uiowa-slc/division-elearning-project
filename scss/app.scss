@@ -16,7 +16,7 @@ $heading-font: $headings-font-family;
 @import "../../division-project/scss/imports/_tables.scss";
 @import "../../division-project/scss/layout/_footer.scss";
 @import "../../division-project/scss/layout/_nav.scss";
-@import '../../division-bar/css/_division-bar.css';
+@import "../../division-bar/css/_division-bar.css";
 
 
 @import "layout/_nav.scss";
@@ -40,13 +40,29 @@ $heading-font: $headings-font-family;
 
 .main-content{
 	padding-bottom: 32px;
-	
 	background: white;
-	
 
+	
 	@media (min-width: $screen-md-min) { 
 		min-height: 800px;
 		border-right: 1px solid #ddd;
+	}
+
+	.course-header{
+		padding-top: 2em;
+	}
+
+	.slide-content{
+		h1{
+			text-align: center;
+		}
+		img{
+			display: block;
+			margin: auto;
+		}
+		@media (min-width: $screen-md-min) { 
+			font-size: 1.3em;
+		}
 	}
 }
 
@@ -54,12 +70,12 @@ $heading-font: $headings-font-family;
 	background: white;
 	@media (min-width: $screen-md-min) { 
 		position: relative;
-		background: -moz-linear-gradient(left, #fff 60%, #f8f6f3 60%);
-		background: -webkit-gradient(linear, left top, right top, color-stop(60%, #fff), color-stop(60%, #f8f6f3));
-		background: -webkit-linear-gradient(left, #fff 60%, #f8f6f3 60%);
-		background: -o-linear-gradient(left, #fff 60%, #f8f6f3 60%);
-		background: -ms-linear-gradient(left, #fff 60%, #f8f6f3 60%);
-		background: linear-gradient(to right, #fff 60%, #f8f6f3 60%);
+		background: -moz-linear-gradient(left, #fff 50%, #f8f6f3 50%);
+		background: -webkit-gradient(linear, left top, right top, color-stop(50%, #fff), color-stop(50%, #f8f6f3));
+		background: -webkit-linear-gradient(left, #fff 50%, #f8f6f3 50%);
+		background: -o-linear-gradient(left, #fff 50%, #f8f6f3 50%);
+		background: -ms-linear-gradient(left, #fff 50%, #f8f6f3 50%);
+		background: linear-gradient(to right, #fff 50%, #f8f6f3 50%);
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f8f6f3',GradientType=1 );	
 	}
 }
@@ -68,8 +84,15 @@ h1{
 	margin-top: 1em;
 }
 
+
 .question-form-container.answered .Actions {
 	display: none;
+}
+
+
+/*Forms */
+.Actions .action{
+	background-color: #2488C0;
 }
 
 

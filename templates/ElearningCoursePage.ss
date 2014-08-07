@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width">
-	<title>$Title | The University of Iowa</title>
+	<title>$Title | $Course.Title | The University of Iowa</title>
 	<% include Icons %>
 	<link rel="stylesheet" type="text/css" href="division-elearning-project/css/app.css" />
 

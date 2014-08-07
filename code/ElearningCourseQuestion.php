@@ -36,12 +36,9 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 		$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
 
 		$gridField = new GridField('Answers', 'The Answers', $this->Answers(), $gridFieldConfig);
-		
-
+		$fields->addFieldToTab('Root.Main', new HTMLEditorField('Content', 'Question'));
 		$correctAnswerField = new DropdownField('CorrectAnswerID', 'Correct Answer (May require a refresh after adding answers)', $this->Answers()->map('ID', 'Answer'));
-
 		
-		$fields->addFieldToTab('Root.Main', new HTMLEditorField('Content', 'Question'), 'ExplanatoryText');
 		$fields->addFieldToTab('Root.Main', $correctAnswerField,'ExplanatoryText');
 		$fields->addFieldToTab('Root.Main', $gridField,'ExplanatoryText'); // add the grid field to a tab in the CMS
 
@@ -99,9 +96,13 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 				new OptionsetField('Question', 'Pick The Right Answer', $options, $answerPicked )
 			);
 			
-			
 			$actions = new FieldList( 
 				FormAction::create('doCheckAnswers')->setTitle('Check Answers') 
+				new OptionsetField('Question', '', $options)
+			);
+			
+			$actions = new FieldList(
+				FormAction::create('doCheckAnswers')->setTitle('Check Answer')
 			);
 			
 			$validator = new RequiredFields(
