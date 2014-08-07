@@ -28,14 +28,14 @@
 	</ul>
 </nav>
 
-	<nav class="sec-nav additional-nav">
+	<!--<nav class="sec-nav additional-nav">
 		<h2>Additional Resources</h2>
 		<ul class="first-level">
 			<li><a href="#">Code of Student Life</a></li>
 			<li><a href="#">Judicial Procedure and Resources</a></li>
 			<li><a href="#">Mandatory Reporter</a></li>
 		</ul>		
-	</nav>
+	</nav>-->
 	<div class="playback-options">
 	<% if $isAudioEnabled %>
 		<a href="{$Link}disableAudioInSession" class="btn narration">Disable Auto Narration <span class="glyphicon glyphicon-volume-off"></span></a>

@@ -12,7 +12,8 @@
 		"silverstripe/recaptcha" : "*",
 		"silverstripe/userforms" : "*",
 		"rywa/silverstripe-foundation-forms": "dev-master",
-		"silverstripe/mathspamprotection": "dev-master"
+		"silverstripe/mathspamprotection": "dev-master",
+		"unclecheese/bootstrap-forms" : "*"
 	},
 	"config": {
 		"process-timeout": 600	

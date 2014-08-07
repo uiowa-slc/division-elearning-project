@@ -169,7 +169,7 @@ public function Next(){
 
 	public function Clear(){
 		if(Director::isDev()){
-			Session::clear_all();
+			Session::set('courseStatus', null);
 			$this->redirectBack();
 		}
 	}

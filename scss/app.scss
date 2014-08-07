@@ -12,7 +12,7 @@ $heading-font: $headings-font-family;
 @import "../../division-project/scss/imports/_typography.scss";
 @import "../../division-project/scss/imports/_global.scss";
 @import "../../division-project/scss/imports/_buttons.scss";
-@import "../../division-project/scss/imports/_forms.scss";
+//@import "../../division-project/scss/imports/_forms.scss";
 @import "../../division-project/scss/imports/_tables.scss";
 @import "../../division-project/scss/layout/_footer.scss";
 @import "../../division-project/scss/layout/_nav.scss";
@@ -41,18 +41,25 @@ $heading-font: $headings-font-family;
 .main-content{
 	padding-bottom: 32px;
 	background: white;
+
 	
 	@media (min-width: $screen-md-min) { 
 		min-height: 800px;
 		border-right: 1px solid #ddd;
 	}
 
-	img{
-		width: 100%;
-	}
 
 	.slide-content{
-		font-size: 135%;
+		h1{
+			text-align: center;
+		}
+		img{
+			display: block;
+			margin: auto;
+		}
+		@media (min-width: $screen-md-min) { 
+			font-size: 1.3em;
+		}
 	}
 }
 
@@ -74,5 +81,8 @@ h1{
 	margin-top: 1em;
 }
 
-
+/*Forms */
+input[type=submit]{
+	@extend .btn;
+}
 
