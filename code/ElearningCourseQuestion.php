@@ -80,13 +80,12 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 		$courseStatus = Session::get('courseStatus');
 		
 		if (isset($courseStatus[$currentCourse->ID][$this->ID]["answerPicked"])) {
-			print_r($courseStatus[$currentCourse->ID][$this->ID]["answerPicked"]);
+			//print_r($courseStatus[$currentCourse->ID][$this->ID]["answerPicked"]);
 			$answerPicked = $courseStatus[$currentCourse->ID][$this->ID]["answerPicked"];
 		} else {
 			$answerPicked = null;
 		}
 
-		
 		if ($this->Answers()->First()) {
 					
 			$options = $this->Answers()->map('ID', 'Answer');
@@ -97,7 +96,7 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 			);
 			
 			$actions = new FieldList( 
-				FormAction::create('doCheckAnswers')->setTitle('Check Answers') 
+				FormAction::create('doCheckAnswers')->setTitle('Check Answers'),
 				new OptionsetField('Question', '', $options)
 			);
 			
@@ -123,12 +122,11 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 			"QuestionStatus" => null
 		);
 		
-		$correctAnswer = $this->CorrectAnswer()->ID;
-		
-		//Get the current course, course status session variable, and next page
+		//Get the current course, course status session variable, next page, and correct answer
 		$currentCourse = $this->Course();
 		$courseStatus = Session::get('courseStatus');
 		$nextPage = $this->getNextPage();
+		$correctAnswer = $this->CorrectAnswer()->ID;
 
 		//Check to see if the user actually answered the question, if not, just set QuestionStatus to unanswered and send them back.
 		if(isset($data['Question'])){

@@ -12,7 +12,7 @@
 		</div>
 		<% else_if $QuestionStatus == "Incorrect" %>
 		<div class="bg-danger">
-			<p>That's incorrect. The answer is $CorrectAnswer{.} Here's why: </p>
+			<p>That's incorrect. The answer is  Here's why: </p>
 		</div>
 		<% end_if %>
 	</div>
