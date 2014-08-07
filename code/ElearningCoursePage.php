@@ -172,10 +172,4 @@ public function Next(){
 		$this->redirectBack();
 	}
 
-	public function isDev(){
-		return Director::isDev();
-	}
-
-
-
 }
