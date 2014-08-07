@@ -73,12 +73,15 @@
 	}
 }
 
+.sec-nav .active.completed > a {
+	color: lighten($green, 20);
+}
 
 .sec-nav span.inactive{
-	color: #9C9C9C;
+	color: #636363;
 	&:hover {
 		background-color: none;
-		color: #9c9c9c;
+		color: #636363;
 	}
 }
 
@@ -100,7 +103,13 @@
 		}
 	}
 }
+.sec-nav .active>a:before, .sec-nav .active>span.inactive:before{
+	left: -2px;
+}
 
+.sec-nav .second-level .active>a:before, .sec-nav .second-level .active>span.inactive:before{
+	left: -3px;
+}
 /* Per slide Navigation and Caption */
 
 .well.caption-nav{
