@@ -11,8 +11,8 @@
 			<h3>Correct! Here's why: </h3>
 		</div>
 		<% else_if $QuestionStatus == "Incorrect" %>
-		<div class="bg-danger">
-			<p>That's incorrect. The answer is  Here's why: </p>
+		<div >
+			<p class="bg-danger">That's incorrect. The answer is <strong> $CorrectAnswer.Answer </strong> Here's why: </p>
 		</div>
 		<% end_if %>
 	</div>
