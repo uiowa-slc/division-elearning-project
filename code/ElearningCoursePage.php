@@ -168,10 +168,8 @@ public function Next(){
 	}
 
 	public function Clear(){
-		if(Director::isDev()){
-			Session::set('courseStatus', null);
-			$this->redirectBack();
-		}
+		Session::set('courseStatus', null);
+		$this->redirectBack();
 	}
 
 	public function isDev(){
