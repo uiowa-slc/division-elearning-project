@@ -92,7 +92,7 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 								
 			$fields = new FieldList(
 				//new TextField('ChapterQuestion'),
-				new OptionsetField('Question', 'Please choose the most appropriate answer:', $options, $answerPicked )
+				new OptionsetField('Question', 'Please choose the most appropriate response:', $options, $answerPicked )
 			);
 			
 			$actions = new FieldList( 
