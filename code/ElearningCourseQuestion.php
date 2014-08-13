@@ -38,7 +38,7 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 		$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
 
 		$gridField = new GridField('Answers', 'The Answers', $this->Answers(), $gridFieldConfig);
-		$fields->addFieldToTab('Root.Main', new HTMLEditorField('Content', 'Question'));
+		
 		$correctAnswerField = new DropdownField('CorrectAnswerID', 'Correct Answer (May require a refresh after adding answers)', $this->Answers()->map('ID', 'Answer'));
 		
 		$fields->addFieldToTab('Root.Main', $correctAnswerField,'ExplanatoryText');
@@ -49,6 +49,9 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 			 new UploadField( 'QuestionAudioClip', 'Question Audio Clip'),
 			 'CorrectAnswerID'
 		);
+		$fields->addFieldToTab('Root.Main', $gridField,'ExplanatoryText'); // add the grid field to a tab in the CMS
+		$fields->addFieldToTab('Root.Main', $correctAnswerField,'ExplanatoryText');
+		$fields->addFieldToTab('Root.Main', new HTMLEditorField('Content', 'Question'), 'Answers');
 		
 
 		return $fields;
@@ -101,7 +104,7 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 								
 			$fields = new FieldList(
 				//new TextField('ChapterQuestion'),
-				new OptionsetField('Question', 'Pick The Right Answer', $options, $answerPicked )
+				new OptionsetField('Question', 'Please choose the most appropriate response:', $options, $answerPicked )
 			);
 			
 			$actions = new FieldList( 

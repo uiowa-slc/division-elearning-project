@@ -230,14 +230,8 @@ class ElearningCoursePage_Controller extends Page_Controller {
 	}
 
 	public function Clear(){
-		if(Director::isDev()){
-			Session::set('courseStatus', null);
-			$this->redirectBack();
-		}
-	}
-
-	public function isDev(){
-		return Director::isDev();
+		Session::set('courseStatus', null);
+		$this->redirectBack();
 	}
 
 }
