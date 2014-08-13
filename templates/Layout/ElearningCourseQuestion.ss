@@ -1,5 +1,6 @@
 <div class="col-md-8 col-lg-9 main-content">
 	<div id="chapter-question">
+
 		<h1>$Title</h1>
 		$Content
 		<hr />
@@ -7,18 +8,28 @@
 			$ChapterQuestionForm
 		</div>
 		<% if $QuestionStatus == "correct" %>
-		<div class="bg-success">
-			<h3>Correct! Here's why: </h3>
-		</div>
+		<p class="bg-success question-status">Correct!</p>
 		<% else_if $QuestionStatus == "Incorrect" %>
-		<div >
-			<p class="bg-danger">That's incorrect. The answer is <strong> $CorrectAnswer.Answer </strong> Here's why: </p>
-		</div>
+			<p class="bg-danger question-status">That's incorrect. The answer is <strong> $CorrectAnswer.Answer </strong></p>
 		<% end_if %>
 	</div>
 		<% if $CompletionStatus == "completed" %>
+			<article class="slide-content">
+				<h2>All of the Above</h2>
+				<p>OARS are techniques that help encourage change talk and are beneficial when using the elements of Motivational Interviewing.</p>
+				<ul>
+					<li>Open ended questions</li>
+					<li>Affirmative statements</li>
+					<li>Reflective Listening</li>
+					<li>Summarize</li>
+				</ul>
+			<%--$AnswerContent--%>
+			</article>
+		<% end_if %>
+		<% if $CompletionStatus == "completed" %>
 			<% include ElearningContentNav %>
 		<% end_if %>
+
 	<% include ElearningCourseCredits %>
 </div>
 <div class="col-md-4 col-lg-3 side-content">
