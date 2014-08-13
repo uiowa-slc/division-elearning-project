@@ -2,13 +2,17 @@
 	<div id="chapter-question">
 
 		<h1>$Title</h1>
-		$Content
+		$Content		
+		<% if $QuestionAudioClip %>
+		<audio src="$QuestionAudioClip.Filename" controls="controls"></audio>
+		<% end_if %>
 		<hr />
 		<div class="question-form-container <% if $QuestionStatus == "Correct" || $QuestionStatus == "Incorrect" %>answered<% end_if %>">
 			$ChapterQuestionForm
 		</div>
-		<% if $QuestionStatus == "correct" %>
-		<p class="bg-success question-status">Correct!</p>
+
+		<% if $QuestionStatus == "Correct" %>
+			<p class="bg-success question-status">Correct!</p>
 		<% else_if $QuestionStatus == "Incorrect" %>
 			<p class="bg-danger question-status">That's incorrect. The answer is <strong> $CorrectAnswer.Answer </strong></p>
 		<% end_if %>

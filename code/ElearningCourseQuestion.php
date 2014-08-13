@@ -2,7 +2,8 @@
 class ElearningCourseQuestion extends ElearningCourseChapter {
 
 	private static $db = array(
-		'CorrectAnswerSummary' => 'HTMLText'
+		'CorrectAnswerSummary' => 'HTMLText',
+		'AdditionalInformation' => 'HTMLText'
 	);
 	
 	private static $has_many = array(
@@ -10,7 +11,8 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 	);
 
 	private static $has_one = array(
-		'CorrectAnswer' => 'ElearningCourseAnswer'
+		'CorrectAnswer' => 'ElearningCourseAnswer',
+		'QuestionAudioClip' => 'File'
 	);
 
 	private static $singular_name = 'Question';
@@ -39,7 +41,14 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 		
 		$correctAnswerField = new DropdownField('CorrectAnswerID', 'Correct Answer (May require a refresh after adding answers)', $this->Answers()->map('ID', 'Answer'));
 		
-
+		$fields->addFieldToTab('Root.Main', $correctAnswerField,'ExplanatoryText');
+		$fields->addFieldToTab('Root.Main', new HTMLEditorField('AdditionalInformation', 'Additional Information'));	
+		$fields->addFieldToTab('Root.Main', $gridField,'ExplanatoryText'); // add the grid field to a tab in the CMS
+		$fields->addFieldToTab(
+			'Root.Main',
+			 new UploadField( 'QuestionAudioClip', 'Question Audio Clip'),
+			 'CorrectAnswerID'
+		);
 		$fields->addFieldToTab('Root.Main', $gridField,'ExplanatoryText'); // add the grid field to a tab in the CMS
 		$fields->addFieldToTab('Root.Main', $correctAnswerField,'ExplanatoryText');
 		$fields->addFieldToTab('Root.Main', new HTMLEditorField('Content', 'Question'), 'Answers');
@@ -155,8 +164,6 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 			return $this->customise($templateData);
 		}
 		
-		
-
 		//Make Next Page available if it exists and isn't completed already.
 		if(isset($nextPage)){
 
@@ -167,13 +174,10 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 			}
 	
 		}
+		
 		// Save the Course Status session variable.
 		Session::set('courseStatus', $courseStatus);
-		//echo "<br>";
-		//print_r ($courseStatus[$currentCourse->ID][$this->ID]["answerPicked"]);
 		Session::save();
 		return $this->customise($templateData);
-	}
-	
+	}	
 }
-
