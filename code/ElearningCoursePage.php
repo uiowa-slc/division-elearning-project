@@ -100,53 +100,31 @@ class ElearningCoursePage_Controller extends Page_Controller {
 	
 	public function init() {
 
-		$sessionCourseData = Session::get('courseStatus');
+		$courseStatus = Session::get('courseStatus');
 		$currentCourse = $this->Course();
 
-		if(!isset($sessionCourseData[$this->Course()->ID]['started'])){
-			$courseStatus[$currentCourse->ID]['started'] = 'true';
+		if(!isset($courseStatus[$currentCourse->ID])){
+			$courseStatus[$currentCourse->ID][$currentCourse->ID]['status'] = 'available';
 			Session::set('courseStatus', $courseStatus);
 			Session::save();
 		}
 		
-		if (!isset($sessionCourseData[$currentCourse->ID][$this->ID]['status'])) {
 		
-			end($sessionCourseData[$currentCourse->ID]);
-			$returnKey = key($sessionCourseData[$currentCourse->ID]);
-			
-			if ($sessionCourseData[$currentCourse->ID][$returnKey]['status'] !== "available") {
-				$returnKey = $currentCourse->ID;
-			}
-			/*
-			$returnTo = $this->array_find('available', $sessionCourseData[$currentCourse->ID]);
 		
-			if (!isset($returnTo) {
-				$returnTo = $currentCourse->ID;
-			}
-			*/
-			$goToPage = DataObject::get_by_id('Page', $returnKey);
-			$this->redirect($goToPage->Link());
-							
-		}
-		
-		/*
-		if (!isset($sessionCourseData[$currentCourse->ID][$this->ID]['status'])) {
-			$pages = $sessionCourseData[$currentCourse->ID];
-			foreach ($pages as $pageKey => $arrayItem) {
-				if (is_array($arrayItem)) {
-					foreach ($arrayItem as $status) {
-						print_r($status);
-						if ($status == 'available') {
-							$returnTo = $pageKey;
-							break;
-						}
+		if (!isset($courseStatus[$currentCourse->ID][$this->ID]['status'])) {
+				end($courseStatus[$currentCourse->ID]);
+				$returnKey = key($courseStatus[$currentCourse->ID]);
+				
+				if (isset($courseStatus[$currentCourse->ID][$returnKey]['status'])) {
+					if ($courseStatus[$currentCourse->ID][$returnKey]['status'] !== "available") {
+						$returnKey = $currentCourse->ID;
 					}
 				}
-			}
+				$goToPage = DataObject::get_by_id('Page', $returnKey);
+				$this->redirect($goToPage->Link());	
 		}
-		*/
-		
-		//print_r($sessionCourseData);
+				
+		print_r($courseStatus);
 		parent::init();
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
