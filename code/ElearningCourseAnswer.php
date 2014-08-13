@@ -31,5 +31,4 @@ class ElearningCourseAnswer extends DataObject {
 	    $fields->removeByName("SortOrder");
 	    return $fields;
 	  }
-
 }

@@ -1,18 +1,22 @@
 <div class="col-md-8 col-lg-9 main-content">
 	<div id="chapter-question">
 		<h1>$Title</h1>
-		$Content
+		$Content		
+		<% if $QuestionAudioClip %>
+		<audio src="$QuestionAudioClip.Filename" controls="controls"></audio>
+		<% end_if %>
 		<hr />
 		<div class="question-form-container <% if $QuestionStatus == "Correct" || $QuestionStatus == "Incorrect" %>answered<% end_if %>">
 			$ChapterQuestionForm
 		</div>
-		<% if $QuestionStatus == "correct" %>
-		<div class="bg-success">
-			<h3>Correct! Here's why: </h3>
+		<%-- "Correct" and "Incorrect" are case sensitive --%>
+		<% if $QuestionStatus == "Correct" %>
+		<div class="correct well">
+			<p>Correct! Here's why: </p>
 		</div>
 		<% else_if $QuestionStatus == "Incorrect" %>
 		<div >
-			<p class="bg-danger">That's incorrect. The answer is <strong> $CorrectAnswer.Answer </strong> Here's why: </p>
+			<p class="incorrect well">That's incorrect. The answer is <strong> $CorrectAnswer.Answer </strong> Here's why: </p>
 		</div>
 		<% end_if %>
 	</div>

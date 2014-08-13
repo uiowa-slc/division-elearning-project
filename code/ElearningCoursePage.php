@@ -6,7 +6,7 @@ class ElearningCoursePage extends Page {
 	);
 
 	private static $has_one = array(
-		'AudioClip' => 'File',
+		'AudioClip' => 'File'
 	);
 	private static $can_be_root = false;
 	//private static $allowed_children = array("ElearningCourseChapter");
@@ -24,7 +24,7 @@ class ElearningCoursePage extends Page {
 			'Root.Main',
 			new HTMLEditorField( 'ExplanatoryText', 'Explanatory Text')
 		);
-
+		$fields->removeByName("Metadata");
 		return $fields;
 	}
 
@@ -74,7 +74,7 @@ class ElearningCoursePage_Controller extends Page_Controller {
 		'disableAudioInSession',
 		'enableAudioInSession',
 		'Next',
-		'Clear',
+		'Clear'
 	);
 
 	private static $url_handlers = array (
@@ -83,17 +83,70 @@ class ElearningCoursePage_Controller extends Page_Controller {
 		'Next' => 'Next',
 		'Clear' => 'Clear'
 	);
-
+	
+	
+	//recursive, yay! useful function for searching multidimensional arrays. Should it go elsewhere?
+	public function array_find($needle, array $haystack) {
+		
+	    foreach ($haystack as $key => $value) {
+	        if (is_array($value)) {
+	            return $this->array_find($needle, $value);
+	        } else if ($value == $needle) {
+	            return $key;
+	        }
+	    }
+	    return false;
+	}
+	
 	public function init() {
 
 		$sessionCourseData = Session::get('courseStatus');
+		$currentCourse = $this->Course();
 
 		if(!isset($sessionCourseData[$this->Course()->ID]['started'])){
-			$courseStatus[$this->Course()->ID]['started'] = 'true';
+			$courseStatus[$currentCourse->ID]['started'] = 'true';
 			Session::set('courseStatus', $courseStatus);
 			Session::save();
 		}
-		print_r($sessionCourseData);
+		
+		if (!isset($sessionCourseData[$currentCourse->ID][$this->ID]['status'])) {
+		
+			end($sessionCourseData[$currentCourse->ID]);
+			$returnKey = key($sessionCourseData[$currentCourse->ID]);
+			
+			if ($sessionCourseData[$currentCourse->ID][$returnKey]['status'] !== "available") {
+				$returnKey = $currentCourse->ID;
+			}
+			/*
+			$returnTo = $this->array_find('available', $sessionCourseData[$currentCourse->ID]);
+		
+			if (!isset($returnTo) {
+				$returnTo = $currentCourse->ID;
+			}
+			*/
+			$goToPage = DataObject::get_by_id('Page', $returnKey);
+			$this->redirect($goToPage->Link());
+							
+		}
+		
+		/*
+		if (!isset($sessionCourseData[$currentCourse->ID][$this->ID]['status'])) {
+			$pages = $sessionCourseData[$currentCourse->ID];
+			foreach ($pages as $pageKey => $arrayItem) {
+				if (is_array($arrayItem)) {
+					foreach ($arrayItem as $status) {
+						print_r($status);
+						if ($status == 'available') {
+							$returnTo = $pageKey;
+							break;
+						}
+					}
+				}
+			}
+		}
+		*/
+		
+		//print_r($sessionCourseData);
 		parent::init();
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
@@ -133,38 +186,47 @@ class ElearningCoursePage_Controller extends Page_Controller {
 			);
 		
 			return $this->customise($data);
-		}
-
+		} 
 	}
 
-public function Next(){
+	public function Next(){
 
 		$courseStatus = Session::get('courseStatus');
 		$currentCourse = $this->Course();
-
 		$nextPage = $this->getNextPage();
+		
+		//update page to be 'completed'		
 		$courseStatus[$currentCourse->ID][$this->ID]['status'] = 'completed';
+		
+		//make next page 'available' if it is currently null or !completed
+		if(isset($nextPage)){
+			if(!isset($courseStatus[$currentCourse->ID][$nextPage->ID]['status'])){
+				//can we put this array pointer into a more concise varible?
+				$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'available';
+			}elseif($courseStatus[$currentCourse->ID][$nextPage->ID]['status'] != 'completed'){
+				$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'available';
+			}
+		}
+		
+		//determines if the next pages has a next page. If not, marks that page as complete automatically
+		$nextNextPage = Page::get()->filter(array( 
+			'ParentID' => $nextPage->ParentID,
+			'Sort:GreaterThan' => $nextPage->Sort
+			))->First();
+			
+		if (!isset($nextNextPage)) {
+			$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'completed';
+		}
 
 		//If the next page in sequence is a part, we can mark the current part as completed.
 		if(($this->ClassName == 'ElearningCoursePart') && ($nextPage->ClassName == 'ElearningCourseChapter')){
 			$courseStatus[$currentCourse->ID][$this->getParent()->ID]['status'] = 'completed';
 		}
-
+				
 		Session::set('courseStatus', $courseStatus);
-		Session::save();		
-
-		if(isset($nextPage)){
-			//Make Next Page available if it isn't completed already.
-			if(!isset($courseStatus[$currentCourse->ID][$nextPage->ID]['status'])){
-				$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'available';
-			}elseif($courseStatus[$currentCourse->ID][$nextPage->ID]['status'] != 'completed'){
-				$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'available';
-			}
-			Session::set('courseStatus', $courseStatus);
-			Session::save();
-			$this->redirect($nextPage->Link());
-		}
-
+		Session::save();
+		$this->redirect($nextPage->Link());
+		
 	}
 
 	public function Clear(){
@@ -177,7 +239,5 @@ public function Next(){
 	public function isDev(){
 		return Director::isDev();
 	}
-
-
 
 }

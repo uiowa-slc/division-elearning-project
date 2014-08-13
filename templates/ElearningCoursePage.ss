@@ -25,7 +25,6 @@
 	    	<div class="row">
 	    		$Layout
 	    	</div>
-
 	   	</div>
 	</div>
     
