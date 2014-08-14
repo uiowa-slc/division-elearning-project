@@ -4,21 +4,25 @@
 	<section>
 		<h3>$Content</h3>
 		<ul class="ecourse-stats">
-			<% loop $Answers() %>
-			<% if $ID == Up.CorrectAnswer.ID %>
-			<li class="correct">
-				<p>$Answer</p>
-				<div style="width: {$PercentAnswered}%; background-color: #3F3F3F; height: 20px;"></div>
-				<p> Times Selected: {$TimesAnswered} Percentage Correct: $PercentAnswered</p>
+			<% loop $Answers() %>		
+			<li class="answer-well" style="background: linear-gradient(to right, #DFF0D8 0%, #DFF0D8 {$PercentAnswered}%, rgba(255,255,255,1) {$PercentAnswered}%);">
+
+				<!--
+				<% if $ID == Up.CorrectAnswer.ID %>
+				<span class="stats-bar" data-percent="$PercentAnswered" style="width: {$PercentAnswered}%;"></span>
+				<% else %>
+				<span class="stats-bar" data-percent="$PercentAnswered" style="width: {$PercentAnswered}%;"></span>
+				<% end_if %>
+				-->
+
+				<div class="answer-info">
+					<p>$Answer</p>
+					<ul>
+						<li> Times Selected: $TimesAnswered </li>
+						<li> Percentage Correct: $PercentAnswered </li>
+					</ul>	
+				</div>	
 			</li>
-			<% else %>
-			<li class="incorrect">
-				<p>$Answer</p>
-				<div style="width: {$PercentAnswered}%; background-color: #3F3F3F; height: 20px;"></div>
-				<p> Times Selected: {$TimesAnswered} Percentage Correct: $PercentAnswered</p> 
-				
-			</li>
-			<% end_if %>
 			<% end_loop %>
 		</ul>
 	</section>

@@ -10,4 +10,16 @@ $('#elearning-course-nav').affix({
 		}	
 	}
 });
+
+
+console.log('hello');
+
+function statBarWidth() {
+    $('.stats-bar').each( function() {
+    	var percent = $(this).data("percent");
+    	$(this).children().css('width', percent);
+    });
+}
+
+statBarWidth();
 */

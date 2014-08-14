@@ -69,43 +69,8 @@ class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 			'Title' => "Stats Home Page",
 			'Questions' => $Questions
 		);
-		/*
 		
-		$contributorID = $this->request->param('ID');
-		if ($contributorID){
-			$contributor = Contributor::get_by_id("Contributor", $contributorID); 
-			$Data = array(
-				'Title' => $contributor->FirstName.' '.$contributor->LastName,
-				'Contributor' => $contributor,
-				);
-
-			if(isset($contributor)){
-				return $this->Customise($Data)->renderWith(array('ContributorHolder_show','Page'));
-			}else{
-
-			}		   
-		}
-		else {
-			return $this->renderWith('Page');
-		}
-		
-		//
-		
-		$questions = ElearningCourseQuestion::get();
-		$questionList = new ArrayList();
-		
-		foreach ($questions as $q) {
-			$answers = $q->Answers();
-			$questionData = new ArrayData(array(
-			'Answer'			=> $answers->Answer,
-		    'TimesAnswers'     	=> $answers->TimesAnswered
-			));
-			
-			$questionList->push($questionData);
-	    }
-		*/
 		return $this->Customise($Data)->renderWith(array('ElearningCourseHome_stats', 'ElearningCoursePage'));
-		//return $Questions;
 	}
 	
 }
