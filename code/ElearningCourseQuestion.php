@@ -3,7 +3,7 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 
 	private static $db = array(
 		'CorrectAnswerSummary' => 'HTMLText',
-		'AdditionalInformation' => 'HTMLText'
+		'AnswerAdditionalInfo' => 'HTMLText'
 	);
 	
 	private static $has_many = array(
@@ -33,25 +33,29 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 		*/
 		
 		$fields->removeByName('Content');
+		$fields->removeByName('AudioClip');
+		$fields->removeByName('ExplanatoryText');
+
+		$fields->renameField("AudioClip", "Answer Explanatory Audio Clip");
 
 		$gridFieldConfig = GridFieldConfig_RelationEditor::create();
 		$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
 
-		$gridField = new GridField('Answers', 'The Answers', $this->Answers(), $gridFieldConfig);
+		$answerGridField = new GridField('Answers', 'The Answers', $this->Answers(), $gridFieldConfig);
+
+
 		
-		$correctAnswerField = new DropdownField('CorrectAnswerID', 'Correct Answer (May require a refresh after adding answers)', $this->Answers()->map('ID', 'Answer'));
+		$correctAnswerField = new DropdownField('CorrectAnswerID', 'Correct Answer', $this->Answers()->map('ID', 'Answer'));
 		
-		$fields->addFieldToTab('Root.Main', $correctAnswerField,'ExplanatoryText');
-		$fields->addFieldToTab('Root.Main', new HTMLEditorField('AdditionalInformation', 'Additional Information'));	
-		$fields->addFieldToTab('Root.Main', $gridField,'ExplanatoryText'); // add the grid field to a tab in the CMS
-		$fields->addFieldToTab(
-			'Root.Main',
-			 new UploadField( 'QuestionAudioClip', 'Question Audio Clip'),
-			 'CorrectAnswerID'
-		);
-		$fields->addFieldToTab('Root.Main', $gridField,'ExplanatoryText'); // add the grid field to a tab in the CMS
-		$fields->addFieldToTab('Root.Main', $correctAnswerField,'ExplanatoryText');
-		$fields->addFieldToTab('Root.Main', new HTMLEditorField('Content', 'Question'), 'Answers');
+	
+		$fields->addFieldToTab('Root.Main', new UploadField( 'QuestionAudioClip', 'Question Audio Clip'));
+		$fields->addFieldToTab('Root.Main', new HTMLEditorField('Content', 'Question'));
+
+		$fields->addFieldToTab('Root.Main', $answerGridField); // add the grid field to a tab in the CMS
+		$fields->addFieldToTab('Root.Main', $correctAnswerField);
+		$fields->addFieldToTab('Root.Main', new HTMLEditorField('AnswerAdditionalInfo', 'Answer Additional Info'));
+		$fields->addFieldToTab('Root.Main', new UploadField( 'AudioClip', 'Answer Explanatory Audio Clip'));
+		$fields->addFieldToTab('Root.Main', new HTMLEditorField('ExplanatoryText', 'Answer Explanatory Text'));	
 		
 
 		return $fields;
@@ -99,32 +103,19 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 		}
 
 		if ($this->Answers()->First()) {
-					
-			$options = $this->Answers()->map('ID', 'Answer');
-								
+			$options = $this->Answers()->map('ID', 'Answer');	
 			$fields = new FieldList(
 				//new TextField('ChapterQuestion'),
 				new OptionsetField('Question', 'Please choose the most appropriate response:', $options, $answerPicked )
 			);
-			
-			$actions = new FieldList( 
-				FormAction::create('doCheckAnswers')->setTitle('Check Answers'),
-				new OptionsetField('Question', '', $options)
-			);
-			
 			$actions = new FieldList(
 				FormAction::create('doCheckAnswers')->setTitle('Check Answer')
 			);
-			
 			$validator = new RequiredFields(
 				"Question"
 			);
-				
 			$form = new Form($this, 'ChapterQuestionForm', $fields, $actions, $validator);
-			//$form->loadDataFrom($this->request->postVars());
-			
 			return $form;	
-			
 		}
 	}
 	
