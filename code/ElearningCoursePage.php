@@ -109,22 +109,21 @@ class ElearningCoursePage_Controller extends Page_Controller {
 			Session::save();
 		}
 		
-		
-		
 		if (!isset($courseStatus[$currentCourse->ID][$this->ID]['status'])) {
 				end($courseStatus[$currentCourse->ID]);
 				$returnKey = key($courseStatus[$currentCourse->ID]);
-				
+				//print_r ($returnKey);
 				if (isset($courseStatus[$currentCourse->ID][$returnKey]['status'])) {
 					if ($courseStatus[$currentCourse->ID][$returnKey]['status'] !== "available") {
 						$returnKey = $currentCourse->ID;
 					}
 				}
+				
 				$goToPage = DataObject::get_by_id('Page', $returnKey);
 				$this->redirect($goToPage->Link());	
 		}
 				
-		print_r($courseStatus);
+		//print_r($courseStatus);
 		parent::init();
 		// You can include any CSS or JS required by your project here.
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements

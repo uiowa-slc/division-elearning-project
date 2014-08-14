@@ -4,6 +4,7 @@ class ElearningCourseAnswer extends DataObject {
 	private static $db = array(
 		"Answer" => "Varchar(255)",
 		"TimesAnswered" => "Int",
+		"PercentAnswered" => "Percentage",
 		//"isCorrect" => "Boolean",
 		"SortOrder" => "Int"
 	);
@@ -31,4 +32,22 @@ class ElearningCourseAnswer extends DataObject {
 	    $fields->removeByName("SortOrder");
 	    return $fields;
 	  }
+	  
+	public function percentAnswered() {
+		$question = $this->Question();
+		$answers = $question->Answers();
+		$answerCount = $answers->Count();
+		$totalTimesAnswered = 0;
+		
+		foreach ($answers as $answer) {
+			$timesAnswered = $answer->TimesAnswered;
+			$totalTimesAnswered += $timesAnswered;
+		}
+		
+		$thisTimesAnswered = $this->TimesAnswered;
+		$percentAnswered = $thisTimesAnswered/$totalTimesAnswered;
+		
+		$this->PercentAnswered = $percentAnswered;
+		return $percentAnswered * 100;		
+	}
 }
