@@ -46,8 +46,15 @@ class ElearningCourseAnswer extends DataObject {
 		
 		$thisTimesAnswered = $this->TimesAnswered;
 		$percentAnswered = $thisTimesAnswered/$totalTimesAnswered;
-		
 		$this->PercentAnswered = $percentAnswered;
-		return $percentAnswered * 100;		
+		
+		/*
+		if (isset($this->PercentAnswered)) {
+			$neatPercentAnswered = $this->PercentAnswered->Nice();
+			}
+		*/	
+
+		return $this->PercentAnswered;	
+			
 	}
 }

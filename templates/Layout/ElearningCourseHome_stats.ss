@@ -2,24 +2,18 @@
 	<h1> stat page! </h1>
 	<% loop $Questions %>
 	<section>
-		<h3>$Content</h3>
+		<h3>$Content.Summary</h3>
 		<ul class="ecourse-stats">
-			<% loop $Answers() %>		
-			<li class="answer-well" style="background: linear-gradient(to right, #DFF0D8 0%, #DFF0D8 {$PercentAnswered}%, rgba(255,255,255,1) {$PercentAnswered}%);">
-
-				<!--
-				<% if $ID == Up.CorrectAnswer.ID %>
-				<span class="stats-bar" data-percent="$PercentAnswered" style="width: {$PercentAnswered}%;"></span>
-				<% else %>
-				<span class="stats-bar" data-percent="$PercentAnswered" style="width: {$PercentAnswered}%;"></span>
-				<% end_if %>
-				-->
-
+			<% loop $Answers() %>	
+			<%--	
+			<li class="answer-well" data-percent="$PercentAnswered" <% if $ID == Up.CorrectAnswer.ID %> data-iscorrect="correct" <% else %> data-iscorrect="incorrect" <% end_if %> <%include Style %> >
+			--%>
+			<li class="answer-well" style="<% if $ID == Up.CorrectAnswer.ID %> <% include DataStylesC %> <% else %> <% include DataStylesI %> <% end_if %>">
 				<div class="answer-info">
-					<p>$Answer</p>
+					<span>$Answer</span>
 					<ul>
-						<li> Times Selected: $TimesAnswered </li>
-						<li> Percentage Correct: $PercentAnswered </li>
+						<li> Times Selected: <strong> $TimesAnswered </strong> </li>
+						<li> Percent Choosen: <strong> $PercentAnswered.Nice() </strong></li>
 					</ul>	
 				</div>	
 			</li>
