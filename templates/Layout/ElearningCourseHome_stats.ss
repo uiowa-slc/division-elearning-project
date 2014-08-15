@@ -1,5 +1,12 @@
-<div class="col-md-8 col-lg-9 main-content">
-	<h1> stat page! </h1>
+<div class="col-md-2 col-lg-2 main-content">
+	<p> Quetion: </p>
+	<ul>
+		<li><button>Answered Wrong Most</button></li>
+		<li><button>Answered Right Most</button></li>
+	</ul>
+</div>
+<div class="col-md-6 col-lg-7 main-content">
+	
 	<% loop $Questions %>
 	<section>
 		<h3>$Content.Summary</h3>

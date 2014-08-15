@@ -64,7 +64,7 @@ class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 	public function stats(){
 	
 		$Questions = ElearningCourseQuestion::get();
-		
+			
 		$Data = array(
 			'Title' => "Stats Home Page",
 			'Questions' => $Questions
@@ -72,5 +72,6 @@ class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 		
 		return $this->Customise($Data)->renderWith(array('ElearningCourseHome_stats', 'ElearningCoursePage'));
 	}
+	
 	
 }

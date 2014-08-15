@@ -21,6 +21,10 @@ $heading-font: $headings-font-family;
 
 @import "layout/_nav.scss";
 
+ul > li {
+	list-style: none;
+}
+
 
 /* division-bar overrides :*/
 
