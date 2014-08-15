@@ -93,7 +93,13 @@ h1{
 	display: none;
 }
 
+.question-status{
+	padding: 5px;
+}
 
+#Question>label {
+	//@extend .visuallyhidden;
+}
 /*Forms */
 .Actions .action{
 	background-color: #2488C0;

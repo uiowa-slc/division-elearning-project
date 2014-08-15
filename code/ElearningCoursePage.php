@@ -103,12 +103,14 @@ class ElearningCoursePage_Controller extends Page_Controller {
 		$courseStatus = Session::get('courseStatus');
 		$currentCourse = $this->Course();
 
+		//If there's no courseStatus session variable, assume we haven't started the course and make the course homepage "available"
 		if(!isset($courseStatus[$currentCourse->ID])){
 			$courseStatus[$currentCourse->ID][$currentCourse->ID]['status'] = 'available';
 			Session::set('courseStatus', $courseStatus);
 			Session::save();
 		}
 		
+		//If there's no status set for the page the user's currently on, find the first page marked as available and redirect them there.
 		if (!isset($courseStatus[$currentCourse->ID][$this->ID]['status'])) {
 				end($courseStatus[$currentCourse->ID]);
 				$returnKey = key($courseStatus[$currentCourse->ID]);
@@ -125,8 +127,6 @@ class ElearningCoursePage_Controller extends Page_Controller {
 				
 		//print_r($courseStatus);
 		parent::init();
-		// You can include any CSS or JS required by your project here.
-		// See: http://doc.silverstripe.org/framework/en/reference/requirements
 	}
 
 	public function disableAudioInSession(){
@@ -207,7 +207,7 @@ class ElearningCoursePage_Controller extends Page_Controller {
 	}
 
 	public function Clear(){
-		Session::set('courseStatus', null);
+		Session::clear("courseStatus");
 		$this->redirectBack();
 	}
 
