@@ -12,7 +12,8 @@ $heading-font: $headings-font-family;
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/print";
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_glyphicons.scss";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/wells";
 
 //@import "../../division-project/scss/imports/_grid-simple.scss";
 @import "../../division-project/scss/imports/_grid-bootstrap3.scss";
