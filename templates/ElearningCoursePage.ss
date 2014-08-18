@@ -6,8 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width">
-	<title>$Title | $Course.Title | The University of Iowa</title>
-	<% include Icons %>
+	<title><% if $IntroductionTitle %>$IntroductionTitle<% else %>$Title<% end_if %> | $Course.Title | The University of Iowa</title>
 	<link rel="stylesheet" type="text/css" href="division-elearning-project/css/app.css" />
 
 	<!--[if lt IE 9]>
