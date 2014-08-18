@@ -21,12 +21,15 @@
 	<% include DivisionBar %>
 
 	<div class="gradient">
-	    <div class="container">
-	    	<div class="row">
-	    		
-	    		$Layout
-	    	</div>
-	   	</div>
+		<div class="container clearfix">
+			<div class="white-cover"></div>
+		    <section class="main-content <% if $BackgroundImage %>margin-top<% end_if %>">
+		    	$Layout
+		    </section>
+		    <section id="elearning-course-nav" class="sec-content hide-print">
+		    	<% include ElearningCourseNav %>
+		    </section>
+		</div>
 	</div>
     
    	<% include Footer %>

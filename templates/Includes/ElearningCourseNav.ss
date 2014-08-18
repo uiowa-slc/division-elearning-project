@@ -1,5 +1,4 @@
-<section id="elearning-course-nav" class="sec-content hide-print" >
-	
+
 	<% with Course %>
 		<h3 class="section-title"><a href="$Link">$MenuTitle</a></h3>
 	<% end_with %>
@@ -47,9 +46,7 @@
 			<ul class="first-level">
 				<li><a href="{$CMSEditLink}">Edit this Page</a></li>
 				<li><a href="{$Link}Clear">Reset Course Progress</a></li>
-				<li><a href="">Stats n' Such</a></li>
+				<li><a href="{$Course.Link}stats/">Course Statistics</a></li>
 			</ul>
 		</nav>
 	<% end_if %>
-
-</section>

@@ -1,12 +1,8 @@
-<div class="col-md-2 col-lg-2 main-content">
-	<p> Quetion: </p>
+	<p> Question: </p>
 	<ul>
 		<li><button>Answered Wrong Most</button></li>
 		<li><button>Answered Right Most</button></li>
 	</ul>
-</div>
-<div class="col-md-6 col-lg-7 main-content">
-	
 	<% loop $Questions %>
 	<section>
 		<h3>$Content.Summary</h3>
@@ -28,7 +24,3 @@
 		</ul>
 	</section>
 	<% end_loop %>
-</div>
-<div class="col-md-4 col-lg-3 side-content">
-	<% include ElearningCourseNav %>
-</div>
