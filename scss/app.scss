@@ -1,5 +1,4 @@
 @import 'settings';
-@import 'bootstrap';
 
 /* Division Project imports */
 
@@ -8,6 +7,12 @@ $heading-font: $headings-font-family;
 
 @import "../bower_components/mediaelement/build/mediaelementplayer.min.css";
 
+/* Some Bootstrap Dependencies */
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/print";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_glyphicons.scss";
 
 //@import "../../division-project/scss/imports/_grid-simple.scss";
 @import "../../division-project/scss/imports/_grid-bootstrap3.scss";
@@ -59,21 +64,6 @@ ul > li {
 	list-style: none;
 }
 
-
-/* division-bar overrides :*/
-
-.division-topbar {
-	.wrapper{
-		max-width: none;
-		@extend .container;
-		padding: 0;
-	}
-
-	.clearfix{
-		//@extend .col-md-12;
-	}
-}
-
 /* Main Content Area */
 
 .main-content{
@@ -90,7 +80,7 @@ ul > li {
 			display: block;
 			margin: auto;
 		}
-		@media (min-width: $screen-md-min) { 
+		@media (min-width: $break-medium) { 
 			font-size: 1.3em;
 		}
 	}

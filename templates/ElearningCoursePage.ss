@@ -11,8 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="division-elearning-project/css/app.css" />
 
 	<!--[if lt IE 9]>
-		<script src="{$ThemeDir}/vendor/html5shiv/dist/html5shiv.js"></script>
-		<script src="{$ThemeDir}/vendor/respond/dest/respond.min.js"></script>
+		<script src="division-project/bower_components/html5shiv/dist/html5shiv.min.js"></script>
+		<script src="division-project/bower_components/respond/dest/respond.min.js"></script>
 	<![endif]-->
 
 </head>
