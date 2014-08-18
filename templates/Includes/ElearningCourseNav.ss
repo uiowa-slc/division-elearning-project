@@ -24,14 +24,6 @@
 		</ul>
 	</nav>
 
-	<!--<nav class="sec-nav additional-nav">
-		<h2>Additional Resources</h2>
-		<ul class="first-level">
-			<li><a href="#">Code of Student Life</a></li>
-			<li><a href="#">Judicial Procedure and Resources</a></li>
-			<li><a href="#">Mandatory Reporter</a></li>
-		</ul>		
-	</nav>-->
 	<div class="playback-options">
 	<% if $isAudioEnabled %>
 		<a href="{$Link}disableAudioInSession" class="btn narration">Disable Auto Narration <span class="glyphicon glyphicon-volume-off"></span></a>
@@ -42,11 +34,11 @@
 
 	<% if $CurrentMember %>
 	<nav class="sec-nav additional-nav">
-		<h2>Administrative Tools</h2>
+		<h2>Course Administration</h2>
 			<ul class="first-level">
-				<li><a href="{$CMSEditLink}">Edit this Page</a></li>
-				<li><a href="{$Link}Clear">Reset Course Progress</a></li>
-				<li><a href="{$Course.Link}stats/">Course Statistics</a></li>
+				<li><a href="{$CMSEditLink}"><span class="glyphicon glyphicon-pencil"></span> Edit this Page</a></li>
+				<li><a href="{$Course.Link}stats/"><span class="glyphicon glyphicon-stats"></span> Course Statistics</a></li>
+				<li><a href="{$Link}Clear"><span class="glyphicon glyphicon-remove"></span> Reset Course Progress</a></li>
 			</ul>
 		</nav>
 	<% end_if %>
