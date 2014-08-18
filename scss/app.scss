@@ -21,6 +21,10 @@ $heading-font: $headings-font-family;
 
 @import "layout/_nav.scss";
 
+ul > li {
+	list-style: none;
+}
+
 
 /* division-bar overrides :*/
 
@@ -119,8 +123,31 @@ h1{
 	background: #DFF0D8;
 }
 
-
-
 .affix-bottom {
 	position: relative;
+}
+
+.ecourse-stats {
+	list-style: none;
+}
+
+.stats-bar {
+	position: relative;
+	background: #313131;
+	height: 100%;
+}
+
+.answer-well {
+	position: relative;
+    min-height: 20px;
+    padding: 3px;
+    margin-bottom: 10px;
+    //background-color: #DFF0D8;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
+}
+
+.answer-info {
+	
 }

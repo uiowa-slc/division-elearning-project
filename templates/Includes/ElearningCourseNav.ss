@@ -47,6 +47,7 @@
 			<ul class="first-level">
 				<li><a href="{$CMSEditLink}">Edit this Page</a></li>
 				<li><a href="{$Link}Clear">Reset Course Progress</a></li>
+				<li><a href="">Stats n' Such</a></li>
 			</ul>
 		</nav>
 	<% end_if %>

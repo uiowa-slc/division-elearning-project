@@ -49,6 +49,7 @@ class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 	 * @var array
 	 */
 	private static $allowed_actions = array (
+		"stats" 
 	);
 
 	public function init() {
@@ -59,6 +60,18 @@ class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 	public function getNextPage() {
 		return $this->Children()->First();		
 	}
-
-
+	
+	public function stats(){
+	
+		$Questions = ElearningCourseQuestion::get();
+			
+		$Data = array(
+			'Title' => "Stats Home Page",
+			'Questions' => $Questions
+		);
+		
+		return $this->Customise($Data)->renderWith(array('ElearningCourseHome_stats', 'ElearningCoursePage'));
+	}
+	
+	
 }

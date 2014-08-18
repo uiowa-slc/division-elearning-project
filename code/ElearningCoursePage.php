@@ -114,12 +114,13 @@ class ElearningCoursePage_Controller extends Page_Controller {
 		if (!isset($courseStatus[$currentCourse->ID][$this->ID]['status'])) {
 				end($courseStatus[$currentCourse->ID]);
 				$returnKey = key($courseStatus[$currentCourse->ID]);
-				
+				//print_r ($returnKey);
 				if (isset($courseStatus[$currentCourse->ID][$returnKey]['status'])) {
 					if ($courseStatus[$currentCourse->ID][$returnKey]['status'] !== "available") {
 						$returnKey = $currentCourse->ID;
 					}
 				}
+				
 				$goToPage = DataObject::get_by_id('Page', $returnKey);
 				$this->redirect($goToPage->Link());	
 		}
