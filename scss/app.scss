@@ -65,7 +65,17 @@ $heading-font: $headings-font-family;
 		}
 	}
 }
-
+.white-cover {
+	display: none;
+	@media screen and (min-width: $screen-md-min) {
+		background-color: #fff;
+		border-right: 1px solid #ddd;
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+}
 .gradient{
 	background: white;
 	@media (min-width: $screen-md-min) { 

@@ -23,6 +23,7 @@
 	<div class="gradient">
 	    <div class="container">
 	    	<div class="row">
+	    		
 	    		$Layout
 	    	</div>
 	   	</div>
