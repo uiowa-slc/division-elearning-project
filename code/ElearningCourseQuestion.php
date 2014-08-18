@@ -106,7 +106,7 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 			$options = $this->Answers()->map('ID', 'Answer');	
 			$fields = new FieldList(
 				//new TextField('ChapterQuestion'),
-				new OptionsetField('Question', 'Please choose the most appropriate response:', $options, $answerPicked )
+				new OptionsetField('Question', 'The most appropriate response is:', $options, $answerPicked )
 			);
 			$actions = new FieldList(
 				FormAction::create('doCheckAnswers')->setTitle('Check Answer')
@@ -114,6 +114,7 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 			$validator = new RequiredFields(
 				"Question"
 			);
+			$validator->validationError('Question', 'You must choose an appropriate response before continuing.' );
 			$form = new Form($this, 'ChapterQuestionForm', $fields, $actions, $validator);
 			return $form;	
 		}

@@ -34,11 +34,11 @@
 
 	<% if $CurrentMember %>
 	<nav class="sec-nav additional-nav">
-		<h2>Course Administration</h2>
+		<h2>Course Admin</h2>
 			<ul class="first-level">
 				<li><a href="{$CMSEditLink}"><span class="glyphicon glyphicon-pencil"></span> Edit this Page</a></li>
 				<li><a href="{$Course.Link}stats/"><span class="glyphicon glyphicon-stats"></span> Course Statistics</a></li>
-				<li><a href="{$Link}Clear"><span class="glyphicon glyphicon-remove"></span> Reset Course Progress</a></li>
+				<li><a href="{$Link}Clear"><span class="glyphicon glyphicon-remove"></span> Reset Current Progress in Course</a></li>
 			</ul>
 		</nav>
 	<% end_if %>
