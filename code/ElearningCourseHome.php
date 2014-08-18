@@ -4,7 +4,8 @@ class ElearningCourseHome extends ElearningCoursePage {
 	private static $db = array(
 		"CourseHeader" => "HTMLText",
 		"IntroductionTitle" => "Varchar(255)",
-		"FooterText" => "HTMLText"
+		"FooterText" => "HTMLText",
+		'TimesCompleted' => 'Int'
 	);
 
 	private static $has_one = array(
@@ -49,7 +50,11 @@ class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 	 * @var array
 	 */
 	private static $allowed_actions = array (
-		"stats" 
+		"stats" => 'ADMIN'
+	);
+
+	private static $url_handlers = array (
+		'stats' => 'stats'
 	);
 
 	public function init() {
@@ -66,8 +71,9 @@ class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 		$Questions = ElearningCourseQuestion::get();
 			
 		$Data = array(
-			'Title' => "Stats Home Page",
-			'Questions' => $Questions
+			'Title' => 'Course Statistics',
+			'Questions' => $Questions,
+			'TimesCompleted' => $this->TimesCompleted
 		);
 		
 		return $this->Customise($Data)->renderWith(array('ElearningCourseHome_stats', 'ElearningCoursePage'));

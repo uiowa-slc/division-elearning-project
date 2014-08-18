@@ -15,11 +15,7 @@ class ElearningCoursePage extends Page {
 		$fields = parent::getCMSfields();
 		$fields->removeFieldFromTab("Root.Main", "BackgroundImage");
 
-		$fields->addFieldToTab(
-			'Root.Main',
-			 new UploadField( 'AudioClip', 'Audio Clip'),
-			 'Content'
-		);
+		$fields->addFieldToTab('Root.Main', new UploadField( 'AudioClip', 'Audio Clip'),'Content');
 		$fields->addFieldToTab(
 			'Root.Main',
 			new HTMLEditorField( 'ExplanatoryText', 'Explanatory Text')
@@ -185,17 +181,18 @@ class ElearningCoursePage_Controller extends Page_Controller {
 			}
 		}
 		
-		//determines if the next pages has a next page. If not, marks that page as complete automatically
-		$nextNextPage = Page::get()->filter(array( 
-			'ParentID' => $nextPage->ParentID,
-			'Sort:GreaterThan' => $nextPage->Sort
-			))->First();
-			
-		if (!isset($nextNextPage)) {
+		//determines if there's page after next. If not, marks current page as completed and user is done with the course.
+		$pageAfterNext = $nextPage->getNextPage();
+		if (!isset($pageAfterNext)) {
 			$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'completed';
-		}
 
-		//If the next page in sequence is a part, we can mark the current part as completed.
+			//Increment the "times completed" variable. We need a better way to do this.
+			$currentCourse->TimesCompleted = $currentCourse->TimesCompleted + 1;
+			$currentCourse->write();
+			$currentCourse->doPublish();
+		}
+		
+		//If the next page in sequence is a part, we can mark the current Part as completed.
 		if(($this->ClassName == 'ElearningCoursePart') && ($nextPage->ClassName == 'ElearningCourseChapter')){
 			$courseStatus[$currentCourse->ID][$this->getParent()->ID]['status'] = 'completed';
 		}

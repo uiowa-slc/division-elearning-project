@@ -1,12 +1,14 @@
-	<p> Question: </p>
+<article class="statistics">
+<!--<p> Question: </p>
 	<ul>
 		<li><button>Answered Wrong Most</button></li>
 		<li><button>Answered Right Most</button></li>
-	</ul>
+	</ul>-->
+	<p>Number of times the course has been completed: <strong>$TimesCompleted</strong></p>
 	<% loop $Questions %>
 	<section>
 		<h3>$Content.Summary</h3>
-		<ul class="ecourse-stats">
+		<ul class="question-list">
 			<% loop $Answers() %>	
 			<%--	
 			<li class="answer-well" data-percent="$PercentAnswered" <% if $ID == Up.CorrectAnswer.ID %> data-iscorrect="correct" <% else %> data-iscorrect="incorrect" <% end_if %> <%include Style %> >
@@ -15,8 +17,8 @@
 				<div class="answer-info">
 					<span>$Answer</span>
 					<ul>
-						<li> Times Selected: <strong> $TimesAnswered </strong> </li>
-						<li> Percent Choosen: <strong> $PercentAnswered.Nice() </strong></li>
+						<li> Times Chosen: <strong> $TimesAnswered </strong> </li>
+						<li> Percent Chosen: <strong> $PercentAnswered.Nice() </strong></li>
 					</ul>	
 				</div>	
 			</li>
@@ -24,3 +26,4 @@
 		</ul>
 	</section>
 	<% end_loop %>
+</article>
