@@ -3,3 +3,4 @@
 	$Content
 </article>
 <% include ElearningContentNav %>
+<% include ElearningCourseCredits %>
