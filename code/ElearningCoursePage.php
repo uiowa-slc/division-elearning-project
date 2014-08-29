@@ -40,13 +40,17 @@ class ElearningCoursePage extends Page {
 	}
 
 
-	/*public function Course(){
+	public function Course(){
 		$pageTemp = $this;
-		while($pageTemp->ClassName != 'ElearningCourseHome'){
-			$pageTemp = $this->getParent();
+		if ($pageTemp->Classname == 'ElearningCourseHome') {
+			$course = $this;
+		} else {
+			while ($pageTemp->ClassName != 'ElearningCourseHome') {
+				$pageTemp = $pageTemp->getParent();
+			}
 		}
 		return $pageTemp;
-	}*/
+	}
 
 }
 class ElearningCoursePage_Controller extends Page_Controller {
@@ -120,7 +124,7 @@ class ElearningCoursePage_Controller extends Page_Controller {
 				$goToPage = DataObject::get_by_id('Page', $returnKey);
 				$this->redirect($goToPage->Link());	
 		}
-				
+			
 		//print_r($courseStatus);
 		parent::init();
 	}
@@ -184,12 +188,16 @@ class ElearningCoursePage_Controller extends Page_Controller {
 		//determines if there's page after next. If not, marks current page as completed and user is done with the course.
 		$pageAfterNext = $nextPage->getNextPage();
 		if (!isset($pageAfterNext)) {
+			//set final page status to complete
 			$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'completed';
 
-			//Increment the "times completed" variable. We need a better way to do this.
-			$currentCourse->TimesCompleted = $currentCourse->TimesCompleted + 1;
-			$currentCourse->write();
-			$currentCourse->doPublish();
+			//If first time reaching final page, set course status to courseCompleted, ensuring it only increments once per session
+			if ($courseStatus[$currentCourse->ID][$currentCourse->ID]['status'] != 'CourseCompleted') {
+				$courseStatus[$currentCourse->ID][$currentCourse->ID]['status'] = 'CourseCompleted';
+				$currentCourse->TimesCompleted++;
+				$currentCourse->write();
+				//$currentCourse->doPublish();
+			}
 		}
 		
 		//If the next page in sequence is a part, we can mark the current Part as completed.
