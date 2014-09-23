@@ -67,9 +67,12 @@ class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 	}
 	
 	public function stats(){
-	
-		$Questions = ElearningCourseQuestion::get();
-			
+		$course = $this->CourseHeader;
+		
+		$Questions = ElearningCourseQuestion::get()->filter(array(
+			'AssociatedCourse' => $this->ID
+		));
+		
 		$Data = array(
 			'Title' => 'Course Statistics',
 			'Questions' => $Questions,

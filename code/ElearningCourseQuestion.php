@@ -3,7 +3,8 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 
 	private static $db = array(
 		'CorrectAnswerSummary' => 'HTMLText',
-		'AnswerAdditionalInfo' => 'HTMLText'
+		'AnswerAdditionalInfo' => 'HTMLText',
+		'AssociatedCourse' => 'Int'
 	);
 	
 	private static $has_many = array(
@@ -18,6 +19,14 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 	private static $singular_name = 'Question';
 	private static $plural_name = 'Questions';
 	private static $can_be_root = false;
+	
+	protected function onBeforeWrite() {
+		$AssociatedCourse = $this->AssociatedCourse;
+		if (empty($AssociatedCourse)) {
+			$this->AssociatedCourse = $this->Course()->ID;			
+		}
+		parent::onBeforeWrite();
+	}
 	
 	public function getCMSFields() {
 		$fields = parent::getCMSfields();
@@ -42,11 +51,8 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 		$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
 
 		$answerGridField = new GridField('Answers', 'The Answers', $this->Answers(), $gridFieldConfig);
-
-
 		
 		$correctAnswerField = new DropdownField('CorrectAnswerID', 'Correct Answer', $this->Answers()->map('ID', 'Answer'));
-		
 	
 		$fields->addFieldToTab('Root.Main', new UploadField( 'QuestionAudioClip', 'Question Audio Clip'));
 		$fields->addFieldToTab('Root.Main', new HTMLEditorField('Content', 'Question'));
@@ -57,7 +63,6 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 		$fields->addFieldToTab('Root.Main', new UploadField( 'AudioClip', 'Answer Explanatory Audio Clip'));
 		$fields->addFieldToTab('Root.Main', new HTMLEditorField('ExplanatoryText', 'Answer Explanatory Text'));	
 		
-
 		return $fields;
 	}
 		
@@ -116,6 +121,7 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 			);
 			$validator->validationError('Question', 'You must choose an appropriate response before continuing.' );
 			$form = new Form($this, 'ChapterQuestionForm', $fields, $actions, $validator);
+			
 			return $form;	
 		}
 	}
@@ -164,12 +170,12 @@ class ElearningCourseQuestion_Controller extends ElearningCourseChapter_Controll
 			}elseif($courseStatus[$currentCourse->ID][$nextPage->ID]['status'] != 'completed'){
 				$courseStatus[$currentCourse->ID][$nextPage->ID]['status'] = 'available';
 			}
-	
 		}
 		
 		// Save the Course Status session variable.
 		Session::set('courseStatus', $courseStatus);
 		Session::save();
+		
 		return $this->customise($templateData);
 	}	
 }
