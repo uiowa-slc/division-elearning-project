@@ -17709,16 +17709,16 @@ $.extend(mejs.MepDefaults,
 })(mejs.$);
 
 
-$(document).ready(function() {	
+$(document).ready(function() {
 
     // Hide the directory navigation
-    $('.division-directory').hide();
+    // $('.division-directory').hide();
 
 
     // Show/Hide the directory navigation on-click
     $('.directory-toggle').click(function() {
         $(this).toggleClass("active");
-        $('.division-directory').slideToggle();
+        $('.division-directory').toggleClass("active");
         return false;
     });
 
@@ -17728,7 +17728,7 @@ $(document).ready(function() {
         $(this).toggleClass('active');
         $('.division-search').slideToggle();
         return false;
-    });    
+    });
 
 
     // For small screens - show the directory
