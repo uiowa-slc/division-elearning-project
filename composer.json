@@ -7,7 +7,7 @@
 		"silverstripe/cms": "3.1.*",
 		"silverstripe/framework": "3.1.*",
 		"md/division-bar" : "*",
-		"md/division-project" : "2.0.*",
+		"md/division-project" : "2.*",
 		"silverstripe/spamprotection" : "dev-master",
 		"silverstripe/recaptcha" : "*",
 		"silverstripe/userforms" : "*",
