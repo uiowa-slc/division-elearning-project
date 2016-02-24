@@ -32,8 +32,7 @@ module.exports = function(grunt) {
         },                  // Target
         options: {              // Target options
           style: 'compressed',
-          sourcemap: 'true',
-          loadPath: ['bower_components/bootstrap-sass-official/assets/stylesheets/']
+          loadPath: ['bower_components/bootstrap-sass-official/assets/stylesheets/', '../division-project/scss', '../division-bar/scss']
         }
       }
     },

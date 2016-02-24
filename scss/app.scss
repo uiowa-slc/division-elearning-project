@@ -1,97 +1,64 @@
-@import 'settings';
-@import 'bootstrap';
+@import "settings";
+@import "bootstrap";
 
 /* Division Project imports */
 
 $heading-font: $headings-font-family;
 
-
 @import "../bower_components/mediaelement/build/mediaelementplayer.min.css";
 
 /* Global
 -------------------------------------------*/
-@import "../../division-project/scss/imports/_config.scss";
-@import "../../division-project/scss/imports/_mixins.scss";
-@import "../../division-project/scss/imports/_normalize.scss";
-@import "../../division-project/scss/imports/_typography.scss";
-@import "../../division-project/scss/imports/_global.scss";
-
-/* Elements
--------------------------------------------*/
-@import "../../division-project/scss/imports/_buttons.scss";
-@import "../../division-project/scss/imports/_font.scss";
-@import "../../division-project/scss/imports/_forms.scss";
-@import "../../division-project/scss/imports/_search.scss";
-@import "../../division-project/scss/imports/_grid-simple.scss";
-
-
-@import "../../division-project/scss/imports/_tables.scss";
-
-
-/* Layout
--------------------------------------------*/ 
-@import "../../division-project/scss/layout/_home.scss";
-@import "../../division-project/scss/layout/_nav.scss";
-@import "../../division-project/scss/layout/_footer.scss";
-
-
-/* Site specific styles
--------------------------------------------*/ 
-@import "../../division-project/scss/layout/_site.scss";
-
-/* Print
--------------------------------------------*/
-@import "../../division-project/scss/imports/_print.scss";
-
-@import "../../division-bar/css/_division-bar.css";
+@import "../../division-project/scss/master.scss";
 
 @import "layout/_nav.scss";
 @import "layout/_stats.scss";
 
 /* Main Content Area */
 
-.main-content{
+.main-content {
 	@media screen and (min-width: $break-medium) {
 		padding-left: 0;
 	}
-	.course-header{
+
+	.course-header {
 		padding-top: 2em;
 	}
 
-	.slide-content{
-		h1{
+	.slide-content {
+		h1 {
 			text-align: center;
 		}
-		img{
+
+		img {
 			display: block;
 			margin: auto;
 		}
-		@media (min-width: $break-medium) { 
+
+		@media (min-width: $break-medium) {
 			font-size: 1.3em;
 		}
 	}
 }
 
-
-
-h1{
+h1 {
 	font-size: 2.6em;
 }
-
 
 .question-form-container.answered .Actions {
 	display: none;
 }
 
-.question-status{
+.question-status {
 	padding: 5px;
 }
 
-#Question>label {
+#Question > label {
 	//@extend .visuallyhidden;
 }
+
 /*Forms */
-.Actions .action{
+.Actions .action {
 	background-color: #2488C0;
 }
 
@@ -106,5 +73,3 @@ h1{
 .affix-bottom {
 	position: relative;
 }
-
-
