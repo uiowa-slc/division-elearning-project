@@ -13,7 +13,7 @@
 		"silverstripe/userforms" : "*",
 		"rywa/silverstripe-foundation-forms": "dev-master",
 		"silverstripe/mathspamprotection": "dev-master",
-		"unclecheese/bootstrap-forms" : "dev-master#3409575"
+		"unclecheese/bootstrap-forms" : "1.1.9"
 	},
 	"config": {
 		"process-timeout": 600	
