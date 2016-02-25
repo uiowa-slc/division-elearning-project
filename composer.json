@@ -4,15 +4,15 @@
 	"type": "silverstripe-module",
 	"require": {
 		"php": ">=5.3.2",
-		"silverstripe/cms": "3.1.*",
-		"silverstripe/framework": "3.1.*",
+		"silverstripe/cms": "3.*",
+		"silverstripe/framework": "3.*",
 		"md/division-bar" : "*",
 		"md/division-project" : "2.*",
-		"silverstripe/spamprotection" : "dev-master",
+		"silverstripe/spamprotection" : "*",
 		"silverstripe/recaptcha" : "*",
 		"silverstripe/userforms" : "*",
-		"rywa/silverstripe-foundation-forms": "dev-master",
-		"silverstripe/mathspamprotection": "dev-master",
+		"rywa/silverstripe-foundation-forms": "*",
+		"silverstripe/mathspamprotection": "*",
 		"unclecheese/bootstrap-forms" : "1.1.9"
 	},
 	"config": {
