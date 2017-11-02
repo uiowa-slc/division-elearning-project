@@ -31,7 +31,7 @@ module.exports = function(grunt) {
           'css/app.css' : 'scss/app.scss'
         },                  // Target
         options: {              // Target options
-          style: 'compressed',
+          style: 'expanded',
           loadPath: ['bower_components/bootstrap-sass-official/assets/stylesheets/', '../division-project/scss', '../division-bar/scss']
         }
       }

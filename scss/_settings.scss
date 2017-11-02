@@ -1,3 +1,5 @@
+@import "../../division-project/src/scss/settings/division-settings.scss";
+
 /*-------------------------------------------
     Colors
 -------------------------------------------*/
@@ -16,8 +18,12 @@ $base-font-size: 15px;
 -------------------------------------------*/
 $break-small: 480px;
 $break-medium: 768px;
-$break-large: 980px; /* 980px / 16px; */
-$break-xlarge: 1140px; /* 1140px / 16px; */
+$break-large: 980px;
+
+/* 980px / 16px; */
+$break-xlarge: 1140px;
+
+/* 1140px / 16px; */
 
 /*-------------------------------------------
     Bootstrap Settings
@@ -26,7 +32,5 @@ $navbar-default-bg: #312312;
 $light-orange: #ff8c00;
 $navbar-default-color: $light-orange;
 
-$font-family-sans-serif: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
-$headings-font-family: "proxima-nova-condensed",sans-serif;
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-
+$font-family-sans-serif: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headings-font-family: "proxima-nova-condensed", sans-serif;

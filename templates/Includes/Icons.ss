@@ -1,5 +1,8 @@
 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" sizes="16x16 32x32 48x48 64x64" href="{$ThemeDir}/images/favicons/favicon.ico">
+	<!-- font-awesome icons -->
+	<link rel="stylesheet" href="{$ThemeDir}/icons/font-awesome/css/font-awesome.min.css">
+
 	<link rel="shortcut icon" type="image/x-icon" href="{$ThemeDir}/images/favicons/favicon.ico">
 	<!--[if IE]><link rel="shortcut icon" href="{$BaseHref}/favicon.ico"><![endif]-->
 	<!-- For Opera Speed Dial: -->

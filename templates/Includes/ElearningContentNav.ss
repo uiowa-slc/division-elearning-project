@@ -9,4 +9,4 @@
 <% else %>
 		<hr />
 <% end_if %>
-<% if $NextPage %><p class="slide-nav"><a class="btn next-sec" href="$NextLink">$NextPage.Title <span class="glyphicon glyphicon-chevron-right"></span></a></p><% end_if %>
+<% if $NextPage %><p class="slide-nav"><a class="button button--next-sec" href="$NextLink">$NextPage.Title <span class="fa fa-chevron-right"></span></a></p><% end_if %>

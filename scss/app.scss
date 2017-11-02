@@ -1,5 +1,4 @@
 @import "settings";
-@import "bootstrap";
 
 /* Division Project imports */
 
@@ -9,7 +8,7 @@ $heading-font: $headings-font-family;
 
 /* Global
 -------------------------------------------*/
-@import "../../division-project/scss/master.scss";
+@import "../../division-project/src/scss/division.scss";
 
 @import "layout/_nav.scss";
 @import "layout/_stats.scss";

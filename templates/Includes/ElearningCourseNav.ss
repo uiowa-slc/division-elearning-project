@@ -3,18 +3,21 @@
 		<h3 class="section-title"><a href="$Link">$MenuTitle</a></h3>
 	<% end_with %>
 
-	<nav class="sec-nav">
-		<ul class="first-level">
+	<nav class="sidenav">
+		<ul class="sidenav__menu">
 				<% with $Course %>
-					<% include ElearningNavLink %>
+					<li class="sidenav__item sidenav__item--$LinkingMode $CompletionStatus">
+						<a class="sidenav__link" href="$Link"><% if $CompletionStatus == "completed" %><span class="fa fa-check"></span><% end_if %>$MenuTitle</a>
 				<% end_with %>
 				<% loop $Course.Children %>
-					<% include ElearningNavLink %>
+					<ul class="sidenav__second-level">
+					<li class="sidenav__item sidenav__item--second-level sidenav__item--$LinkingMode $CompletionStatus"><a class="sidenav__link" href="$Link"><% if $CompletionStatus == "completed" %><span class="fa fa-check"></span><% end_if %>$MenuTitle</a>
 					<%-- third level nav option 1 --%>
 						<% if $LinkOrSection = "section" && $Children %>
-							<ul class="second-level">
+							<ul class="sidenav__third-level">
 								<% loop $Children %>
-									<% include ElearningNavLink %>
+									<li class="sidenav__item sidenav__item--third-level sidenav__item--$LinkingMode $CompletionStatus">
+										<a class="sidenav__link" href="$Link"><% if $CompletionStatus == "completed" %><span class="fa fa-check"></span><% end_if %>$MenuTitle</a>
 								<% end_loop %>
 							</ul>
 						<% end_if %>
@@ -26,9 +29,9 @@
 
 	<div class="playback-options">
 	<% if $isAudioEnabled %>
-		<a href="{$Link}disableAudioInSession" class="btn narration">Disable Auto Narration <span class="glyphicon glyphicon-volume-off"></span></a>
+		<a href="{$Link}disableAudioInSession" class="button narration">Disable Auto Narration <span class="fa fa-volume-off"></span></a>
 	<% else %>
-		<a href="{$Link}enableAudioInSession" class="btn narration">Enable Auto Narration <span class="glyphicon glyphicon-volume-up"></span></a>
+		<a href="{$Link}enableAudioInSession" class="button narration">Enable Auto Narration <span class="fa fa-volume-up"></span></a>
 	<% end_if %>
 	</div>
 
@@ -36,9 +39,9 @@
 	<nav class="sec-nav additional-nav">
 		<h2>Course Admin</h2>
 			<ul class="first-level">
-				<li><a href="{$CMSEditLink}"><span class="glyphicon glyphicon-pencil"></span> Edit this Page</a></li>
-				<li><a href="{$Course.Link}stats/"><span class="glyphicon glyphicon-stats"></span> Course Statistics</a></li>
-				<li><a href="{$Link}Clear"><span class="glyphicon glyphicon-remove"></span> Reset Current Progress in Course</a></li>
+				<li><a href="{$CMSEditLink}"><span class="fa fa-pencil"></span> Edit this Page</a></li>
+				<li><a href="{$Course.Link}stats/"><span class="fa fa-chart"></span> Course Statistics</a></li>
+				<li><a href="{$Link}Clear"><span class="fa fa-remove"></span> Reset Current Progress in Course</a></li>
 			</ul>
 		</nav>
 	<% end_if %>

@@ -1,100 +1,143 @@
 /* Primary Navigation */
 
-.col-md-4.side-content{
-	@media (min-width: $break-medium) { 
+.sidenav {
+	&__item {
+		&--current {
+			& > a {
+				color: #fff;
+				font-weight: bold;
+			}
+		}
+
+		&--section {
+			background-color: #111;
+
+			& > a {
+				&:after {
+					content: "";
+				}
+			}
+
+			& .sidenav__item--current {
+				color: #fff;
+			}
+		}
+
+		&--second-level {
+			& .sidenav__link {
+				color: #eee;
+
+				&:before {
+					content: '';
+				}
+
+				&:hover, &:focus {
+					text-decoration: none;
+				}
+			}
+
+			&.sidenav__item--current {
+				& > a {
+					color: #eee;
+				}
+			}
+		}
+
+		&--third-level {
+			& .sidenav__link {
+				color: #eee;
+				text-decoration: none;
+
+				&:before {
+					content: '';
+				}
+			}
+
+			&.sidenav__item--current {
+				& a {
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	&__link {
+		color: #fff;
+		text-decoration: none;
+
+		&:hover, &:focus {
+			text-decoration: none;
+		}
+	}
+}
+
+.col-md-4.side-content {
+	@media (min-width: $break-medium) {
 		padding-left: 0;
 	}
 }
 
-.sec-content.affix{
-	position: relative;
-	@media (min-width: $break-medium) { 
-		width: 350px;
-		position: fixed;
-	}
-}
-
-.sec-content{
-	.section-title{
-		margin-bottom: 10px;
-	}
-	.playback-options{
-		padding-left: 10px;
-		padding-top: 10px;
-		.glyphicon{
-			vertical-align: text-top;
-		}
-	}
-}
-
-
-.sec-nav a, .sec-nav span.inactive {
-	border-bottom: 1px solid #ddd;
-	display: block;
-	padding: 7px 0 7px 7px;
-	padding-left: 13px;
-
+.sidenav__link > a, .sidenav__link span.inactive {
 	&:hover {
 		color: #fff;
 		text-decoration: none;
 	}
-	@media screen and (min-width: $break-medium) {
-		//padding-left: 20px;
+
+	&:before {
+		content: "";
+	}
+}
+
+.sidenav__item .sidenav__item--current {
+	& > a {
+		color: #fff;
+		font-weight: bold;
 	}
 }
 
 //completed nav colors
-.sec-nav .completed > a, .sec-nav .completed > span.inactive{
-	padding-left: 10px;
-	color: darken($green, 20);
+.sidenav__item .completed > a, .sidenav__item .completed > span.inactive {
+	// color: darken($green, 20);
+	color: #eee;
+
+	&.sidenav__link .fa .fa-check {
+		color: $green;
+	}
+
 	&:hover {
-		color: lighten($green, 20)
+		// color: lighten($green, 20);
+		color: $green;
+		text-decoration: none;
 	}
 }
 
-.sec-nav .active > a, .sec-nav .active > span.inactive {
-	background: #000;
+.sidenav__item .sidenav__item--active > a, .sidenav__item--active > span.inactive {
 	color: #fff;
-	position: relative;
+
 	@media screen and (min-width: $break-medium) {
 		&:before {
 			content: '';
-			width: 0px;
-			height: 0px;
-			border-style: solid;
-			border-width: 21px 0 21px 8px;
-			border-color: transparent transparent transparent #fff;
-			position: absolute;
-			left: -1px;
-			top: 50%;
-			margin-top: -21px;
 		}
 	}
 }
 
-.sec-nav .active.completed > a {
-	color: lighten($green, 20);
-}
-
-.sec-nav span.inactive{
+.sidenav__link span.inactive {
 	color: #858383;
+	text-decoration: none;
+
 	&:hover {
+		text-decoration: none;
 		background-color: none;
 		color: #858383;
 	}
 }
 
-.sec-nav{
-	.glyphicon-ok{
-		color: $green;
-		padding-right: 5px;
-	}
-
-	h2{
+.sidenav {
+	h2 {
 		padding-left: 10px;
 	}
 
-	ul.second-level{
+	ul.second-level {
 		font-size: 0.8em;
 
 		li a, li span.inactive {
@@ -102,48 +145,40 @@
 		}
 	}
 }
-.sec-nav .active>a:before, .sec-nav .active>span.inactive:before{
-	left: -2px;
-}
 
-.sec-nav .second-level .active>a:before, .sec-nav .second-level .active>span.inactive:before{
-	left: -3px;
-}
 /* Per slide Navigation and Caption */
 
-.well.caption-nav{
+.well.caption-nav {
 	margin-top: 2em;
 
-	img{
+	img {
 		padding: 1em;
 	}
 
-	audio{
+	audio {
 		width: 100%;
 	}
 
-	p{
+	p {
 		margin-top: 0;
 	}
 }
 
-.slide-nav{
-	@media (min-width: $break-small) { 
+.slide-nav {
+	@media (min-width: $break-small) {
 		text-align: right;
 	}
 }
 
-.btn.next-sec{
+.button--next-sec {
 	margin-top: 1em;
 	background: $green;
 	color: white;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.29);
-	@media (min-width: $break-small) { 
+
+	@media (min-width: $break-small) {
 		margin-top: 0;
+
 		//float: right;
 	}
-}
-
-.btn.narration{
-
 }
