@@ -10,7 +10,7 @@
 		"silverstripe/spamprotection" : "*",
 		"silverstripe/recaptcha" : "*",
 		"silverstripe/userforms" : "*",
-		"silverstripe/mathspamprotection": "*",
+		"silverstripe/mathspamprotection": "*"
 	
 	},
 	"config": {
