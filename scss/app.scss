@@ -4,7 +4,7 @@
 
 $heading-font: $headings-font-family;
 
-@import "../../lib/mediaelement/mediaelementplayer.scss";
+@import "lib/mediaelement/mediaelementplayer.scss";
 
 /* Global
 -------------------------------------------*/
@@ -15,10 +15,6 @@ $heading-font: $headings-font-family;
 /* Main Content Area */
 
 .main-content {
-	@media screen and (min-width: $break-medium) {
-		padding-left: 0;
-	}
-
 	.course-header {
 		padding-top: 2em;
 	}
@@ -37,10 +33,6 @@ $heading-font: $headings-font-family;
 			font-size: 1.3em;
 		}
 	}
-}
-
-h1 {
-	font-size: 2.6em;
 }
 
 .question-form-container.answered .Actions {
