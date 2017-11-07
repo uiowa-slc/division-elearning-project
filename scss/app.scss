@@ -4,11 +4,10 @@
 
 $heading-font: $headings-font-family;
 
-@import "../bower_components/mediaelement/build/mediaelementplayer.min.css";
+@import "../../lib/mediaelement/mediaelementplayer.scss";
 
 /* Global
 -------------------------------------------*/
-@import "../../division-project/src/scss/division.scss";
 
 @import "layout/_nav.scss";
 @import "layout/_stats.scss";

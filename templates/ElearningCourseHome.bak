@@ -51,9 +51,10 @@
 
     <% include Footer %>
     $BetterNavigator
-    <script type="text/javascript" src="division-elearning-project/build/app.min.js"></script>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="{$ThemeDir}/dist/scripts/app.js"></script>
+    <script type="text/javascript" src="division-elearning-project/build/app.min.js"></script>
 
     $Analytics
   </body>

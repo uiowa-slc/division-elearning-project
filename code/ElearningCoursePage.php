@@ -99,7 +99,9 @@ class ElearningCoursePage_Controller extends Page_Controller {
 	}
 	
 	public function init() {
+		parent::init();
 
+		 //print_r(SSViewer::get_templates_by_class('ElearningCoursePart'));
 		$courseStatus = Session::get('courseStatus');
 		$currentCourse = $this->Course();
 
@@ -125,8 +127,10 @@ class ElearningCoursePage_Controller extends Page_Controller {
 				$this->redirect($goToPage->Link());	
 		}
 			
+
+			
 		//print_r($courseStatus);
-		parent::init();
+		
 	}
 
 	public function disableAudioInSession(){
