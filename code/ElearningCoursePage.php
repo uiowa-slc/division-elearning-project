@@ -113,6 +113,8 @@ class ElearningCoursePage_Controller extends Page_Controller {
 		}
 		
 		//If there's no status set for the page the user's currently on, find the first page marked as available and redirect them there.
+
+		if(!Permission::check('ADMIN')){	
 		if (!isset($courseStatus[$currentCourse->ID][$this->ID]['status'])) {
 				end($courseStatus[$currentCourse->ID]);
 				$returnKey = key($courseStatus[$currentCourse->ID]);
@@ -126,6 +128,7 @@ class ElearningCoursePage_Controller extends Page_Controller {
 				$goToPage = DataObject::get_by_id('Page', $returnKey);
 				$this->redirect($goToPage->Link());	
 		}
+	}
 			
 
 			
