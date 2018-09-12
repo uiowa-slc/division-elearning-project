@@ -27,13 +27,7 @@
 		</ul>
 	</nav>
 
-	<div class="playback-options">
-	<% if $isAudioEnabled %>
-		<a href="{$Link}disableAudioInSession" class="button narration">Disable Auto Narration <span class="fa fa-volume-off"></span></a>
-	<% else %>
-		<a href="{$Link}enableAudioInSession" class="button narration">Enable Auto Narration <span class="fa fa-volume-up"></span></a>
-	<% end_if %>
-	</div>
+
 
 	<% if $CurrentMember %>
 	<nav>
