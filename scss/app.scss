@@ -15,6 +15,7 @@ $heading-font: $headings-font-family;
 /* Main Content Area */
 
 .main-content {
+
 	.course-header {
 		padding-top: 2em;
 	}
@@ -53,11 +54,13 @@ $heading-font: $headings-font-family;
 }
 
 .incorrect {
-	background: #f2dede;
+	margin-top:10px;
+	color: #b20000;
 }
 
 .correct {
-	background: #DFF0D8;
+	margin-top:10px;
+	color: #34b200;
 }
 
 .affix-bottom {

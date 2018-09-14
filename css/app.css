@@ -229,11 +229,11 @@ h1 {
 }
 
 .incorrect {
-  background: #f2dede;
+  background-color: #f2dede;
 }
 
 .correct {
-  background: #DFF0D8;
+  background-color: #DFF0D8;
 }
 
 .affix-bottom {

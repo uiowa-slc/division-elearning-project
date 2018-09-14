@@ -23,14 +23,14 @@
 			<% if $MainImage %>
 				<img class="main-content__main-img" src="$MainImage.ScaleMaxWidth(500).URL" alt="" role="presentation"/>
 			<% end_if %>
-			<div class="main-content__text">
+			<div  class="main-content__text" >
 					$Content		
 					$ChapterQuestionForm
 
 					<% if $QuestionStatus == "Correct" %>
-						<p>Correct!</p>
+						<p class="correct" >Correct!</p>
 					<% else_if $QuestionStatus == "Incorrect" %>
-						<p>That's incorrect. The answer is <strong> $CorrectAnswer.Answer </strong></p>
+						<p class="incorrect">That's incorrect. The answer is <strong> $CorrectAnswer.Answer </strong></p>
 					<% end_if %>
 
 				<% if $CompletionStatus == "completed" %>
