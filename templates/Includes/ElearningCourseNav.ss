@@ -1,8 +1,5 @@
 
-	<% with Course %>
-		<h3 class="section-title"><a href="$Link">$MenuTitle</a></h3>
-	<% end_with %>
-
+	
 	<nav class="sidenav">
 		<ul class="sidenav__menu">
 				<% with $Course %>

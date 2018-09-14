@@ -79,7 +79,7 @@ class ElearningCourseHome_Controller extends ElearningCoursePage_Controller {
 			'TimesCompleted' => $this->TimesCompleted
 		);
 		
-		return $this->Customise($Data)->renderWith(array('ElearningCourseHome_stats', 'ElearningCoursePage'));
+		return $this->Customise($Data)->renderWith(array('ElearningCourseHome_stats', 'Page'));
 	}
 	
 	

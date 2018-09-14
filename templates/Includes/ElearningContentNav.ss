@@ -3,9 +3,10 @@
 <% if $ExplanatoryText %>
 	<div class="well caption-nav">
 		$ExplanatoryText
-		<h3> Audio Narration</h3>
+		
 		<% if $AudioClip %>
 			<hr />
+			<h3> Audio Narration</h3>
 			<audio src="$AudioClip.Filename" controls="controls" <% if $isAudioEnabled %>autoplay<% end_if %>></audio>
 		<% end_if %>
 	</div>

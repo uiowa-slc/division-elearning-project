@@ -36,9 +36,9 @@
 						<li class="answer-well" style="<% if $ID == Up.CorrectAnswer.ID %> <% include DataStylesC %> <% else %> <% include DataStylesI %> <% end_if %>">
 							<div class="answer-info">
 								<span>$Answer</span>
-								<ul>
-									<li> Times Chosen: <strong> $TimesAnswered </strong></li>
-									<li> Percent Chosen: <strong> $PercentAnswered.Nice() </strong></li>
+								<ul class="answer-list">
+									<li class="times-chosen" ;> Times Chosen: <strong> $TimesAnswered </strong></li>
+									<li class= "percent-chosen";> Percent Chosen: <strong> $PercentAnswered.Nice() </strong></li>
 								</ul>	
 							</div>	
 						</li>
