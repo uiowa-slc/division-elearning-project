@@ -1,13 +1,14 @@
 {
 	"name": "md/division-elearning-project",
 	"description": "Themable module for an elearning project",
-	"type": "silverstripe-module",
+	"type": "silverstripe-vendormodule",
 	"require": {
-		"php": ">=5.3.2",
-		"silverstripe/cms": "3.*",
-		"silverstripe/framework": "3.*",
+		"php": ">=5.5",
+      	"silverstripe/framework": "4.2.1",
+      	"silverstripe/recipe-plugin": "*",
+     	"silverstripe/recipe-cms": "*",
 		"md/division-project" : "*",
-		"silverstripe/spamprotection" : "*",
+		"silverstripe/spamprotection" : "3.*",
 		"silverstripe/recaptcha" : "*",
 		"silverstripe/userforms" : "*",
 		"silverstripe/mathspamprotection": "*"
