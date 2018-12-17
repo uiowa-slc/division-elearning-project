@@ -1,4 +1,6 @@
 <?php
+use Silverstripe\Forms\HTMLEditor\HTMLEditorField;
+use Silverstripe\Forms\TextField;
 class ElearningCourseHome extends ElearningCoursePage {
 
 	private static $db = array(

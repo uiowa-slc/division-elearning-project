@@ -1,4 +1,6 @@
 <?php
+use Silverstripe\Control\Session;
+use Silverstripe\Security\Permission;
 class ElearningCoursePageController extends PageController {
 
 	/**
@@ -48,14 +50,14 @@ class ElearningCoursePageController extends PageController {
 		parent::init();
 
 		 //print_r(SSViewer::get_templates_by_class('ElearningCoursePart'));
-		$courseStatus = Session::get('courseStatus');
+		$courseStatus = $this->getRequest()->getSession()->get('courseStatus');
 		$currentCourse = $this->Course();
 
 		//If there's no courseStatus session variable, assume we haven't started the course and make the course homepage "available"
 		if(!isset($courseStatus[$currentCourse->ID])){
 			$courseStatus[$currentCourse->ID][$currentCourse->ID]['status'] = 'available';
-			Session::set('courseStatus', $courseStatus);
-			Session::save();
+			$this->getRequest()->getSession()->set('courseStatus', $courseStatus);
+			//save($this->getRequest()->getSession());
 		}
 		
 		//If there's no status set for the page the user's currently on, find the first page marked as available and redirect them there.
@@ -83,18 +85,18 @@ class ElearningCoursePageController extends PageController {
 	}
 
 	public function disableAudioInSession(){
-		Session::set('Audio', 'Disabled');
-		Session::save();
+		$this->getRequest()->getSession()->set('Audio', 'Disabled');
+		//save($this->getRequest()->getSession());
 		$this->redirectBack();
 	}
 	public function enableAudioInSession(){
-		Session::set('Audio', 'Enabled');
-		Session::save();
+		$this->getRequest()->getSession()->set('Audio', 'Enabled');
+		//save($this->getRequest()->getSession());
 		$this->redirectBack();
 	}
 
 	public function IsAudioEnabled(){
-		$audioStatus = Session::get('Audio');
+		$audioStatus = $this->getRequest()->getSession()->get('Audio');
 		if($audioStatus == 'Disabled'){
 			return false;
 		}else{
@@ -120,8 +122,7 @@ class ElearningCoursePageController extends PageController {
 	}
 
 	public function Next(){
-
-		$courseStatus = Session::get('courseStatus');
+		$courseStatus = $this->getRequest()->getSession()->get('courseStatus');
 		$currentCourse = $this->Course();
 		$nextPage = $this->getNextPage();
 		
@@ -158,14 +159,14 @@ class ElearningCoursePageController extends PageController {
 			$courseStatus[$currentCourse->ID][$this->getParent()->ID]['status'] = 'completed';
 		}
 				
-		Session::set('courseStatus', $courseStatus);
-		Session::save();
+		$this->getRequest()->getSession()->set('courseStatus', $courseStatus);
+		//save($this->getRequest()->getSession()); --no longer need to save after set Session
 		$this->redirect($nextPage->Link());
 		
 	}
 
 	public function Clear(){
-		Session::clear("courseStatus");
+		$this->getRequest()->getSession()->clear("courseStatus");
 		$this->redirectBack();
 	}
 

@@ -1,4 +1,11 @@
 <?php
+use Silverstripe\Control\Session;
+use Silverstripe\Forms\FieldList;
+use Silverstripe\Forms\OptionsetField;
+use Silverstripe\Forms\FormAction;
+use Silverstripe\Forms\RequiredFields;
+use Silverstripe\Forms\Form;
+use SilverStripe\ORM\DataObject;
 
 class ElearningCourseQuestionController extends ElearningCourseChapterController {
 
@@ -31,7 +38,7 @@ class ElearningCourseQuestionController extends ElearningCourseChapterController
 	public function ChapterQuestionForm() {
 
 		$currentCourse = $this->Course();
-		$courseStatus = Session::get('courseStatus');
+		$courseStatus = $this->getRequest()->getSession()->get('courseStatus');
 		
 		if (isset($courseStatus[$currentCourse->ID][$this->ID]["answerPicked"])) {
 			//print_r($courseStatus[$currentCourse->ID][$this->ID]["answerPicked"]);
@@ -67,7 +74,7 @@ class ElearningCourseQuestionController extends ElearningCourseChapterController
 		
 		//Get the current course, course status session variable, next page, and correct answer
 		$currentCourse = $this->Course();
-		$courseStatus = Session::get('courseStatus');
+		$courseStatus = $this->getRequest()->getSession()->get('courseStatus');
 		$nextPage = $this->getNextPage();
 		$correctAnswer = $this->CorrectAnswer()->ID;
 
@@ -106,8 +113,8 @@ class ElearningCourseQuestionController extends ElearningCourseChapterController
 		}
 		
 		// Save the Course Status session variable.
-		Session::set('courseStatus', $courseStatus);
-		Session::save();
+		$this->getRequest()->getSession()->set('courseStatus', $courseStatus);
+		//save($this->getRequest()->getSession());
 		
 		return $this->customise($templateData);
 	}	

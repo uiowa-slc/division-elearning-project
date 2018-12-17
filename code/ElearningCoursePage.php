@@ -1,4 +1,11 @@
 <?php
+use Silverstripe\Assets\File;
+use Silverstripe\Control\Session;
+use Silverstripe\AssetAdmin\Forms\UploadField;
+use Silverstripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Core\Injector\Injector;
+
 class ElearningCoursePage extends Page {
 
 	private static $db = array(
@@ -6,7 +13,7 @@ class ElearningCoursePage extends Page {
 	);
 
 	private static $has_one = array(
-		'AudioClip' => 'File'
+		'AudioClip' => File::class,
 	);
 	private static $can_be_root = false;
 	//private static $allowed_children = array("ElearningCourseChapter");
@@ -24,21 +31,23 @@ class ElearningCoursePage extends Page {
 		return $fields;
 	}
 
+	public function NextLink(){
+		return $this->Link().'Next/';
+	}
+
 	public function CompletionStatus(){
-		$courseStatus = Session::get('courseStatus');
+
+		$request = Injector::inst()->get(HTTPRequest::class);
+		$session = $request->getSession();
+		$courseStatus = $session->get('courseStatus');
 		$currentCourse = $this->Course();
-		//print_r('completion status of this page: '.$courseStatus[$currentCourse->ID][$this->ID]);
+		// print_r('completion status of this page: '.$courseStatus[$currentCourse->ID][$this->ID]);
 		if(isset($courseStatus[$currentCourse->ID][$this->ID])){
 			return $courseStatus[$currentCourse->ID][$this->ID]['status'];
 		}else{
 			return false;
 		}
 	}
-
-	public function NextLink(){
-		return $this->Link().'Next/';
-	}
-
 
 	public function Course(){
 		$pageTemp = $this;

@@ -1,4 +1,6 @@
 <?php
+use Silverstripe\Assets\File;
+
 class ElearningCourseQuestion extends ElearningCourseChapter {
 
 	private static $db = array(
@@ -13,7 +15,7 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 
 	private static $has_one = array(
 		'CorrectAnswer' => 'ElearningCourseAnswer',
-		'QuestionAudioClip' => 'File'
+		'QuestionAudioClip' => File::class
 	);
 
 	private static $singular_name = 'Question';
