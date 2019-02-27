@@ -10,9 +10,9 @@ class ElearningCoursePart extends ElearningCoursePage {
 
 	private static $allowed_children = array("ElearningCourseChapter", "ElearningCourseQuestion");
 
-	private static $singular_name = 'Part';
+	private static $singular_name = 'Elearning Module';
 
-	private static $plural_name = 'Parts';
+	private static $plural_name = 'Elearning Modules';
 
 	private static $default_parent = "ElearningCourseHome";
 	private static $can_be_root = false;

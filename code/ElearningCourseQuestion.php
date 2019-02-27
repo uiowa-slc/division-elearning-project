@@ -18,8 +18,8 @@ class ElearningCourseQuestion extends ElearningCourseChapter {
 		'QuestionAudioClip' => File::class
 	);
 
-	private static $singular_name = 'Question';
-	private static $plural_name = 'Questions';
+	private static $singular_name = 'Elearning Question';
+	private static $plural_name = 'Elearning Questions';
 	private static $can_be_root = false;
 	
 	protected function onBeforeWrite() {
