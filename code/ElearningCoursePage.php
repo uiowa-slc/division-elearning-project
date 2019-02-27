@@ -32,7 +32,7 @@ class ElearningCoursePage extends Page {
 	}
 
 	public function NextLink(){
-		return $this->Link().'Next/';
+		return $this->getAbsoluteLiveLink(false).'Next/';
 	}
 
 	public function CompletionStatus(){
