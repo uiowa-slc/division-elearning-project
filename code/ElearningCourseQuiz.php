@@ -1,7 +1,7 @@
 <?php
 use SilverStripe\ORM\DataObject;
 
-class ElearningCourseQuiz extends DataObject {
+class ElearningCourseQuiz extends ElearningCoursePage {
 
 	private static $db = array(
 		"QuizURL" => "Varchar(255)"
