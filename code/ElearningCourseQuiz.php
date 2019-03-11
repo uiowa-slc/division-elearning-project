@@ -7,12 +7,12 @@ class ElearningCourseQuiz extends ElearningCoursePage {
 		"QuizURL" => "Varchar(255)"
 	);
 
-	private static $singular_name = 'Quiz';
+	private static $singular_name = 'Elearning Quiz';
 
-	private static $plural_name = 'Quizzes';
+	private static $plural_name = 'Elearning Quizzes';
 
 	private static $default_parent = "ElearningCourseHome";
-	
+
 	private static $can_be_root = false;
 
     public function getCMSFields() {
