@@ -13,7 +13,7 @@ class ElearningCourseHome extends ElearningCoursePage {
 	private static $has_one = array(
 	);
 	private static $can_be_root = true;
-	private static $allowed_children = array("ElearningCoursePart");
+	private static $allowed_children = array("ElearningCoursePart", "ElearningCourseQuiz");
 	
 	private static $singular_name = 'Elearning Course';
 
