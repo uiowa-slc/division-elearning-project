@@ -1,6 +1,6 @@
 <?php
 use SilverStripe\ORM\DataObject;
-
+use Silverstripe\Forms\TextField;
 class ElearningCourseQuiz extends ElearningCoursePage {
 
 	private static $db = array(
