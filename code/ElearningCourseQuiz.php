@@ -11,6 +11,10 @@ class ElearningCourseQuiz extends DataObject {
 
 	private static $plural_name = 'Quizzes';
 
+	private static $default_parent = "ElearningCourseHome";
+	
+	private static $can_be_root = false;
+
     public function getCMSFields() {
 	    $fields = parent::getCMSFields();
 

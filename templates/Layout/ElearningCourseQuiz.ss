@@ -27,6 +27,9 @@
 				<div class="responsive-embed"> 
 					<iframe src="$QuizURL"></iframe>
 				</div>
+				
+				<% include ElearningContentNav %>
+				<% include ElearningCourseCredits %>
 			</div>
 			$AfterContentConstrained
 			$Form
