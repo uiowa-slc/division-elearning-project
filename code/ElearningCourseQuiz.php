@@ -17,7 +17,7 @@ class ElearningCourseQuiz extends ElearningCoursePage {
 
     public function getCMSFields() {
 	    $fields = parent::getCMSFields();
-	    $fields->addFieldToTab('Root.Main', new TextField('QuizURL', 'Qualatrics/Quiz URL');
+	    $fields->addFieldToTab('Root.Main', new TextField('QuizURL', 'Qualatrics/Quiz URL', 'QuizURL');
 
 	    return $fields;
 	  }
