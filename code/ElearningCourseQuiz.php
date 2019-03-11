@@ -4,7 +4,7 @@ use Silverstripe\Forms\TextField;
 class ElearningCourseQuiz extends ElearningCoursePage {
 
 	private static $db = array(
-		"QuizURL" => "Varchar(255)"
+		'QuizURL' => "Varchar(255)"
 	);
 
 	private static $singular_name = 'Elearning Quiz';
@@ -17,7 +17,7 @@ class ElearningCourseQuiz extends ElearningCoursePage {
 
     public function getCMSFields() {
 	    $fields = parent::getCMSFields();
-	    $fields->addFieldToTab('Root.Main', new TextField('QuizURL', 'Qualatrics/Quiz URL', 'QuizURL');
+	    $fields->addFieldToTab('Root.Main', new TextField('QuizURL', 'Qualatrics/Quiz URL'), 'QuizURL');
 
 	    return $fields;
 	  }
