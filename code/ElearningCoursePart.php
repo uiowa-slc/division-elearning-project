@@ -8,7 +8,7 @@ class ElearningCoursePart extends ElearningCoursePage {
 	private static $has_one = array(
 	);
 
-	private static $allowed_children = array("ElearningCourseChapter", "ElearningCourseQuestion");
+	private static $allowed_children = array("ElearningCourseChapter", "ElearningCourseQuestion", "ElearningCourseQuiz");
 
 	private static $singular_name = 'Elearning Module';
 

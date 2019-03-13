@@ -11,7 +11,7 @@ class ElearningCourseQuiz extends ElearningCoursePage {
 
 	private static $plural_name = 'Elearning Quizzes';
 
-	private static $default_parent = "ElearningCourseHome";
+	private static $default_parent = "ElearningCoursePart";
 
 	private static $can_be_root = false;
 
