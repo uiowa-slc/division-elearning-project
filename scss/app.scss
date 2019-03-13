@@ -36,6 +36,11 @@ $heading-font: $headings-font-family;
 	}
 }
 
+.main-content--full-width-not-centered{
+	width: 100%;
+	padding-right: 0;
+}
+
 .question-form-container.answered .Actions {
 	display: none;
 }
