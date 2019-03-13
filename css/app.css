@@ -210,6 +210,10 @@
     font-size: 1.3em;
   }
 }
+.main-content--full-width-not-centered{
+  width: 100%;
+  padding-right: 0;
+}
 
 h1 {
   font-size: 2.6em;
