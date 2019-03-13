@@ -23,26 +23,30 @@ class ElearningCourseQuiz extends ElearningCoursePage {
 	}
 
 	public function Course(){
-		$pageTemp = $this;
-		while($pageTemp->ClassName != 'ElearningCourseHome'){
-			$pageTemp = $this->getParent();
-		}
-		return $pageTemp;
+		return $this->getParent()->Parent;
 	}
 
 	
 	public function getNextPage() {
-		//If part has children, then the next page is its first child.
-		if($this->Children()->First()){
-			return $this->Children()->First();
-		}else{
-			$page = Page::get()->filter( array (
+		//Find a page on the same level as the current chapter with a higher sort order, if there is a page, return it.
+		$page = Page::get()->filter( array (
 				'ParentID' => $this->ParentID,
 				'Sort:GreaterThan' => $this->Sort
 			) )->First();
-		}
 		if(isset($page)){
+
 			return $page;
+
+		//If there's not a page on the same level with a higher sort order, look at the parent's level (part) and find the next part.
+		}else{
+			$parent = $this->getParent();
+			if(isset($parent)){
+				$page = Page::get()->filter( array (
+					'ParentID' => $parent->ParentID,
+					'Sort:GreaterThanOrEqual' => $parent->Sort,
+				) )->exclude(array('ID' => $parent->ID))->First();	
+				return $page;			
+			}
 		}
 	}
 	  
