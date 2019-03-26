@@ -28,8 +28,8 @@ class ElearningCoursePageController extends PageController {
 	private static $url_handlers = array (
 		'disableAudioInSession' => 'disableAudioInSession',
 		'enableAudioInSession' => 'enableAudioInSession',
-		'Next' => 'Next',
-		'Clear' => 'Clear'
+		'Next//' => 'Next',
+		'Clear//' => 'Clear'
 	);
 	
 	

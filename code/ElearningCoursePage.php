@@ -32,7 +32,12 @@ class ElearningCoursePage extends Page {
 	}
 
 	public function NextLink(){
-		return $this->getAbsoluteLiveLink(false).'Next/';
+		if($this->isPublished()){
+			return $this->RelativeLink(false).'Next/';
+		}else{
+			return $this->RelativeLink(false).'Next/?stage=Stage';
+		}
+		
 	}
 
 	public function CompletionStatus(){
