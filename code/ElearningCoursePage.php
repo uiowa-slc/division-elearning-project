@@ -15,6 +15,11 @@ class ElearningCoursePage extends Page {
 	private static $has_one = array(
 		'AudioClip' => File::class,
 	);
+
+	private static $owns = array(
+		'AudioClip'
+	);
+
 	private static $can_be_root = false;
 	//private static $allowed_children = array("ElearningCourseChapter");
 	
@@ -22,12 +27,17 @@ class ElearningCoursePage extends Page {
 		$fields = parent::getCMSfields();
 		$fields->removeFieldFromTab("Root.Main", "BackgroundImage");
 
-		$fields->addFieldToTab('Root.Main', new UploadField( 'AudioClip', 'Audio Clip'),'Content');
+		$fields->addFieldToTab('Root.Main', new UploadField( 'AudioClip', 'Audio Narration'),'Content');
 		$fields->addFieldToTab(
 			'Root.Main',
-			new HTMLEditorField( 'ExplanatoryText', 'Explanatory Text')
+			new HTMLEditorField( 'ExplanatoryText', 'Explanatory Text (shows up below the main content')
 		);
+
+		$fields->renameField('Content', 'Main Content Area');
 		$fields->removeByName("Metadata");
+		$fields->removeByName("LayoutType");
+		$fields->removeByName("YoutubeBackgroundEmbed");
+
 		return $fields;
 	}
 
