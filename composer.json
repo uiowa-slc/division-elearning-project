@@ -14,7 +14,7 @@
 		"silverstripe/mathspamprotection": "*"
 	
 	},
-	"extras": {
+	"extra": {
 		"expose": [
             "js/"
         ]
