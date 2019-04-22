@@ -1,5 +1,4 @@
 <main class="main-content__container" id="main-content__container">
-
 	<!-- Background Image Feature -->
 	<% if $BackgroundImage %>
 		<% include FeaturedImage %>
@@ -24,8 +23,8 @@
 				<img class="main-content__main-img" src="$MainImage.ScaleMaxWidth(500).URL" alt="" role="presentation"/>
 			<% end_if %>
 			<div class="main-content__text">
-				<div class="responsive-embed"> 
-					<iframe src="$QuizURL"></iframe>
+				<div class="unresponsive-embed">
+					<iframe style="min-width: 100%" id="elearning-quiz-iframe" src="$QuizURL"></iframe>
 				</div>
 				
 				<% include ElearningContentNav %>
