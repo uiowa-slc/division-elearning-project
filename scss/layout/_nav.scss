@@ -1,7 +1,7 @@
 .slide-nav {
-	@media (min-width: $break-small) {
-		text-align: right;
-	}
+	text-align: center;
+	border-top: 1px solid #eee;
+	padding-top: 40px;
 }
 
 .button--next-sec {
@@ -14,3 +14,12 @@
 		margin-top: 0;
 	}
 }
+
+.caption-nav{
+	position: sticky;
+	position: -webkit-sticky;
+	bottom: 0;
+	background: white;
+
+}
+

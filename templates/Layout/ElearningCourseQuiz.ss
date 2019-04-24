@@ -23,9 +23,12 @@
 				<img class="main-content__main-img" src="$MainImage.ScaleMaxWidth(500).URL" alt="" role="presentation"/>
 			<% end_if %>
 			<div class="main-content__text">
+				$Content
+				<% if $QuizURL %>
 				<div class="unresponsive-embed">
-					<iframe style="min-width: 100%" id="elearning-quiz-iframe" src="$QuizURL"></iframe>
+					<iframe style="min-width: 100%" id="elearning-quiz-iframe" class="elearning-quiz-iframe" src="$QuizURL"></iframe>
 				</div>
+				<% end_if %>
 				
 				<% include ElearningContentNav %>
 				<% include ElearningCourseCredits %>

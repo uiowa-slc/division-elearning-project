@@ -50,6 +50,20 @@ class ElearningCoursePage extends Page {
 		
 	}
 
+	public function DisableAudioLink(){
+		if($this->isPublished()){
+			return $this->RelativeLink(false).'disableAudioInSession/';
+		}else{
+			return $this->RelativeLink(false).'disableAudioInSession/?stage=Stage';
+		}
+	}
+	public function EnableAudioLink(){
+		if($this->isPublished()){
+			return $this->RelativeLink(false).'enableAudioInSession/';
+		}else{
+			return $this->RelativeLink(false).'enableAudioInSession/?stage=Stage';
+		}
+	}
 	public function CompletionStatus(){
 
 		$request = Injector::inst()->get(HTTPRequest::class);
