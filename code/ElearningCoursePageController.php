@@ -1,6 +1,8 @@
 <?php
 use Silverstripe\Control\Session;
 use Silverstripe\Security\Permission;
+use SilverStripe\ORM\DataObject;
+
 class ElearningCoursePageController extends PageController {
 
 	/**
