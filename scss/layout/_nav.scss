@@ -1,3 +1,14 @@
+.ElearningCourseHeader{
+	text-align: center;
+	text-color:white;
+	padding-top:50px;
+	padding-bottom:50px;
+	background: url('../images/ElearningBackground.jpg');
+
+}
+.CourseTitle{
+	color:#f8f6f3;
+}
 .slide-nav {
 	@media (min-width: $break-small) {
 		text-align: right;
