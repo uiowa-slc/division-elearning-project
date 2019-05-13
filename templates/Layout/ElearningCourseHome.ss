@@ -24,6 +24,7 @@
 				<img class="main-content__main-img" src="$MainImage.ScaleMaxWidth(500).URL" alt="" role="presentation"/>
 			<% end_if %>
 			<div class="main-content__text">
+				$Content
 				<div class="course-header">$CourseHeader</div>
 				<% include ElearningContentNav %>
 				<% include ElearningCourseCredits %>
