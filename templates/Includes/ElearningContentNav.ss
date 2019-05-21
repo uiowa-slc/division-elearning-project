@@ -16,6 +16,10 @@
 				</div>
 		<% end_if %>
 	</div>
-<% if $NextPage %><p class="slide-nav">	<% if $QuizURL %>
-	Please ensure you complete the quiz above before continuing:
-	<% end_if %><a class="button button--next-sec" href="$NextLink">Next: $NextPage.Title &raquo; </a></p><% end_if %>
+<% if $NextPage %>
+
+<p class="slide-nav">	
+	<% if $QuizURL %>
+	Please ensure you complete the quiz above before continuing: <br />
+	<% end_if %>
+	<a class="button button--next-sec" href="$NextLink">Next: $NextPage.Title &raquo; </a></p><% end_if %>
