@@ -4,9 +4,9 @@
 	"type": "silverstripe-vendormodule",
 	"require": {
 		"php": ">=5.5",
-      	"silverstripe/framework": "4.3.3",
-      	"silverstripe/recipe-plugin": "*",
-     	"silverstripe/recipe-cms": "*",
+	      	"silverstripe/framework": "^4",
+	      	"silverstripe/recipe-plugin": "*",
+	     	"silverstripe/recipe-cms": "*",
 		"md/division-project" : "*",
 		"silverstripe/spamprotection" : "3.*",
 		"silverstripe/recaptcha" : "*",
