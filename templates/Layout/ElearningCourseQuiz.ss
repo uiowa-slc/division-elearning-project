@@ -25,6 +25,10 @@
 			<div class="main-content__text">
 				$Content
 				<% if $QuizURL %>
+				<p>If the quiz doesn't display below, please click the following link (opens in a new tab):<br />
+					<a href="$QuizURL" target="_blank">$QuizURL</a>
+				</p>
+
 				<div class="unresponsive-embed">
 					<iframe style="min-width: 100%" id="elearning-quiz-iframe" class="elearning-quiz-iframe" src="$QuizURL"></iframe>
 				</div>
