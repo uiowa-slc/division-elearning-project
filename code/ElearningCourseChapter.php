@@ -9,8 +9,7 @@ class ElearningCourseChapter extends ElearningCoursePage {
 	);
 
 	private static $has_one = array(
-		
-		'Images' => 'Image'
+	
 	);
 
 	private static $default_parent = "ElearningCoursePart";
@@ -29,11 +28,6 @@ class ElearningCourseChapter extends ElearningCoursePage {
 	public function getCMSFields() {
 		$fields = parent::getCMSfields();
 		
-		/*$fields->addFieldToTab(
-			'Root.Main',
-			 new UploadField( 'Images', 'Upload Image for this Chapter (optional)'),
-			 'Content'
-		);*/
 	
 				
 		return $fields;
