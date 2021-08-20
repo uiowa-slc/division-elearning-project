@@ -1,5 +1,11 @@
 <?php
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
+use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 use Silverstripe\Assets\File;
+use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 
 class ElearningCourseQuestion extends ElearningCourseChapter {
 
